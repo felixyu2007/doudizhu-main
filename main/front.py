@@ -53,7 +53,7 @@ while running == True:
     for event in pygame.event.get():#这句程序是用来获取你的行为的
         #通过下面这一句程序实现离开方法
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE: 
-                    Main.ask_quetion('quit','wuld you want to quit the game')
+            Main.ask_quetion('quit','wuld you want to quit the game')
         #如果已登入signed=true，反之=false
         if signed == True:  
             if event.type == pygame.MOUSEBUTTONDOWN:
