@@ -114,7 +114,7 @@ while running == True:
         elif signed == False:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 100 < pygame.mouse.get_pos()[0] < 796 and 100 < pygame.mouse.get_pos()[1] < 455:
-                    signed = False
+                    signed = True
                     Signin_and_login_system.log_in()
                 if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
                     signed = True
