@@ -1,4 +1,0 @@
-from main.front import *
-
-
-
