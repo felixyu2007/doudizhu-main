@@ -1,8 +1,9 @@
 #import cache
-from cache import *
-difficult_rect1 = ()
-difficult_rect2 = ()
-difficult_rect3 = ()
+from front import *
+difficult_choosed = False
+difficult_rect1 = (550,600,50,20)
+difficult_rect2 = (1050,600,50,20)
+difficult_rect3 = (1550,600,50,20)
 #quit or other method function messagebox
 class Main():
     def ask_quetion(input_title,input_message):
@@ -12,37 +13,25 @@ class Main():
             quit()
         if ans == 'yes' and input_title == 'signin?':
             pass
-        if ans == 'yes' and input_title == 'login?':
-            
-            Main.game_main()
-    def poker():
+    def get_cards():
         for p in imgs:
             poker_data.append(p)
 
     pygame.display.set_caption('歡樂鬥地主')
     def game_main():
-        global round
         #the main part of the game,it is a cycle to refresh the graphic interface
-        while True:
-            clock.tick(FPS)
+        while running == True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     Main.ask_quetion('quit','wuld you want to quit the game?')
-                pygame.draw.rect()
-            #     if round == 0 and event.type == pygame.MOUSEBUTTONDOWN:
-            #         if 685 < pygame.mouse.get_pos()[0] < 835 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             round += 1
-            #         if 885 < pygame.mouse.get_pos()[0] < 1035 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             None
-            #         if 1085 < pygame.mouse.get_pos()[0] < 1235 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             None
-            #     else:
-            #         if 685 < pygame.mouse.get_pos()[0] < 835 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             None
-            #         if 885 < pygame.mouse.get_pos()[0] < 1035 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             None
-            #         if 1085 < pygame.mouse.get_pos()[0] < 1235 and 1000 < pygame.mouse.get_pos()[1] < 1042:
-            #             None
+                if ined == False:
+                    Signin_and_login_system.signup_system()
+                else:
+                    if difficult_choosed == False:
+                        pygame.draw.rect(screen,black,difficult_rect1)
+                        pygame.draw.rect(screen,black,difficult_rect2)
+                        pygame.draw.rect(screen,black,difficult_rect3)
+
             pygame.display.update()
 
 

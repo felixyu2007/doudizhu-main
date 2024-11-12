@@ -9,13 +9,44 @@ from tkinter import messagebox
 pygame.init()
 pygame.font.init()
 #basic function
-FPS = 240
+FPS = 60
 clock = pygame.time.Clock()
 screen_width = 1920
 screen_height = 1080
-timer = time.sleep(1)
 round = 0
 screen = pygame.display.set_mode((screen_width, screen_height))
+#背景颜色
+orange = (204,115,63)
+green = (49,174,91)
+red = (219,81,81)
+black = (74,74,74)
+#背景图片与图形渲染的固定位置
+points = [(420,200),(425,205),(400,240),(1520,240),(400,90,1100,300)
+          ,(400,239),(1520,239),(410,110,1100,260),(600,500,300,30)
+          ,(600,600,300,30),(600,480),(600,580),(1100,480),(900,100)
+          ,(100,100),(50,50,1820,980)]
+#背景图片与图形渲染的可活动位置
+movingpoint1 = [0,0,1920,1080]
+#设定渲染文字的字形与内容
+titletext1 = pygame.font.Font(None,140)
+titletext2 = pygame.font.Font(None,140)
+textsize1 = pygame.font.Font(None,35)
+title = titletext1.render('Fighting The Landlord',True,red)
+bgtitle = titletext2.render('Fighting The Landlord',True,black)
+nametext = textsize1.render('NAME',True,black)
+passwordtext = textsize1.render('PASSWORD',True,black)
+
+usertextname = ''
+usertextpassword = ''
+#登入界面输入位置
+rect1 = pygame.Rect(600,500,300,30)
+rect2 = pygame.Rect(600,600,300,30)
+#是否已互动预设
+running = True
+signed = False
+interact1 = False
+interact2 = False
+ined = False
 #background and cardback and button image
 background_image = pygame.image.load(r'button_image\background.png')
 cardback = pygame.image.load('PNG-cards-1.3\card_back.png')
