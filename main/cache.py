@@ -35,7 +35,6 @@ title = titletext1.render('Fighting The Landlord',True,red)
 bgtitle = titletext2.render('Fighting The Landlord',True,black)
 nametext = textsize1.render('NAME',True,black)
 passwordtext = textsize1.render('PASSWORD',True,black)
-
 usertextname = ''
 usertextpassword = ''
 #登入界面输入位置
@@ -65,3 +64,4 @@ yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
 poker_image_path = r'PNG-cards-1.3'
 imgs = listdir(poker_image_path)
 poker_data = []
+#define a method to back to privious page
