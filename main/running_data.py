@@ -1,34 +1,9 @@
 #import cache and refresh_system
 from refresh_system import *
 from button import *
+from signin_and_login_system import *
 #quit or other method function messagebox
 class Main():
-    def ask_quetion(input_title,input_message):
-        global ined
-        ans = messagebox.askquestion(title=input_title,message=input_message)
-        if ans == 'yes' and input_title == 'quit':
-            pygame.quit()
-            quit()
-        if ans == 'yes' and input_title == 'login?':
-            ined = True
-    def get_cards():
-        for p in imgs:
-            poker_data.append(p)
-
-    def save_system(name,password):
-        opw = os.open('txt_data\player_data',os.O_RDWR)
-        os.write(opw,name)
-        os.write(opw,password)
-        os.close(opw)
-        Main.ask_quetion('login?','do you want to login now?')
-    def sign_up(usertextname,usertextpassword):
-        usn = os.fsencode(usertextname)
-        usp = os.fsencode(usertextpassword)
-        Main.save_system(usn,usp)     
-        
-    def login():
-        pass
-
     pygame.display.set_caption('歡樂鬥地主')
     def game_main():
         global signed,interact1,interact2,usertextname,usertextpassword,difficult_choosed,difficult_rect1
@@ -37,7 +12,7 @@ class Main():
         while running == True:
             for event in pygame.event.get():#这句程序是用来获取你的行为的
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    Main.ask_quetion('quit','wuld you want to quit the game?')
+                    ask_quetion('quit','wuld you want to quit the game?')
                 if ined == False:
                     if signed == True: 
                         screen.fill(black)
@@ -70,7 +45,7 @@ class Main():
                             
                             if usertextname != '' and usertextpassword != '':
                                 if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
-                                    Main.sign_up(usertextname,usertextpassword)
+                                    sign_up(usertextname,usertextpassword)
                                 else:
                                     pass
                         
@@ -98,7 +73,7 @@ class Main():
                         if event.type == pygame.MOUSEBUTTONDOWN:
                             if 100 < pygame.mouse.get_pos()[0] < 796 and 100 < pygame.mouse.get_pos()[1] < 455:
                                 signed = True
-                                Main.login()
+                                login()
                             if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
                                 signed = True
                         

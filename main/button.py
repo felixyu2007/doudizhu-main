@@ -10,3 +10,4 @@ def button(coordinatex,coordinatey,text: str):
     screen.blit(button_text,(coordinatex,coordinatey))
     if button_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]):
         command = True
+        return command
