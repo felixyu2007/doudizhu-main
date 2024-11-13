@@ -77,4 +77,5 @@ poker_image_path = r'PNG-cards-1.3'
 imgs = listdir(poker_image_path)
 poker_data = []
 choosed_poker_data = []
-#define a method to back to privious page
+        
+

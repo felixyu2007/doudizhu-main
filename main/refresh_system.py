@@ -1,12 +1,13 @@
 from cache import *
 def refresh(round):
-    while started == True:
+    if started == True:
+        screen.fill(green)
         if round == 0:
-            for i in range(5):
+            for i in range(0,5):
                 mixed_poker_number = random(54)
                 choosed_poker = poker_data[mixed_poker_number]
-                choosed_poker_data = choosed_poker
-                screen.blit(choosed_poker,cards_points[i])
+                choosed_poker_data[i] = choosed_poker
+                return choosed_poker_data
         else:
             pass
     else:

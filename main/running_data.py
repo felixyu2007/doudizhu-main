@@ -1,5 +1,6 @@
 #import cache and refresh_system
 from refresh_system import *
+from button import *
 #quit or other method function messagebox
 class Main():
     def ask_quetion(input_title,input_message):
@@ -115,25 +116,22 @@ class Main():
                             if 1550 < pygame.mouse.get_pos()[0] < 1650 and 600 < pygame.mouse.get_pos()[1] < 640:
                                 difficult_choosed = True
                     else:
-                        screen.blit(background_image,(0,0))
-                        pygame.draw.rect(screen,green,menu_rect)
                         #
-                        while menu_rect.collidepoint(event.pos) and menu_rect.w < 400:
+                        while menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]) and menu_rect.w < 400:
                             menu_rect.w += 1
                         else:
                             pass
-                        while not(menu_rect.collidepoint(event.pos)) and menu_rect.w > 100:
+                        while not(menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])) and menu_rect.w > 100:
                             menu_rect.w -= 1
                         else:
                             pass
                         #
                         if started == False:
-                            pygame.draw.rect(screen,green,start_rect)
-                            screen.blit(starttitle,(1051,601))
-                        elif event.type == pygame.MOUSEBUTTONDOWN:
-                            if start_rect.collidepoint(event.pos):
-                                started = True
-                                refresh(round)
+                            button(1050,800,text='start')
+                            if command == True:
+                                started == True
+                        else:
+                            screen.fill(black)
             pygame.display.update()
 
 
