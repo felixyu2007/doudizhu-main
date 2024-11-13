@@ -38,14 +38,20 @@ passwordtext = textsize1.render('PASSWORD',True,black)
 usertextname = ''
 usertextpassword = ''
 #登入界面输入位置
-rect1 = pygame.Rect(600,500,300,30)
-rect2 = pygame.Rect(600,600,300,30)
+rect1 = pygame.Rect(600,500,600,30)
+rect2 = pygame.Rect(600,600,600,30)
 #是否已互动预设
 running = True
 signed = False
 interact1 = False
 interact2 = False
 ined = False
+difficult_choosed = False
+#四边形
+difficult_rect1 = pygame.Rect(550,600,100,40)
+difficult_rect2 = pygame.Rect(1050,600,100,40)
+difficult_rect3 = pygame.Rect(1550,600,100,40)
+start_rect = pygame.Rect(1050,600,100,40)
 #background and cardback and button image
 background_image = pygame.image.load(r'button_image\background.png')
 cardback = pygame.image.load('PNG-cards-1.3\card_back.png')
