@@ -1,7 +1,11 @@
 from signin_and_login_system import *
+#登入界面输入位置
+rect1 = pygame.Rect(600,500,600,30)
+rect2 = pygame.Rect(600,600,600,30)
+nametext = textsize1.render('NAME',True,black)
+passwordtext = textsize1.render('PASSWORD',True,black)
 
-def inputbox():
-    global usertextname,usertextpassword
+def inputbox(inputbox_x_coordinate,inputbox_y_coordinate,inputbox_text):
     while running == True:
         screen.fill(green)
         pygame.draw.rect(screen,black,rect1,2)

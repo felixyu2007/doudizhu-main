@@ -36,14 +36,12 @@ textsize1 = pygame.font.Font(None,35)
 textsize2 = pygame.font.Font(None,60)
 title = titletext1.render('Fighting The Landlord',True,red)
 bgtitle = titletext2.render('Fighting The Landlord',True,black)
+
 starttitle = textsize2.render('start',True,black)
-nametext = textsize1.render('NAME',True,black)
-passwordtext = textsize1.render('PASSWORD',True,black)
+
 usertextname = ''
 usertextpassword = ''
-#登入界面输入位置
-rect1 = pygame.Rect(600,500,600,30)
-rect2 = pygame.Rect(600,600,600,30)
+
 #是否已互动预设
 running = True
 signed = False

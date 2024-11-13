@@ -6,7 +6,7 @@ from signin_and_login_system import *
 class Main():
     pygame.display.set_caption('歡樂鬥地主')
     def game_main():
-        global signed,interact1,interact2,usertextname,usertextpassword,difficult_choosed,difficult_rect1
+        global signed,interact1,interact2,difficult_choosed,difficult_rect1
         global difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect,round,started
         #the main part of the game,it is a cycle to refresh the graphic interface
         while running == True:
@@ -26,43 +26,10 @@ class Main():
                         pygame.draw.rect(screen,green,points[7])
                         screen.blit(bgtitle,points[1])
                         screen.blit(title,points[0])
-                        screen.blit(nametext,points[10])
-                        screen.blit(passwordtext,points[11])
-                        pygame.draw.rect(screen,black,rect1,2)
-                        pygame.draw.rect(screen,black,rect2,2)
+                        
                         
                         screen.blit(cardback,points[12]) 
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            if 600 < pygame.mouse.get_pos()[0] < 1200 and 500 < pygame.mouse.get_pos()[1] < 530:
-                                interact1 = True
-                                interact2 = False
-                                
-                            if 600 < pygame.mouse.get_pos()[0] < 1200 and 600 < pygame.mouse.get_pos()[1] < 630:
-                                interact2 = True
-                                interact1 = False
-                            
-                            if usertextname != '' and usertextpassword != '':
-                                if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
-                                    sign_up(usertextname,usertextpassword)
-                                else:
-                                    pass
-                        
-                        if event.type == pygame.KEYDOWN:
-                            if interact1 == True:
-                                if len(usertextname) > 30:
-                                    usertextname = usertextname[:-1]
-                                elif event.key == pygame.K_BACKSPACE:
-                                    usertextname = usertextname[:-1]
-                                else:
-                                    usertextname += event.unicode
 
-                            if interact2 == True:
-                                if len(usertextpassword) > 30:
-                                    usertextpassword = usertextpassword[:-1]
-                                elif event.key == pygame.K_BACKSPACE:
-                                    usertextpassword = usertextpassword[:-1]
-                                else:
-                                    usertextpassword += event.unicode
                         
                     elif signed == False:
                         screen.fill(orange)
