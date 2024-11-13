@@ -1,6 +1,5 @@
-#import cache
-from cache import *
-
+#import cache and refresh_system
+from refresh_system import *
 #quit or other method function messagebox
 class Main():
     def ask_quetion(input_title,input_message):
@@ -31,7 +30,8 @@ class Main():
 
     pygame.display.set_caption('歡樂鬥地主')
     def game_main():
-        global signed,interact1,interact2,usertextname,usertextpassword,difficult_choosed,difficult_rect1,difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect
+        global signed,interact1,interact2,usertextname,usertextpassword,difficult_choosed,difficult_rect1
+        global difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect,round,started
         #the main part of the game,it is a cycle to refresh the graphic interface
         while running == True:
             for event in pygame.event.get():#这句程序是用来获取你的行为的
@@ -58,15 +58,15 @@ class Main():
                         screen.blit(userinputname,points[8])
                         screen.blit(userinputpassword,points[9])
                         screen.blit(cardback,points[12]) 
-
-                        if 600 < pygame.mouse.get_pos()[0] < 1200 and 500 < pygame.mouse.get_pos()[1] < 530:
-                            interact1 = True
-                            interact2 = False
-                            
-                        if 600 < pygame.mouse.get_pos()[0] < 1200 and 600 < pygame.mouse.get_pos()[1] < 630:
-                            interact2 = True
-                            interact1 = False
                         if event.type == pygame.MOUSEBUTTONDOWN:
+                            if 600 < pygame.mouse.get_pos()[0] < 1200 and 500 < pygame.mouse.get_pos()[1] < 530:
+                                interact1 = True
+                                interact2 = False
+                                
+                            if 600 < pygame.mouse.get_pos()[0] < 1200 and 600 < pygame.mouse.get_pos()[1] < 630:
+                                interact2 = True
+                                interact1 = False
+                            
                             if usertextname != '' and usertextpassword != '':
                                 if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
                                     Main.sign_up(usertextname,usertextpassword)
@@ -116,13 +116,24 @@ class Main():
                                 difficult_choosed = True
                     else:
                         screen.blit(background_image,(0,0))
-                        pygame.draw.rect(screen,green,start_rect)
-                        screen.blit(starttitle,(1050,600))
                         pygame.draw.rect(screen,green,menu_rect)
-                        if menu_rect.collidepoint(event.pos) and menu_rect.y < 1400:
-                            menu_rect.y += 2
-                        if start_rect.collidepoint(event.pos):
-                            screen.fill(green)
+                        #
+                        while menu_rect.collidepoint(event.pos) and menu_rect.w < 400:
+                            menu_rect.w += 1
+                        else:
+                            pass
+                        while not(menu_rect.collidepoint(event.pos)) and menu_rect.w > 100:
+                            menu_rect.w -= 1
+                        else:
+                            pass
+                        #
+                        if started == False:
+                            pygame.draw.rect(screen,green,start_rect)
+                            screen.blit(starttitle,(1051,601))
+                        elif event.type == pygame.MOUSEBUTTONDOWN:
+                            if start_rect.collidepoint(event.pos):
+                                started = True
+                                refresh(round)
             pygame.display.update()
 
 
