@@ -17,8 +17,7 @@ class Main():
                     if signed == True: 
                         screen.fill(black)
                         pygame.draw.rect(screen,orange,points[15])
-                        userinputname = textsize1.render(usertextname,True,black)
-                        userinputpassword = textsize1.render(usertextpassword,True,black)
+                        
                         pygame.draw.circle(screen,black,points[2],150)
                         pygame.draw.circle(screen,black,points[3],150)
                         pygame.draw.rect(screen,black,points[4])
@@ -31,8 +30,7 @@ class Main():
                         screen.blit(passwordtext,points[11])
                         pygame.draw.rect(screen,black,rect1,2)
                         pygame.draw.rect(screen,black,rect2,2)
-                        screen.blit(userinputname,points[8])
-                        screen.blit(userinputpassword,points[9])
+                        
                         screen.blit(cardback,points[12]) 
                         if event.type == pygame.MOUSEBUTTONDOWN:
                             if 600 < pygame.mouse.get_pos()[0] < 1200 and 500 < pygame.mouse.get_pos()[1] < 530:
