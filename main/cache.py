@@ -69,7 +69,7 @@ poker_image_path = r'PNG-cards-1.3'
 imgs = listdir(poker_image_path)
 poker_data = []
 choosed_poker_data = []
-        
+
 def ask_quetion(input_title,input_message):
     global ined
     ans = messagebox.askquestion(title=input_title,message=input_message)

@@ -6,8 +6,8 @@ from inputbox import *
 #quit or other method function messagebox
 class Main():
     pygame.display.set_caption('歡樂鬥地主')
-    global signed,difficult_choosed,difficult_rect1
-    global difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect,round,started
+    global signed,difficult_choosed,difficult_rect1,ined
+    global difficult_rect2,difficult_rect3,start_rect,menu_rect,round,started
     user_input_name = Intput_box(screen,600,500,'name')
     user_input_password = Intput_box(screen,600,600,'password')
     #the main part of the game,it is a cycle to refresh the graphic interface
@@ -34,8 +34,10 @@ class Main():
                         name = user_input_name.interact(event)
                         password = user_input_password.interact(event)
                         #登入条件
-                        if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
-                            sign_up(name,password)
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
+                                sign_up(name,password)
+                                ask_quetion('login?','do you want to login now?')
                     elif signed == False:
                         screen.fill(orange)
                         screen.blit(button_image07,points[13])
@@ -46,8 +48,8 @@ class Main():
                                 login()
                             if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
                                 signed = True
-                        
-                else:
+                elif ined == True:
+                    print('in!!!')
                     if difficult_choosed == False:
                         screen.fill(green)
                         pygame.draw.rect(screen,black,difficult_rect1)
@@ -77,5 +79,5 @@ class Main():
                                 started == True
                         else:
                             screen.fill(black)
-            clock.tick(FPS)
-            pygame.display.flip()
+        clock.tick(FPS)
+        pygame.display.flip()
