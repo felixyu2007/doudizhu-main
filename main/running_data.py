@@ -9,9 +9,9 @@ class Main():
     global signed,interact1,interact2,difficult_choosed,difficult_rect1
     global difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect,round,started
     user_input_name = Intput_box(screen,600,500,'name')
-    user_input_password = Intput_box(screen,600,700,'password')
+    user_input_password = Intput_box(screen,600,600,'password')
     #the main part of the game,it is a cycle to refresh the graphic interface
-    while running == True:
+    while running == True: 
         for event in pygame.event.get():#这句程序是用来获取你的行为的
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 ask_quetion('quit','do you want to quit the game?')
@@ -80,4 +80,5 @@ class Main():
                                 started == True
                         else:
                             screen.fill(black)
-
+            clock.tick(FPS)
+            pygame.display.flip()
