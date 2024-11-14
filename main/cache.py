@@ -36,17 +36,11 @@ textsize1 = pygame.font.Font(None,35)
 textsize2 = pygame.font.Font(None,60)
 title = titletext1.render('Fighting The Landlord',True,red)
 bgtitle = titletext2.render('Fighting The Landlord',True,black)
-
 starttitle = textsize2.render('start',True,black)
-
-usertextname = ''
-usertextpassword = ''
-
+input_text_data = ''
 #是否已互动预设
 running = True
 signed = False
-interact1 = False
-interact2 = False
 ined = False
 started = False
 difficult_choosed = False

@@ -1,53 +1,30 @@
 from signin_and_login_system import *
 #登入界面输入位置
-rect1 = pygame.Rect(600,500,600,30)
-rect2 = pygame.Rect(600,600,600,30)
-nametext = textsize1.render('NAME',True,black)
-passwordtext = textsize1.render('PASSWORD',True,black)
 
-def inputbox(inputbox_x_coordinate,inputbox_y_coordinate,inputbox_text):
+def inputbox(inputbox_x_coordinate,inputbox_y_coordinate,inputbox_title: str):
+    global input_text_data
+    interact = False
     while running == True:
         screen.fill(green)
+        rect1 = pygame.Rect(inputbox_x_coordinate,inputbox_y_coordinate,600,30)
+        inputbox_name = textsize1.render(inputbox_title,True,black)
+        screen.blit(inputbox_name,(inputbox_x_coordinate,inputbox_y_coordinate-20))
         pygame.draw.rect(screen,black,rect1,2)
-        pygame.draw.rect(screen,black,rect2,2)
-        userinputname = textsize1.render(usertextname,True,black)
-        userinputpassword = textsize1.render(usertextpassword,True,black)
-        screen.blit(userinputname,points[8])
-        screen.blit(userinputpassword,points[9])
-        screen.blit(nametext,points[10])
-        screen.blit(passwordtext,points[11])
+        input_text = textsize1.render(input_text_data,True,black)
+        screen.blit(input_text,(inputbox_x_coordinate,inputbox_y_coordinate))
         
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if 600 < pygame.mouse.get_pos()[0] < 1200 and 500 < pygame.mouse.get_pos()[1] < 530:
-                    interact1 = True
-                    interact2 = False
-                    
-                if 600 < pygame.mouse.get_pos()[0] < 1200 and 600 < pygame.mouse.get_pos()[1] < 630:
-                    interact2 = True
-                    interact1 = False
-                
-                if usertextname != '' and usertextpassword != '':
-                    if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
-                        sign_up(usertextname,usertextpassword)
-                    else:
-                        pass
+            if rect1.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]):
+                interact = True
 
             if event.type == pygame.KEYDOWN:
-                if interact1 == True:
-                    if len(usertextname) > 30:
-                        usertextname = usertextname[:-1]
+                if interact == True:
+                    if len(input_text_data) > 30:
+                        input_text_data = input_text_data[:-1]
                     elif event.key == pygame.K_BACKSPACE:
-                        usertextname = usertextname[:-1]
+                        input_text_data = input_text_data[:-1]
                     else:
-                        usertextname += event.unicode
-
-                if interact2 == True:
-                    if len(usertextpassword) > 30:
-                        usertextpassword = usertextpassword[:-1]
-                    elif event.key == pygame.K_BACKSPACE:
-                        usertextpassword = usertextpassword[:-1]
-                    else:
-                        usertextpassword += event.unicode
+                        input_text_data += event.unicode
         pygame.display.update()
-inputbox()
+
+inputbox(200,300,'hi')

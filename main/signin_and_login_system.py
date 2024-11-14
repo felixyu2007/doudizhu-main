@@ -11,4 +11,8 @@ def sign_up(usertextname,usertextpassword):
     save_system(usn,usp)     
     
 def login():
-    pass
+    if input_text_data != '':
+        if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
+            sign_up(input_text_data)
+        else:
+            pass
