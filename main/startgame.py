@@ -1,5 +1,7 @@
 from running_data import *
 get_cards()
-Main()
-
+while running == True:  
+    Main()
+    clock.tick(FPS)
+    pygame.display.flip()
 

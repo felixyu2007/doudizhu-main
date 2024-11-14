@@ -32,7 +32,8 @@ class Intput_box():
             input_text_last_letter_position = input_text.get_rect()
             coordinatex = self.rect1.x+2+input_text_last_letter_position.width
             pygame.draw.line(self.surf,black,(coordinatex,self.inputbox_y_coordinate+5),(coordinatex,self.inputbox_y_coordinate+25),2)
-        if self.delete == True and self.input_text_data != '':
+        #删除方法
+        if self.delete == True and self.input_text_data:
             #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
             self.input_text_data.pop()
         else:

@@ -80,6 +80,4 @@ class Main():
                                 started == True
                         else:
                             screen.fill(black)
-        pygame.display.flip()
-
 
