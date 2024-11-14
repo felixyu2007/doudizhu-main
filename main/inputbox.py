@@ -22,15 +22,16 @@ class Intput_box():
         self.surf.blit(inputbox_name,(self.inputbox_x_coordinate,self.inputbox_y_coordinate-20))
         #渲染输入了的文字
         input_text = self.textsize1.render(''.join(self.input_text_data),True,black)
-        self.surf.blit(input_text,(self.inputbox_x_coordinate + 2,self.inputbox_y_coordinate + 2))
+        self.surf.blit(input_text,(self.inputbox_x_coordinate + 5,self.inputbox_y_coordinate + 5))
         self.count += 1
         #绘制输入时的线
-        if self.count == 20:
+        if self.count == 60:
             self.cursor = not self.cursor
+            self.count = 0
         if self.cursor == True and self.focus == True:
             input_text_last_letter_position = input_text.get_rect()
             coordinatex = self.rect1.x+2+input_text_last_letter_position.width
-            pygame.draw.line(self.surf,black,(coordinatex,self.inputbox_y_coordinate+2),(coordinatex,self.inputbox_y_coordinate+31),10)
+            pygame.draw.line(self.surf,black,(coordinatex,self.inputbox_y_coordinate+5),(coordinatex,self.inputbox_y_coordinate+25),2)
         if self.delete == True and self.input_text_data != '':
             #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
             self.input_text_data.pop()
