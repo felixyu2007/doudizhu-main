@@ -14,6 +14,7 @@ class Intput_box():
         self.count = 0
         self.delete = False
         self.textsize1 = pygame.font.Font(None,35)
+        
     def draw(self):
         #绘制输入框
         pygame.draw.rect(self.surf,black,self.rect1,2)
@@ -35,8 +36,6 @@ class Intput_box():
         
     def interact(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and self.input_text_data:
-                sign_up(''.join(self.input_text_data),''.join(self.input_text_data))
             if self.rect1.collidepoint(event.pos):
                 self.focus = True
             else:
@@ -54,6 +53,7 @@ class Intput_box():
             self.delete = False
         else:
             pass
+        return ''.join(self.input_text_data)
         
 
 

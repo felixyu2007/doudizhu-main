@@ -31,9 +31,11 @@ class Main():
                         screen.blit(cardback,points[12]) 
                         user_input_name.draw()
                         user_input_password.draw()
-                        user_input_name.interact(event)
-                        user_input_password.interact(event)
-
+                        name = user_input_name.interact(event)
+                        password = user_input_password.interact(event)
+                        #登入条件
+                        if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
+                            sign_up(name,password)
                     elif signed == False:
                         screen.fill(orange)
                         screen.blit(button_image07,points[13])
