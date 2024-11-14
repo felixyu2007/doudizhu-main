@@ -36,7 +36,7 @@ class Main():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
                             sign_up(name,password)
-                            pass
+                            ined == True
                         else:
                             pass
                 elif signed == False:

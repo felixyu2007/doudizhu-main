@@ -1,4 +1,4 @@
-from cache import *
+from main.data import *
 #define a method button
 command = False
 def button(coordinatex,coordinatey,text: str):
