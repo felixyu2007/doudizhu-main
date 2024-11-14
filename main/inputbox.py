@@ -32,15 +32,11 @@ class Intput_box():
             input_text_last_letter_position = input_text.get_rect()
             coordinatex = self.rect1.x+2+input_text_last_letter_position.width
             pygame.draw.line(self.surf,black,(coordinatex,self.inputbox_y_coordinate+5),(coordinatex,self.inputbox_y_coordinate+25),2)
-        #删除方法
-        if self.delete == True and self.input_text_data:
-            #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
-            self.input_text_data.pop()
-            self.delete = False
-        else:
-            pass
+        
     def interact(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
+            if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and self.input_text_data:
+                sign_up(''.join(self.input_text_data),''.join(self.input_text_data))
             if self.rect1.collidepoint(event.pos):
                 self.focus = True
             else:
@@ -51,6 +47,13 @@ class Intput_box():
                     self.delete = True
                 else:
                     self.input_text_data.append(event.unicode)
+        #删除方法
+        if self.delete == True and self.input_text_data:
+            #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
+            self.input_text_data.pop()
+            self.delete = False
+        else:
+            pass
+        
 
-    
 

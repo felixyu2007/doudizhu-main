@@ -6,7 +6,7 @@ from inputbox import *
 #quit or other method function messagebox
 class Main():
     pygame.display.set_caption('歡樂鬥地主')
-    global signed,interact1,interact2,difficult_choosed,difficult_rect1
+    global signed,difficult_choosed,difficult_rect1
     global difficult_rect2,difficult_rect3,rect1,rect2,start_rect,menu_rect,round,started
     user_input_name = Intput_box(screen,600,500,'name')
     user_input_password = Intput_box(screen,600,600,'password')
@@ -34,11 +34,6 @@ class Main():
                         user_input_name.interact(event)
                         user_input_password.interact(event)
 
-                        # if input_text_data != '':
-                        #     if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217:
-                        #         sign_up(input_text_data)
-                        #     else:
-                        #         pass
                     elif signed == False:
                         screen.fill(orange)
                         screen.blit(button_image07,points[13])
