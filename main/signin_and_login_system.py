@@ -5,7 +5,7 @@ def save_system(name,password):
     os.write(opw,name)
     os.write(opw,password)
     os.close(opw)
-    
+    ask_quetion('login?','do you want to login now?')
 def sign_up(usertextname,usertextpassword):
     usn = os.fsencode(usertextname)
     usp = os.fsencode(usertextpassword)

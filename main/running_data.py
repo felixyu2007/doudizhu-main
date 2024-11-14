@@ -3,10 +3,10 @@ from refresh_system import *
 from button import *
 from signin_and_login_system import *
 from inputbox import *
-#quit or other method function messagebox
+from menu_page import *
 class Main():
     pygame.display.set_caption('歡樂鬥地主')
-    global signed,difficult_choosed,difficult_rect1,ined
+    global signed,difficult_rect1,ined
     global difficult_rect2,difficult_rect3,start_rect,menu_rect,round,started
     user_input_name = Intput_box(screen,600,500,'name')
     user_input_password = Intput_box(screen,600,600,'password')
@@ -15,69 +15,71 @@ class Main():
         for event in pygame.event.get():#这句程序是用来获取你的行为的
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 ask_quetion('quit','do you want to quit the game?')
+            if ined == False:
+                if signed == True: 
+                    screen.fill(black)
+                    pygame.draw.rect(screen,orange,points[15])
+                    pygame.draw.circle(screen,black,points[2],150)
+                    pygame.draw.circle(screen,black,points[3],150)
+                    pygame.draw.rect(screen,black,points[4])
+                    pygame.draw.circle(screen,green,points[5],130)
+                    pygame.draw.circle(screen,green,points[6],130)
+                    pygame.draw.rect(screen,green,points[7])
+                    screen.blit(bgtitle,points[1])
+                    screen.blit(title,points[0])
+                    screen.blit(cardback,points[12]) 
+                    user_input_name.draw()
+                    user_input_password.draw()
+                    name = user_input_name.interact(event)
+                    password = user_input_password.interact(event)
+                    #登入条件
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
+                            sign_up(name,password)
+                            pass
+                        else:
+                            pass
+                elif signed == False:
+                    screen.fill(orange)
+                    screen.blit(button_image07,points[13])
+                    screen.blit(button_image08,points[14])
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if 100 < pygame.mouse.get_pos()[0] < 796 and 100 < pygame.mouse.get_pos()[1] < 455:
+                            signed = True
+                            login()
+                        if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
+                            signed = True
             else:
-                if ined == False:
-                    if signed == True: 
-                        screen.fill(black)
-                        pygame.draw.rect(screen,orange,points[15])
-                        pygame.draw.circle(screen,black,points[2],150)
-                        pygame.draw.circle(screen,black,points[3],150)
-                        pygame.draw.rect(screen,black,points[4])
-                        pygame.draw.circle(screen,green,points[5],130)
-                        pygame.draw.circle(screen,green,points[6],130)
-                        pygame.draw.rect(screen,green,points[7])
-                        screen.blit(bgtitle,points[1])
-                        screen.blit(title,points[0])
-                        screen.blit(cardback,points[12]) 
-                        user_input_name.draw()
-                        user_input_password.draw()
-                        name = user_input_name.interact(event)
-                        password = user_input_password.interact(event)
-                        #登入条件
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            if 1100 < pygame.mouse.get_pos()[0] < 1100+150 and 480 < pygame.mouse.get_pos()[1] < 480+217 and len(name and password) != 0:
-                                sign_up(name,password)
-                                ask_quetion('login?','do you want to login now?')
-                    elif signed == False:
-                        screen.fill(orange)
-                        screen.blit(button_image07,points[13])
-                        screen.blit(button_image08,points[14])
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            if 100 < pygame.mouse.get_pos()[0] < 796 and 100 < pygame.mouse.get_pos()[1] < 455:
-                                signed = True
-                                login()
-                            if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
-                                signed = True
-                elif ined == True:
-                    print('in!!!')
-                    if difficult_choosed == False:
-                        screen.fill(green)
-                        pygame.draw.rect(screen,black,difficult_rect1)
-                        pygame.draw.rect(screen,black,difficult_rect2)
-                        pygame.draw.rect(screen,black,difficult_rect3)
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            if 550 < pygame.mouse.get_pos()[0] < 650 and 600 < pygame.mouse.get_pos()[1] < 640:
-                                difficult_choosed = True
-                            if 1050 < pygame.mouse.get_pos()[0] < 1150 and 600 < pygame.mouse.get_pos()[1] < 640:
-                                difficult_choosed = True
-                            if 1550 < pygame.mouse.get_pos()[0] < 1650 and 600 < pygame.mouse.get_pos()[1] < 640:
-                                difficult_choosed = True
-                    else:
-                        #
-                        while menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]) and menu_rect.w < 400:
-                            menu_rect.w += 1
-                        else:
-                            pass
-                        while not(menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])) and menu_rect.w > 100:
-                            menu_rect.w -= 1
-                        else:
-                            pass
-                        #
-                        if started == False:
-                            button(1050,800,text='start')
-                            if command == True:
-                                started == True
-                        else:
-                            screen.fill(black)
+                Menu()
+            #     print('in!!!')
+            #     if difficult_choosed == False:
+            #         screen.fill(green)
+            #         pygame.draw.rect(screen,black,difficult_rect1)
+            #         pygame.draw.rect(screen,black,difficult_rect2)
+            #         pygame.draw.rect(screen,black,difficult_rect3)
+            #         if event.type == pygame.MOUSEBUTTONDOWN:
+            #             if 550 < pygame.mouse.get_pos()[0] < 650 and 600 < pygame.mouse.get_pos()[1] < 640:
+            #                 difficult_choosed = True
+            #             if 1050 < pygame.mouse.get_pos()[0] < 1150 and 600 < pygame.mouse.get_pos()[1] < 640:
+            #                 difficult_choosed = True
+            #             if 1550 < pygame.mouse.get_pos()[0] < 1650 and 600 < pygame.mouse.get_pos()[1] < 640:
+            #                 difficult_choosed = True
+            #     else:
+            #         #
+            #         while menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]) and menu_rect.w < 400:
+            #             menu_rect.w += 1
+            #         else:
+            #             pass
+            #         while not(menu_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])) and menu_rect.w > 100:
+            #             menu_rect.w -= 1
+            #         else:
+            #             pass
+            #         #
+            #         if started == False:
+            #             button(1050,800,text='start')
+            #             if command == True:
+            #                 started == True
+            #         else:
+            #             screen.fill(black)
         clock.tick(FPS)
-        pygame.display.flip()
+        pygame.display.update()

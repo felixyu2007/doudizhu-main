@@ -42,7 +42,6 @@ running = True
 signed = False
 ined = False
 started = False
-difficult_choosed = False
 
 #四边形
 difficult_rect1 = pygame.Rect(550,600,100,40)
