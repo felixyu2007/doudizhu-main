@@ -6,15 +6,17 @@ class Button():
         self.command = command
         self.coordinatex = coordinatex
         self.coordinatey = coordinatey
-        self.button_rect = pygame.Rect(coordinatex,coordinatey,300,30)
+        self.button_rect1 = pygame.Rect(coordinatex,coordinatey,200,50)
+        self.button_rect2 = pygame.Rect(coordinatex-5,coordinatey-4,210,60)
         self.button_text_size = pygame.font.Font(None,28)
         self.button_text = self.button_text_size.render(text,True,black)
     def drawbutton(self,surf):
-        pygame.draw.rect(screen,green,self.button_rect)
+        pygame.draw.rect(screen,black,self.button_rect2)
+        pygame.draw.rect(screen,green,self.button_rect1)
         surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
     def clickbutton(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.button_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]):
+            if self.button_rect2.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]):
                 not self.command
                 return self.command
         

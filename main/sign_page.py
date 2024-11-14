@@ -3,7 +3,7 @@ from button import *
 from inputbox import *
 class Sign_page():
     def __init__(self,surf,signed,started):
-        self.getinbtn = Button(points[12][0],points[12][1],'get in!',started)
+        self.getinbtn = Button(1200,550,'get in!',started)
         self.surf = surf
         self.signed = signed
         self.started = started
