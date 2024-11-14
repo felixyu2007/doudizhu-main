@@ -13,3 +13,7 @@ def sign_up(usertextname,usertextpassword):
     
 def login():
     pass
+def get_userinfo():
+    opr = open('txt_data\player_data',os.O_RDONLY)
+    userinformaton = opw.readlines()
+    

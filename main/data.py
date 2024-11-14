@@ -45,6 +45,7 @@ ined = False
 started = False
 getin = False
 
+
 #四边形
 difficult_rect1 = pygame.Rect(550,600,100,40)
 difficult_rect2 = pygame.Rect(1050,600,100,40)
@@ -82,3 +83,4 @@ def ask_quetion(input_title,input_message):
 def get_cards():
     for p in imgs:
         poker_data.append(p)
+
