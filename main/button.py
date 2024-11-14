@@ -9,9 +9,10 @@ class Button():
         self.button_rect = pygame.Rect(coordinatex,coordinatey,300,30)
         self.button_text_size = pygame.font.Font(None,28)
         self.button_text = self.button_text_size.render(text,True,black)
-    def clickbutton(self,event):
+    def drawbutton(self,surf):
         pygame.draw.rect(screen,green,self.button_rect)
-        screen.blit(self.button_text,(self.coordinatex,self.coordinatey))
+        surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
+    def clickbutton(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]):
                 not self.command

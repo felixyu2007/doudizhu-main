@@ -3,6 +3,7 @@ from button import *
 from inputbox import *
 class Sign_page():
     def __init__(self,surf,signed,started):
+        self.getinbtn = Button(points[12][0],points[12][1],'get in!',started)
         self.surf = surf
         self.signed = signed
         self.started = started
@@ -20,11 +21,14 @@ class Sign_page():
             pygame.draw.rect(screen,green,points[7])
             self.surf.blit(bgtitle,points[1])
             self.surf.blit(title,points[0])
-            self.surf.blit(cardback,points[12]) 
+
             self.name.draw()
             self.password.draw()
-            self.name.interact
-            self.password.interact
+            self.name.interact(event)
+            self.password.interact(event)
+            self.getinbtn.drawbutton(screen)
+            self.getinbtn.clickbutton(event)
+
         elif self.signed == False:
             self.surf.fill(orange)
             self.surf.blit(button_image07,points[13])
