@@ -10,7 +10,7 @@ from tkinter import messagebox
 pygame.init()
 pygame.font.init()
 #basic function
-FPS = 180
+FPS = 60
 clock = pygame.time.Clock()
 screen_width = 1920
 screen_height = 1080
@@ -32,18 +32,18 @@ movingpoint1 = [0,0,1920,1080]
 #设定渲染文字的字形与内容
 titletext1 = pygame.font.Font(None,140)
 titletext2 = pygame.font.Font(None,140)
-textsize1 = pygame.font.Font(None,35)
 textsize2 = pygame.font.Font(None,60)
 title = titletext1.render('Fighting The Landlord',True,red)
 bgtitle = titletext2.render('Fighting The Landlord',True,black)
 starttitle = textsize2.render('start',True,black)
-input_text_data = ''
+
 #是否已互动预设
 running = True
 signed = False
 ined = False
 started = False
 difficult_choosed = False
+
 #四边形
 difficult_rect1 = pygame.Rect(550,600,100,40)
 difficult_rect2 = pygame.Rect(1050,600,100,40)
