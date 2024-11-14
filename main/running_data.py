@@ -50,8 +50,8 @@ class Main():
                         if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
                             signed = True
             else:
-                Menu()
-            #     print('in!!!')
+                
+                print('in!!!')
             #     if difficult_choosed == False:
             #         screen.fill(green)
             #         pygame.draw.rect(screen,black,difficult_rect1)

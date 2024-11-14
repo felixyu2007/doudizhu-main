@@ -1,7 +1,8 @@
 from button import * 
 class Menu():
-    def __init__(self,event,difficult_choosed: bool):
+    def __init__(self,difficult_choosed: bool):
         self.difficult_choosed = difficult_choosed
+    def difficult_choosen(self,event):
         print('in!!!')
         if difficult_choosed == False:
             screen.fill(green)
