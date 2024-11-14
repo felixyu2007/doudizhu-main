@@ -9,6 +9,6 @@ while True:
         if getin == False:
             sp.sign_page(event,getin)
         elif getin == True:
-            m.
+            pass
     pygame.display.flip()
 

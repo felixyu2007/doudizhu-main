@@ -7,7 +7,7 @@ class Button():
         self.coordinatey = coordinatey
         self.button_rect1 = pygame.Rect(coordinatex,coordinatey,200,50)
         self.button_rect2 = pygame.Rect(coordinatex-5,coordinatey-4,210,60)
-        self.button_text_size = pygame.font.Font(None,28)
+        self.button_text_size = pygame.font.Font(None,50)
         self.button_text = self.button_text_size.render(text,True,black)
     def drawbutton(self,surf):
         pygame.draw.rect(screen,black,self.button_rect2)
