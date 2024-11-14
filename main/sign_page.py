@@ -1,9 +1,6 @@
 #import cache and refresh_system
-from refresh_system import *
 from button import *
-from signin_and_login_system import *
 from inputbox import *
-from menu_page import *
 class Main():
     pygame.display.set_caption('歡樂鬥地主')
     global signed,difficult_rect1,ined

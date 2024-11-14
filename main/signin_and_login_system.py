@@ -1,4 +1,4 @@
-from main.data import *
+from data import *
 
 def save_system(name,password):
     opw = os.open('txt_data\player_data',os.O_RDWR)

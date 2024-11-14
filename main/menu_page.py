@@ -1,4 +1,4 @@
-from button import * 
+from sign_page import * 
 class Menu():
     def __init__(self,difficult_choosed: bool):
         self.difficult_choosed = difficult_choosed

@@ -1,4 +1,4 @@
-from running_data import *
+from refresh_system import *
 get_cards()
 
 Main()

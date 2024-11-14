@@ -1,4 +1,4 @@
-from main.data import *
+from menu_page import *
 def refresh(round):
     if started == True:
         screen.fill(green)
