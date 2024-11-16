@@ -18,4 +18,7 @@ class Button():
             if self.button_rect2.collidepoint(event.pos):#pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]
                 pygame.draw.rect(screen,black,self.button_rect2)
                 pygame.draw.rect(screen,dark_green,self.button_rect1)
-                return True
+        if event.type == pygame.MOUSEBUTTONUP:
+            pygame.draw.rect(screen,black,self.button_rect2)
+            pygame.draw.rect(screen,green,self.button_rect1)
+            return True

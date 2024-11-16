@@ -9,7 +9,7 @@ while True:
         if getin == False:
             sp.sign_page(event)
         if sp.sign_page(event):
-            getin = False
+            getin = True
             screen.fill(black)
     pygame.display.flip()
 
