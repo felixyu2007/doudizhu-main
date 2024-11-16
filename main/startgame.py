@@ -7,8 +7,9 @@ while True:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             ask_quetion('quit','do you want to quit right now?')
         if getin == False:
-            sp.sign_page(event,getin)
-        elif getin == True:
-            pass
+            sp.sign_page(event)
+        if sp.sign_page(event):
+            getin = False
+            screen.fill(black)
     pygame.display.flip()
 

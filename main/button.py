@@ -13,9 +13,9 @@ class Button():
         pygame.draw.rect(screen,black,self.button_rect2)
         pygame.draw.rect(screen,green,self.button_rect1)
         surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
-    def clickbutton(self,event,command: bool):
+    def clickbutton(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect2.collidepoint(event.pos):#pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]
-                not command
-                return command
-        
+                pygame.draw.rect(screen,black,self.button_rect2)
+                pygame.draw.rect(screen,dark_green,self.button_rect1)
+                return True

@@ -20,6 +20,7 @@ pygame.display.set_caption('歡樂鬥地主')
 #背景颜色
 orange = (204,115,63)
 green = (49,174,91)
+dark_green = (37,96,57)
 red = (219,81,81)
 black = (74,74,74)
 #背景图片与图形渲染的固定位置
