@@ -12,5 +12,6 @@ class Menu():
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,self.userinfo_rect)
         pygaem.draw.rect(self.surf,green,self.rule_rect)
-        
+        pygame.blit(self.rule_slogan,(850,445))
+
          
