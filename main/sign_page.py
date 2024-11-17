@@ -34,7 +34,7 @@ class Sign_page():
                     sign_up(name,password)
                     print(disable_button)
                     return getinbutton
-        elif self.signed == True and login_mode == True:
+        elif self.signed == True and self.login_mode == True:
             self.surf.fill(black)
             pygame.draw.rect(screen,orange,points[15])
             pygame.draw.circle(screen,black,points[2],150)
