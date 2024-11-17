@@ -46,7 +46,7 @@ running = True
 signed = False
 started = False
 getin = False
-
+money = 10000
 
 #四边形
 difficult_rect1 = pygame.Rect(550,600,100,40)

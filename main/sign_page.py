@@ -26,14 +26,11 @@ class Sign_page():
             self.password.draw()
             self.name.interact(event)
             self.password.interact(event)
-            self.getinbtn.drawbutton()
-            self.getinbtn.clickbutton(mouseevent,event)
-            if self.getinbtn.clickbutton(mouseevent,event) == True:
-                print('1')
-                self.getin = True
-                return self.getin
-
-            
+            getinbutton = self.getinbtn.clickbutton(mouseevent,event)
+            if self.getinbtn.clickbutton(mouseevent,event) == True and getinbutton not in disable_button:
+                disable_button.append(getinbutton)
+                getin == True
+                return getinbutton
         elif self.signed == False:
             self.surf.fill(orange)
             self.surf.blit(button_image07,points[13])
