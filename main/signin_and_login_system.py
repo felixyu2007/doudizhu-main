@@ -9,7 +9,8 @@ def sign_up(usertextname: str,usertextpassword: str):
 
 def login(usertextname: str,usertextpassword: str):
     with open('main\player_info.json',mode='r') as opr:
-        userinfo = json.load(opr)
+        userinfo = json.loads(opr).decode('utf-8')
+        print(userinfo)
     if usertextname not in userinfo or usertextpassword not in userinfo:
         ask_quetion('sign error','name or password not correct')
         return False
