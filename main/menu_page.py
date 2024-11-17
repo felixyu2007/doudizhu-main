@@ -6,5 +6,5 @@ class Menu():
         self.surf = surf
     def draw_menu(self):
         self.surf.blit(background_image,(0,0))
-        pygame.draw.rect(self.surf,black,(0,0,1920,200))
+        pygame.draw.rect(self.surf,black,(0,0,1920,100))
          

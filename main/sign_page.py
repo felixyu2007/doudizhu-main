@@ -2,9 +2,8 @@
 from button import *
 from inputbox import *
 class Sign_page():
-    def __init__(self,surf,signed,getin):
+    def __init__(self,surf,signed):
         self.signed = signed
-        self.getin = getin
         self.surf = surf
         self.getinbtn = Button(self.surf,1200,550,'get in!')
         self.name = Intput_box(screen,600,500,'name')
@@ -26,10 +25,12 @@ class Sign_page():
             self.password.draw()
             self.name.interact(event)
             self.password.interact(event)
+
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if self.getinbtn.clickbutton(mouseevent,event) == True and getinbutton not in disable_button:
+
+            if getinbutton == True and getinbutton not in disable_button:
                 disable_button.append(getinbutton)
-                getin == True
+                print(disable_button)
                 return getinbutton
         elif self.signed == False:
             self.surf.fill(orange)
