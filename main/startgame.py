@@ -1,7 +1,7 @@
 from refresh_system import *
 get_cards()
 
-sp = Sign_page(screen,signed)
+sp = Sign_page(screen,signed,login_mode)
 m = Menu(screen,'''wait to drop''','''wait to drop''')
 while True:
     for event in pygame.event.get():

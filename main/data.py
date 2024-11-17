@@ -49,7 +49,7 @@ signed = False
 started = False
 getin = False
 money = 10000
-
+login_mode = False
 #四边形
 difficult_rect1 = pygame.Rect(550,600,100,40)
 difficult_rect2 = pygame.Rect(1050,600,100,40)
@@ -84,6 +84,9 @@ def ask_quetion(input_title,input_message):
         quit()
     if ans == 'yes' and input_title == 'login?':
         ined = True
+    if ans == 'yes' and input_title == 'sign error':
+        return False
+
 def get_cards():
     for p in imgs:
         poker_data.append(p)
