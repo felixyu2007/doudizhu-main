@@ -4,7 +4,7 @@ def sign_up(usertextname: str,usertextpassword: str):
     usp = usertextpassword
     usm = 10000
     usinfo = {'username':usn,'userpassword':usp,'userfunding':usm}
-    with open('main\player_info.json',O_WRONLY) as opw:
+    with open('main\player_info.json',mode='w') as opw:
         json.dump(usinfo,opw)
 
 def login():

@@ -2,7 +2,7 @@
 from random import *
 import pygame
 import time
-from os import *
+import os
 import os.path
 import sys
 import tkinter
@@ -72,7 +72,7 @@ roundtext = textfont.render('第1回合',True,'white')
 yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
 #poker image
 poker_image_path = r'PNG-cards-1.3'
-imgs = listdir(poker_image_path)
+imgs = os.listdir(poker_image_path)
 poker_data = []
 choosed_poker_data = []
 
