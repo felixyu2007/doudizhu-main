@@ -7,7 +7,7 @@ class Intput_box():
         self.inputbox_y_coordinate = inputbox_y_coordinate
         self.rect1 = pygame.Rect(self.inputbox_x_coordinate,self.inputbox_y_coordinate,500,30)
         self.inputbox_title = inputbox_title
-        self.input_text_data = []
+        self.input_text_data = ''
         self.focus = False
         self.cursor = True
         self.typing = False
@@ -22,7 +22,7 @@ class Intput_box():
         inputbox_name = self.textsize1.render(self.inputbox_title,True,black)
         self.surf.blit(inputbox_name,(self.inputbox_x_coordinate,self.inputbox_y_coordinate-30))
         #渲染输入了的文字
-        input_text = self.textsize1.render(''.join(self.input_text_data),True,black)
+        input_text = self.textsize1.render(self.input_text_data,True,black)
         self.surf.blit(input_text,(self.inputbox_x_coordinate + 5,self.inputbox_y_coordinate + 5))
         self.count += 1
         #绘制输入时的线
@@ -45,15 +45,14 @@ class Intput_box():
                 if event.key == pygame.K_BACKSPACE:
                     self.delete = True
                 else:
-                    self.input_text_data.append(event.unicode)
+                    self.input_text_data += event.unicode
         #删除方法
         if self.delete == True and self.input_text_data:
             #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
-            self.input_text_data.pop()
+            self.input_text_data = self.input_text_data[:-1]
             self.delete = False
         else:
             pass
-        return ''.join(self.input_text_data)
-        
+        return self.input_text_data
 
 

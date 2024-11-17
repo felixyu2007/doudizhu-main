@@ -23,15 +23,16 @@ class Sign_page():
 
             self.name.draw()
             self.password.draw()
-            self.name.interact(event)
-            self.password.interact(event)
+            name = self.name.interact(event)
+            password = self.password.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-
-            if getinbutton == True and getinbutton not in disable_button:
-                disable_button.append(getinbutton)
-                print(disable_button)
-                return getinbutton
+            if name != '' and password != '':
+                if getinbutton == True and getinbutton not in disable_button:
+                    disable_button.append(getinbutton)
+                    sign_up(name,password)
+                    print(disable_button)
+                    return getinbutton
         elif self.signed == False:
             self.surf.fill(orange)
             self.surf.blit(button_image07,points[13])
