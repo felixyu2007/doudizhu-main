@@ -10,9 +10,17 @@ class Sign_page():
         self.name = Intput_box(screen,600,500,'name')
         self.password = Intput_box(screen,600,600,'password')
     def sign_page(self,event,mouseevent):
+        global getin
         if self.signed == True and self.login_mode == False: 
             self.surf.fill(black)
             pygame.draw.rect(screen,orange,points[15])
+            pygame.draw.polygon(screen,orange2,draw_points1,0)
+            pygame.draw.polygon(screen,red2,draw_points2,0)
+            pygame.draw.polygon(screen,orange2,draw_points3,0)
+            pygame.draw.polygon(screen,red2,draw_points4,0)
+            pygame.draw.polygon(screen,orange2,draw_points5,0)
+            pygame.draw.polygon(screen,green2,draw_points6,0)
+            pygame.draw.polygon(screen,white2,draw_points7,0)
             pygame.draw.circle(screen,black,points[2],150)
             pygame.draw.circle(screen,black,points[3],150)
             pygame.draw.rect(screen,black,points[4])
@@ -33,7 +41,8 @@ class Sign_page():
                     disable_button.append(getinbutton)
                     sign_up(name,password)
                     print(disable_button)
-                    return getinbutton
+                    getin = True
+                    return getin
         elif self.signed == True and self.login_mode == True:
             self.surf.fill(black)
             pygame.draw.rect(screen,orange,points[15])

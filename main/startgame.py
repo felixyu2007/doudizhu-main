@@ -10,7 +10,7 @@ while True:
         if started == False:
             if getin == False:
                 ans = sp.sign_page(event,pygame.mouse.get_pos())
-            if ans == True:
+            if ans == True or getin == True:
                 getin = True
                 m.draw_menu()
         else:
