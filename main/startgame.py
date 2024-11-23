@@ -12,7 +12,7 @@ while True:
                 ans = sp.sign_page(event,pygame.mouse.get_pos())
             if ans == True or getin == True:
                 getin = True
-                m.draw_menu()
+                m.draw_menu(event)
         else:
             refresh
     pygame.display.flip()

@@ -81,9 +81,10 @@ button_image05 = pygame.image.load(r'button_image\button01(1).png')
 button_image06 = pygame.image.load(r'button_image\button02(1).png')
 button_image07 = pygame.image.load('button_image\SIGNIN.png')
 button_image08 = pygame.image.load('button_image\png.png')
-textfont = pygame.font.SysFont('Raleway_Bold',50)
-roundtext = textfont.render('第1回合',True,'white')
-yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
+button_image09 = pygame.image.load(r'button_image\rule.png')
+# textfont = pygame.font.SysFont('Raleway_Bold',50)
+# roundtext = textfont.render('第1回合',True,'white')
+# yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
 #poker image
 poker_image_path = r'PNG-cards-1.3'
 imgs = os.listdir(poker_image_path)
