@@ -16,6 +16,5 @@ class Menu():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rule_rect.collidepoint(event.pos):
                 self.surf.blit(button_image09,(700,350))
-            elif not self.rule_rect.collidepoint(event.pos):
-                Menu.draw_menu(event)
+
          
