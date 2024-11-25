@@ -3,6 +3,7 @@ get_cards()
 
 sp = Sign_page(screen,signed,login_mode)
 m = Menu(screen,'''wait to drop''','''wait to drop''')
+rs = Refresh_system(screen,'''wait to drop''','''wait to drop''')
 while True:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -14,6 +15,7 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
         else:
-            refresh(round)
+            rs.draw_refreshed()
+            rs.refresh(round)
     pygame.display.flip()
 
