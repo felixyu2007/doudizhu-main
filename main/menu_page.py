@@ -20,5 +20,5 @@ class Menu():
                 self.surf.blit(button_image09,(700,350))
             if self.start_rect.collidepoint(event.pos):
                 return True
-        return
+        return False
          
