@@ -1,5 +1,6 @@
 #import all the module need to use
-from random import *
+import random
+from random import randint
 import pygame
 import time
 import os
@@ -89,7 +90,7 @@ button_image09 = pygame.image.load(r'button_image\rule.png')
 poker_image_path = r'PNG-cards-1.3'
 imgs = os.listdir(poker_image_path)
 poker_data = []
-choosed_poker_data = []
+choosed_poker_data = [0]
 
 def ask_quetion(input_title,input_message):
     global ined
