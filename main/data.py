@@ -1,6 +1,5 @@
 #import all the module need to use
 import random
-from random import randint
 import pygame
 import time
 import os
