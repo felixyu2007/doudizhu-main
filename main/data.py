@@ -13,8 +13,8 @@ pygame.font.init()
 #basic function
 FPS = 60
 clock = pygame.time.Clock()
-screen_width = 1920
-screen_height = 1080
+screen_width = 1680
+screen_height = 900
 round = 0
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('歡樂鬥地主')
