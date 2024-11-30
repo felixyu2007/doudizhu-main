@@ -7,6 +7,7 @@ class Menu():
         self.rule_slogan_size = pygame.font.Font(None,120)
         self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
         self.surf = surf
+        self.ans = get_userinfo()
     def draw_menu(self,event):
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
