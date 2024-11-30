@@ -5,9 +5,13 @@ class Menu():
         self.rule_rect = pygame.Rect(800,440,320,100)
         self.start_rect = pygame.Rect(800,640,320,100)
         self.rule_slogan_size = pygame.font.Font(None,120)
-        self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
+        self.userinfo_size = pygame.font.Font(None,40)
         self.surf = surf
         self.ans = get_userinfo()
+        self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
+        self.name = self.rule_slogan_size.render(self.ans[0],True,black)
+        self.fund = self.rule_slogan_size.render(self.ans[1],True,black)
+        
     def draw_menu(self,event):
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
@@ -15,6 +19,8 @@ class Menu():
         pygame.draw.rect(self.surf,green,self.rule_rect)
         pygame.draw.rect(self.surf,green,self.start_rect)
         self.surf.blit(self.rule_slogan,(850,445))
+        self.surf.blit(self.name,(10,10))
+        self.surf.blit(self.fund,(1900,))
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rule_rect.collidepoint(event.pos):
                 self.surf.blit(button_image09,(700,350))

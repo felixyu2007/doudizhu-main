@@ -20,7 +20,7 @@ def login(usertextname: str,usertextpassword: str):
 def get_userinfo():
     with open('main\player_info.json',mode='r') as get:
         userinfo = json.load(get)
-        ans = [userinfo['username'],userinfo['userpassword'],userinfo['userfunding']]
+        ans = [userinfo['username'],userinfo['userfunding']]
         return ans
 
         
