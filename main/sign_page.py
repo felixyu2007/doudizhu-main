@@ -74,9 +74,10 @@ class Sign_page():
                     if ans == True:
                         disable_button.append(getinbutton)
                         print(disable_button)
+                        return getinbutton
                     else:
                         pass
-                    return getinbutton
+                    
         elif self.signed == False:
             self.surf.fill(orange)
             self.surf.blit(button_image07,points[13])
