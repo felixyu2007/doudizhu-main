@@ -1,19 +1,22 @@
 from menu_page import *
 class Refresh_system():
-    def __init__(self,surf,userinfo,money,round):
+    def __init__(self,surf,userinfo,money):
         self.surf = surf
         self.userinfo = userinfo
         self.money = money
         self.round = 0
-        self.movement_position = (900,200)
+        self.movement_position = [900,200]
+        self.sended = False
     def draw_refreshed(self):
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
-        if self.round == 0 and :
+        if self.round == 0 and self.sended == False:
             self.surf.blit(cardback,self.movement_position)
             self.movement_position[0] += 2
-            self.movement_position[1] += 1
+            self.movement_position[1] += 4
+            if self.movement_position[0] == 1300 or self.movement_position[1] == 1000:
+                self.sended = True
     def refresh(self,round):
         if round == 0:
             for i in range(0,54):
