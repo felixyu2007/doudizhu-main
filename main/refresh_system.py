@@ -15,8 +15,10 @@ class Refresh_system():
             self.surf.blit(cardback,self.movement_position)
             self.movement_position[0] += 2
             self.movement_position[1] += 4
-            if self.movement_position[0] == 1300 or self.movement_position[1] == 1000:
+            if self.movement_position[0] == 1100 or self.movement_position[1] == 600:
                 self.sended = True
+                self.round += 1
+
     def refresh(self,round):
         if round == 0:
             for i in range(0,54):
