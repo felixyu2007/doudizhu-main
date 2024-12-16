@@ -11,13 +11,21 @@ class Refresh_system():
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
-        if self.round == 0 and self.sended == False:
+    def draw_moving_card(self):
+        global keep_show
+        if self.round <= 13 and self.sended == False:
+            self.surf.blit(cardback,(900,200))
             self.surf.blit(cardback,self.movement_position)
-            self.movement_position[0] += 2
-            self.movement_position[1] += 4
+            self.movement_position[0] += 8
+            self.movement_position[1] += 16
             if self.movement_position[0] == 1100 or self.movement_position[1] == 600:
-                self.sended = True
+                keep_show.append('i')
+                self.movement_position[0] = 900
+                self.movement_position[1] = 200
                 self.round += 1
+            if self.round >= 1:
+                self.surf.blit(cardback,(1100,600))
+        
 
     def refresh(self,round):
         if round == 0:

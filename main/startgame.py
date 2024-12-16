@@ -16,6 +16,7 @@ while True:
                 started = m.draw_menu(event)
         else:
             rs.draw_refreshed()
+            rs.draw_moving_card()
             rs.refresh(round)
-    pygame.display.flip()
+    pygame.display.update()
 
