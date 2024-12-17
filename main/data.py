@@ -16,6 +16,7 @@ clock = pygame.time.Clock()
 screen_width = 1920
 screen_height = 1080
 round = 0
+card_sended = False
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('歡樂鬥地主')
 

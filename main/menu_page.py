@@ -1,17 +1,17 @@
 from sign_page import * 
 
 class Menu():
-    def __init__(self,surf,userinfomation,money):
+    def __init__(self,surf):
         self.rule_rect = pygame.Rect(800,440,320,100)
         self.start_rect = pygame.Rect(800,640,320,100)
         self.rule_slogan_size = pygame.font.Font(None,120)
         self.userinfo_size = pygame.font.Font(None,80)
         self.surf = surf
         self.ans = get_userinfo()
-        self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
-        
+        self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
+
     def draw_menu(self,event):
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))

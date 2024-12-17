@@ -2,8 +2,8 @@ from refresh_system import *
 get_cards()
 
 sp = Sign_page(screen,signed,login_mode)
-m = Menu(screen,'''wait to drop''','''wait to drop''')
-rs = Refresh_system(screen,'''wait to drop''','''wait to drop''')
+m = Menu(screen)
+rs = Refresh_system(screen)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -15,8 +15,11 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
         else:
+            if round <= 1 and card_sended == False:
+                Refresh_system.draw_moving_card()
             rs.draw_refreshed()
             rs.draw_moving_card()
             rs.refresh(round)
-    pygame.display.update()
+    pygame.display.flip()
+    
 
