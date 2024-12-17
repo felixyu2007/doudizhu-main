@@ -15,11 +15,10 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
         else:
-            if round <= 1 and card_sended == False:
-                Refresh_system.draw_moving_card()
-            rs.draw_refreshed()
-            rs.draw_moving_card()
-            rs.refresh(round)
+            if round < 1 and card_sended == False:
+                rs.draw_refreshed()
+                rs.draw_moving_card()
+                round += 1
     pygame.display.flip()
     
 

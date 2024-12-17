@@ -22,8 +22,8 @@ class Refresh_system():
             while self.movement_position[0] < 1100 or self.movement_position[1] < 600:
                 self.surf.blit(cardback,(900,200))
                 self.surf.blit(cardback,self.movement_position)
-                self.movement_position[0] += 8
-                self.movement_position[1] += 16
+                self.movement_position[0] += 1
+                self.movement_position[1] += 2
             else:
                 if self.movement_position[0] == 1100 or self.movement_position[1] == 600:
                     keep_show.append('i')
