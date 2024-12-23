@@ -1,17 +1,10 @@
 from refresh_system import *
 import pygame
 import function_data.bgdata
-pygame.init()
-pygame.font.init()
+
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('歡樂鬥地主')
-
-def get_cards():
-    for p in imgs:
-        poker_data.append(p)
-
-get_cards()
 
 sp = Sign_page(screen,signed,login_mode)
 m = Menu(screen)

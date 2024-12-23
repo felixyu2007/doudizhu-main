@@ -1,13 +1,4 @@
-#import all the module need to use
-import random
-
-import os
-import os.path
-import sys
-import tkinter
-
-from tkinter import messagebox
-
+import pygame
 #basic function
 FPS = 60
 
@@ -15,7 +6,6 @@ screen_width = 1920
 screen_height = 1080
 round = 0
 card_sended = False
-
 
 #背景颜色
 orange = (204,115,63)
@@ -49,7 +39,6 @@ keep_show = []
 #背景图片与图形渲染的可活动位置
 movingpoint1 = [0,0,1920,1080]
 
-
 #是否已互动预设
 running = True
 signed = False
@@ -74,12 +63,3 @@ button_image09 = pygame.image.load(r'button_image\rule.png')
 # roundtext = textfont.render('第1回合',True,'white')
 # yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
 #poker image
-poker_image_path = r'PNG-cards-1.3'
-imgs = os.listdir(poker_image_path)
-poker_data = []
-choosed_poker_data = [0]
-
-
-
-
-
