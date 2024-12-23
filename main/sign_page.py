@@ -2,7 +2,7 @@
 from function_data.button import *
 from function_data.inputbox import *
 from data import *
-from signin_and_login_system import *
+from function_data.signin_and_login_system import *
 class Sign_page():
     def __init__(self,surf,signed,login_mode):
         #设定渲染文字的字形与内容
