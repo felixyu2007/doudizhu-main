@@ -18,21 +18,22 @@ class Refresh_system():
         self.surf.blit(self.fund,(1600,20))
     def draw_moving_card(self):
         global keep_show
-        for i in range(17):
-            while self.movement_position[0] < 1100 or self.movement_position[1] < 600:
-                self.surf.blit(cardback,(900,200))
+        while 1 :
+            self.surf.blit(cardback,(900,200))
+            self.movement_position[0] += 1
+            self.movement_position[1] += 2
+            if self.sended == False:
                 self.surf.blit(cardback,self.movement_position)
-                self.movement_position[0] += 1
-                self.movement_position[1] += 2
-            else:
-                if self.movement_position[0] == 1100 or self.movement_position[1] == 600:
-                    keep_show.append('i')
-                    self.movement_position[0] = 900
-                    self.movement_position[1] = 200
-                    self.round += 1
+                self.sended = True
+        else:
+            pass
+        keep_show.append('i')
+        self.movement_position[0] = 900
+        self.movement_position[1] = 200
+        self.round += 1
 
-            if self.round >= 1:
-                self.surf.blit(cardback,(1100,600))
+        if self.round >= 1:
+            self.surf.blit(cardback,(1100,600))
         
     def refresh(self,round):
         if round == 0:
