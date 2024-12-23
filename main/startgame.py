@@ -1,5 +1,6 @@
 from refresh_system import *
 import pygame
+import function_data.bgdata
 pygame.init()
 pygame.font.init()
 clock = pygame.time.Clock()
@@ -18,7 +19,7 @@ rs = Refresh_system(screen)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            ask_quetion('quit','do you want to quit right now?')
+            function_data.bgdata.ask_quetion('quit','do you want to quit right now?')
         if started == False:
             if getin == False:
                 ans = sp.sign_page(event,pygame.mouse.get_pos())
