@@ -1,24 +1,21 @@
 #import all the module need to use
 import random
-import pygame
-import time
+
 import os
 import os.path
 import sys
 import tkinter
-import json
+
 from tkinter import messagebox
-pygame.init()
-pygame.font.init()
+
 #basic function
 FPS = 60
-clock = pygame.time.Clock()
+
 screen_width = 1920
 screen_height = 1080
 round = 0
 card_sended = False
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('歡樂鬥地主')
+
 
 #背景颜色
 orange = (204,115,63)
@@ -51,13 +48,7 @@ disable_button = []
 keep_show = []
 #背景图片与图形渲染的可活动位置
 movingpoint1 = [0,0,1920,1080]
-#设定渲染文字的字形与内容
-titletext1 = pygame.font.Font(None,140)
-titletext2 = pygame.font.Font(None,140)
-textsize2 = pygame.font.Font(None,60)
-title = titletext1.render('Fighting The Landlord',True,red)
-bgtitle = titletext2.render('Fighting The Landlord',True,black)
-starttitle = textsize2.render('start',True,black)
+
 
 #是否已互动预设
 running = True
@@ -66,12 +57,7 @@ started = False
 getin = False
 money = 10000
 login_mode = False
-#四边形
-difficult_rect1 = pygame.Rect(550,600,100,40)
-difficult_rect2 = pygame.Rect(1050,600,100,40)
-difficult_rect3 = pygame.Rect(1550,600,100,40)
-start_rect = pygame.Rect(1050,600,100,40)
-menu_rect = pygame.Rect(0,0,100,1080)
+
 #background and cardback and button image
 background_image = pygame.image.load(r'button_image\background.png')
 cardback = pygame.image.load('button_image\card_back.png')
@@ -93,18 +79,7 @@ imgs = os.listdir(poker_image_path)
 poker_data = []
 choosed_poker_data = [0]
 
-def ask_quetion(input_title,input_message):
-    global ined
-    ans = messagebox.askquestion(title=input_title,message=input_message)
-    if ans == 'yes' and input_title == 'quit':
-        pygame.quit()
-        quit()
-    if ans == 'yes' and input_title == 'login?':
-        ined = True
-    if ans == 'yes' and input_title == 'sign error':
-        return False
 
-def get_cards():
-    for p in imgs:
-        poker_data.append(p)
+
+
 

@@ -1,4 +1,4 @@
-from data import *
+import pygame
 #define a method button
 
 class Button():
@@ -9,20 +9,20 @@ class Button():
         self.button_rect1 = pygame.Rect(coordinatex,coordinatey,200,50)
         self.button_rect2 = pygame.Rect(coordinatex-5,coordinatey-4,210,60)
         self.button_text_size = pygame.font.Font(None,50)
-        self.button_text = self.button_text_size.render(text,True,black)
+        self.button_text = self.button_text_size.render(text,True,(74,74,74))
         
     def clickbutton(self,mouseevent,event):
-        pygame.draw.rect(self.surf,black,self.button_rect2)
-        pygame.draw.rect(self.surf,green,self.button_rect1)
+        pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
+        pygame.draw.rect(self.surf,(49,174,91),self.button_rect1)
         self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
         if self.button_rect2.collidepoint(mouseevent):
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.draw.rect(screen,black,self.button_rect2)
-                pygame.draw.rect(screen,dark_green,self.button_rect1)
+                pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
+                pygame.draw.rect(self.surf,(37,96,57),self.button_rect1)
                 self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
             if event.type == pygame.MOUSEBUTTONUP:
-                pygame.draw.rect(screen,black,self.button_rect2)
-                pygame.draw.rect(screen,green,self.button_rect1)
+                pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
+                pygame.draw.rect(self.surf,(49,174,91),self.button_rect1)
                 self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
                 return True
         

@@ -1,5 +1,27 @@
 from refresh_system import *
+import pygame
+pygame.init()
+pygame.font.init()
+clock = pygame.time.Clock()
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption('歡樂鬥地主')
+
+def get_cards():
+    for p in imgs:
+        poker_data.append(p)
+        
 get_cards()
+
+def ask_quetion(input_title,input_message):
+    global ined
+    ans = messagebox.askquestion(title=input_title,message=input_message)
+    if ans == 'yes' and input_title == 'quit':
+        pygame.quit()
+        quit()
+    if ans == 'yes' and input_title == 'login?':
+        ined = True
+    if ans == 'yes' and input_title == 'sign error':
+        return False
 
 sp = Sign_page(screen,signed,login_mode)
 m = Menu(screen)
@@ -15,7 +37,7 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
         else:
-            if round < 1 and card_sended == False:
+            if card_sended == False:
                 rs.draw_refreshed()
                 rs.draw_moving_card()
                 round += 1
