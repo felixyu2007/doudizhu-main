@@ -18,6 +18,7 @@ class Refresh_system():
         self.poker_data = []
         self.coordinate = []
         
+    def get_cards(self):
         for p in self.imgs:
             self.poker_data.append(p)
 
