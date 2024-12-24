@@ -16,7 +16,6 @@ class Refresh_system():
         self.poker_image_path = r'PNG-cards-1.3'
         self.imgs = os.listdir(self.poker_image_path)
         self.poker_data = []
-        self.coordinate = []
         
     def get_cards(self):
         for p in self.imgs:
@@ -28,19 +27,21 @@ class Refresh_system():
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
-    def draw_moving_card(self,startpoint=(int,int),endpoint=(int,int)):
+    def draw_moving_card(self,startpoint=(int,int),endpoint=(int,int))->list:
         if startpoint[0] <= endpoint[0]:
-            x_move_distance = endpoint[0]/startpoint[0]
+            x_move_distance = endpoint[0]//startpoint[0]
+            print(x_move_distance)
         elif endpoint[0] <= startpoint[0]:
-            x_move_distance = startpoint[0]/endpoint[0]
+            x_move_distance = startpoint[0]//endpoint[0]
+            print(x_move_distance)
         if startpoint[1] <= endpoint[1]:
-            y_move_distance = startpoint[1]/endpoint[1]
+            y_move_distance = endpoint[1]//startpoint[1]
+            print(y_move_distance)
         elif endpoint[1] <= startpoint[1]:
-            y_move_distance = endpoint[1]/startpoint[1]
+            y_move_distance = startpoint[1]//endpoint[1]
+            print(y_move_distance)
         
-        self.coordinate[0] = x_move_distance
-        self.coordinate[1] = y_move_distance
-        return self.coordinate
+        return x_move_distance,y_move_distance
 
     def refresh(self,round):
         Refresh_system.get_cards()
