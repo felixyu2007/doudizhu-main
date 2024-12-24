@@ -22,7 +22,7 @@ while True:
         else:
             if card_sended == False:
                 rs.draw_refreshed()
-                rs.draw_moving_card()
+                rs.draw_moving_card((),())
                 round += 1
     pygame.display.flip()
     

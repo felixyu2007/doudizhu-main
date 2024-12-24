@@ -27,7 +27,7 @@ class Refresh_system():
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
-    def draw_moving_card(self):
+    def draw_moving_card(self,startpoint=tuple(int,int),endpoint=tuple(int,int)):
         None
         
     def refresh(self,round):
