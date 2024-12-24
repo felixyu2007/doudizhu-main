@@ -1,12 +1,11 @@
 import pygame
 #basic function
 FPS = 60
-
 screen_width = 1920
 screen_height = 1080
 round = 0
 card_sended = False
-
+send_coordinate = [0,0]
 #背景颜色
 orange = (204,115,63)
 green = (49,174,91)

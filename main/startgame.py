@@ -22,7 +22,11 @@ while True:
         else:
             if card_sended == False:
                 rs.draw_refreshed()
-                rs.draw_moving_card((),())
+                send_coordinate = (900,200)
+                distance = rs.draw_moving_card(send_coordinate,(1100,600))
+                send_coordinate[0] += distance[0]
+                send_coordinate[1] += distance[1]
+                screen.blit(cardback,send_coordinate)
                 round += 1
     pygame.display.flip()
     
