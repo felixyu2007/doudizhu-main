@@ -20,12 +20,16 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             function_data.bgdata.ask_quetion('quit','do you want to quit right now?')
+        else:
+            pass
         if started == False:
             if getin == False:
                 ans = sp.sign_page(event,pygame.mouse.get_pos())
-            if ans == True or getin == True:
+            elif ans == True or getin == True:
                 getin = True
                 started = m.draw_menu(event)
+            else:
+                pass
         else:
             if card_sended == False:
                 rs.draw_refreshed()
