@@ -14,6 +14,7 @@ class Intput_box():
         self.delete = False
         self.textsize1 = bgdata.pygame.font.Font(None,35)
         self.timewait = 0
+        
     def draw(self):
         #绘制输入框
         bgdata.pygame.draw.rect(self.surf,(74,74,74),self.rect1,2)
@@ -24,14 +25,14 @@ class Intput_box():
         input_text = self.textsize1.render(self.input_text_data,True,(74,74,74))
         self.surf.blit(input_text,(self.inputbox_x_coordinate + 5,self.inputbox_y_coordinate + 5))
 
+        input_text_last_letter_position = input_text.get_rect()
+        coordinatex = self.rect1.x+5+input_text_last_letter_position.width
         self.timewait += 1
+
         if self.focus == True and self.timewait == 60:
             self.cursor = not self.cursor
             self.timewait = 0
-
-        if self.cursor == True and self.focus == True:
-            input_text_last_letter_position = input_text.get_rect()
-            coordinatex = self.rect1.x+5+input_text_last_letter_position.width
+        if self.focus == True and self.cursor == True:
             bgdata.pygame.draw.line(self.surf,(74,74,74),(coordinatex,self.inputbox_y_coordinate+5),(coordinatex,self.inputbox_y_coordinate+25),2)
 
     def interact(self,event):
@@ -40,7 +41,7 @@ class Intput_box():
                 self.focus = True
             else:
                 self.focus = False
-        elif self.focus == True:
+        if self.focus == True:
             if event.type == bgdata.pygame.KEYDOWN:
                 if event.key == bgdata.pygame.K_BACKSPACE:
                     self.delete = True

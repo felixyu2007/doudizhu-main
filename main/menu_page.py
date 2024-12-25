@@ -42,18 +42,18 @@ class Sign_page():
 
             self.name.draw()
             self.password.draw()
-            name = self.name.interact(event)
-            password = self.password.interact(event)
+            aname = self.name.interact(event)
+            apassword = self.password.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if name != '' and password != '':
+            if aname != '' and apassword != '':
                 if getinbutton == True and getinbutton not in disable_button:
                     disable_button.append(getinbutton)
-                    function_data.signin_and_login_system.sign_up(name,password)
+                    function_data.signin_and_login_system.sign_up(aname,apassword)
                     print(disable_button)
                     getin = True
                     return getin
-        elif self.signed == True and self.login_mode == True:
+        if self.signed == True and self.login_mode == True:
             self.surf.fill(black)
             pygame.draw.rect(self.surf,orange,points[15])
             pygame.draw.polygon(self.surf,orange2,draw_points1,0)
@@ -87,7 +87,6 @@ class Sign_page():
                         return getinbutton
                     else:
                         return False
-                        pass
                     
         elif self.signed == False:
             self.surf.fill(orange)
