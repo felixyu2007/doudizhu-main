@@ -1,78 +1,58 @@
-import function_data.bgdata
-
+import pygame
 #登入界面输入位置
 class Intput_box():
     def __init__(self,surf,inputbox_x_coordinate,inputbox_y_coordinate,inputbox_title: str):
         self.surf = surf
         self.inputbox_x_coordinate = inputbox_x_coordinate
         self.inputbox_y_coordinate = inputbox_y_coordinate
-        self.rect1 = function_data.bgdata.pygame.Rect(self.inputbox_x_coordinate,self.inputbox_y_coordinate,500,30)
+        self.rect1 = pygame.Rect(self.inputbox_x_coordinate,self.inputbox_y_coordinate,500,30)
         self.inputbox_title = inputbox_title
         self.input_text_data = ''
         self.focus = False
         self.cursor = False
         self.typing = False
         self.delete = False
-        self.textsize1 = function_data.bgdata.pygame.font.Font(None,35)
-        self.input_text = self.textsize1.render(self.input_text_data,True,(74,74,74))
-        self.inputbox_name = self.textsize1.render(self.inputbox_title,True,(74,74,74))
-        self.input_text_last_letter_position = self.input_text.get_rect()
-        self.coordinatex = self.rect1.x+5+self.input_text_last_letter_position.width
+        self.textsize1 = pygame.font.Font(None,35)
 
     def draw(self):
         #绘制输入框
-        function_data.bgdata.pygame.draw.rect(self.surf,(74,74,74),self.rect1,2)
+        pygame.draw.rect(self.surf,(74,74,74),self.rect1,2)
         #渲染输入框题目
-        self.surf.blit(self.inputbox_name,(self.inputbox_x_coordinate,self.inputbox_y_coordinate-30))
+        inputbox_name = self.textsize1.render(self.inputbox_title,True,(74,74,74))
+        self.surf.blit(inputbox_name,(self.inputbox_x_coordinate,self.inputbox_y_coordinate-30))
         #渲染输入了的文字
-        self.surf.blit(self.input_text,(self.inputbox_x_coordinate + 5,self.inputbox_y_coordinate + 5))
+        input_text = self.textsize1.render(self.input_text_data,True,(74,74,74))
+        self.surf.blit(input_text,(self.inputbox_x_coordinate + 5,self.inputbox_y_coordinate + 5))
+        
+        self.input_text_last_letter_position = input_text.get_rect()
+        self.coordinatex = self.rect1.x+5+self.input_text_last_letter_position.width
+
+        if self.focus == True:
+            self.cursor = not self.cursor
+        if self.focus == True and self.cursor == True:
+            pygame.draw.line(self.surf,(74,74,74),(self.coordinatex,self.inputbox_y_coordinate+5),(self.coordinatex,self.inputbox_y_coordinate+25),2)
 
     def interact(self,event):
-        if event.type == function_data.bgdata.pygame.MOUSEBUTTONDOWN:
-            if self.rect1.collidepoint(function_data.bgdata.pygame.mouse.get_pos()):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect1.collidepoint(event.pos):
                 self.focus = True
             else:
                 self.focus = False
         else:
             pass
         if self.focus == True:
-            if event.type == function_data.bgdata.pygame.KEYDOWN:
-                if event.key == function_data.bgdata.pygame.K_BACKSPACE:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
                     self.delete = True
                 else:
                     self.input_text_data += event.unicode
+                        #删除方法
+                if self.delete == True and self.input_text_data:
+                    #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
+                    self.input_text_data = self.input_text_data[:-1]
+                    self.delete = False
+                else:
+                    pass
 
-        if self.focus == True:
-            self.cursor = not self.cursor
-        if self.focus == True and self.cursor == True:
-            function_data.bgdata.pygame.draw.line(self.surf,(74,74,74),(self.coordinatex,self.inputbox_y_coordinate+5),(self.coordinatex,self.inputbox_y_coordinate+25),2)
-        
-        #删除方法
-        if self.delete == True and self.input_text_data:
-            #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
-            self.input_text_data = self.input_text_data[:-1]
-            self.delete = False
-        else:
-            pass
         return self.input_text_data
 
-if __name__ == '__main__':
-    FPS = 60
-    black = (74,74,74)
-    screen_width = 1280
-    screen_height = 720
-    screen = function_data.bgdata.pygame.display.set_mode((screen_width, screen_height))
-    function_data.bgdata.pygame.display.set_caption('input_box')
-    name = Intput_box(screen,600,500,'name')
-    password = Intput_box(screen,600,600,'password')
-
-    while True:
-        for event in function_data.bgdata.pygame.event.get():
-            if event.type == function_data.bgdata.pygame.KEYDOWN and event.key == function_data.bgdata.pygame.K_ESCAPE:
-                function_data.bgdata.ask_quetion('quit','do you want to quit right now?')
-        screen.fill(black)
-        name.draw()
-        password.draw()
-        name.interact(event)
-        password.interact(event)
-        function_data.bgdata.pygame.display.update()
