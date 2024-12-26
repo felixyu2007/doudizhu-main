@@ -27,6 +27,7 @@ class Refresh_system():
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
+
     def draw_moving_card(self,startpoint=(int,int),endpoint=(int,int))->list:
         if startpoint[0] <= endpoint[0]:
             x_move_distance = endpoint[0]//startpoint[0]
@@ -40,10 +41,9 @@ class Refresh_system():
         elif endpoint[1] <= startpoint[1]:
             y_move_distance = startpoint[1]//endpoint[1]
             print(y_move_distance)
-        
         return x_move_distance,y_move_distance
 
-    def refresh(self,round):
+    def game_algorithm(self,round):
         Refresh_system.get_cards()
         if round == 0:
             for i in range(0,54):
@@ -55,3 +55,22 @@ class Refresh_system():
                 return self.choosed_poker_data
         else:
             pass
+    # if card_sended == False:
+    #     rs.draw_refreshed()
+    #     if start_coordinate[0] <= end_coordinate[0] or start_coordinate[1] <= end_coordinate[1]:
+    #         screen.blit(cardback,(900,200))
+    #         start_coordinate[0] += distance[0]*10
+    #         start_coordinate[1] += distance[1]*10
+    #         screen.blit(cardback,(start_coordinate[0],start_coordinate[1]))
+    #     else:
+    #         screen.blit(cardback,(900,200))
+    #         keep_show.append('i')
+    #         last_coordinate[0] = start_coordinate[0]
+    #         last_coordinate[1] = start_coordinate[1]
+    #         start_coordinate = [900,200]
+    #         end_coordinate = [1100,600]
+    #         round += 1
+    #         if keep_show[17] == 'i':
+    #             quit
+    #     if round != 0:
+    #     screen.blit(cardback,(last_coordinate[0],last_coordinate[1]))

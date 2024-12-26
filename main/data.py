@@ -1,4 +1,6 @@
 import pygame
+pygame.init()
+pygame.font.init()
 #basic function
 FPS = 240
 screen_width = 1920

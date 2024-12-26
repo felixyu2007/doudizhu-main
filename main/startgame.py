@@ -1,8 +1,5 @@
-import algorithm
-import pygame
+from algorithm import *
 import function_data.bgdata
-pygame.init()
-pygame.font.init()
 
 clock = pygame.time.Clock()
 clock.tick(FPS)
@@ -30,27 +27,7 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
     if started == True:
-        if card_sended == False:
-            rs.draw_refreshed()
-            if start_coordinate[0] <= end_coordinate[0] or start_coordinate[1] <= end_coordinate[1]:
-                screen.blit(cardback,(900,200))
-                start_coordinate[0] += distance[0]*10
-                start_coordinate[1] += distance[1]*10
-                screen.blit(cardback,(start_coordinate[0],start_coordinate[1]))
-            else:
-                screen.blit(cardback,(900,200))
-                keep_show.append('i')
-                last_coordinate[0] = start_coordinate[0]
-                last_coordinate[1] = start_coordinate[1]
-                start_coordinate = [900,200]
-                end_coordinate = [1100,600]
-                round += 1
-                if keep_show[17] == 'i':
-                    quit
-            
-            if round != 0:
-                screen.blit(cardback,(last_coordinate[0],last_coordinate[1]))
-            
+        rs.game_algorithm(round)
     pygame.display.update()
     
 
