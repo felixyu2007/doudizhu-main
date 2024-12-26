@@ -1,4 +1,7 @@
 import json
+import pygame
+pygame.init()
+pygame.font.init()
 from tkinter import messagebox
 def ask_quetion(input_title,input_message):
     global ined

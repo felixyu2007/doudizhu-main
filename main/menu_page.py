@@ -1,8 +1,9 @@
 #import cache and refresh_system
 import function_data.button
 import function_data.inputbox
-from data import *
 import function_data.signin_and_login_system
+from data import *
+
 class Sign_page():
     def __init__(self,surf,signed,login_mode):
         #设定渲染文字的字形与内容
