@@ -1,4 +1,4 @@
-from refresh_system import *
+import algorithm
 import pygame
 import function_data.bgdata
 pygame.init()
@@ -45,6 +45,9 @@ while True:
                 start_coordinate = [900,200]
                 end_coordinate = [1100,600]
                 round += 1
+                if keep_show[17] == 'i':
+                    quit
+            
             if round != 0:
                 screen.blit(cardback,(last_coordinate[0],last_coordinate[1]))
             
