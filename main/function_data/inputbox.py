@@ -9,7 +9,7 @@ class Intput_box():
         self.inputbox_title = inputbox_title
         self.input_text_data = ''
         self.focus = False
-        self.cursor = False
+        self.cursor = True
         self.typing = False
         self.delete = False
         self.textsize1 = pygame.font.Font(None,35)
@@ -26,9 +26,6 @@ class Intput_box():
         
         self.input_text_last_letter_position = input_text.get_rect()
         self.coordinatex = self.rect1.x+5+self.input_text_last_letter_position.width
-
-        if self.focus == True:
-            self.cursor = not self.cursor
         if self.focus == True and self.cursor == True:
             pygame.draw.line(self.surf,(74,74,74),(self.coordinatex,self.inputbox_y_coordinate+5),(self.coordinatex,self.inputbox_y_coordinate+25),2)
 
@@ -38,21 +35,18 @@ class Intput_box():
                 self.focus = True
             else:
                 self.focus = False
-        else:
-            pass
-        if self.focus == True:
+        elif self.focus == True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     self.delete = True
-                else:
+                elif event.key != pygame.K_BACKSPACE and event.key != pygame.K_ESCAPE:
                     self.input_text_data += event.unicode
-                        #删除方法
-                if self.delete == True and self.input_text_data:
-                    #注释，虽然pop()定义是随机删除，但实际上是删除最后一个元素
+                    #删除方法
+                if self.delete == True and self.input_text_data != '':
                     self.input_text_data = self.input_text_data[:-1]
                     self.delete = False
                 else:
                     pass
-
-        return self.input_text_data
+        else:
+            return self.input_text_data
 

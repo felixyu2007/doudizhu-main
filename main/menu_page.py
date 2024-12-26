@@ -41,10 +41,10 @@ class Sign_page():
             self.surf.blit(self.bgtitle,points[1])
             self.surf.blit(self.title,points[0])
 
-            self.name.draw()
-            self.password.draw()
             aname = self.name.interact(event)
             apassword = self.password.interact(event)
+            self.name.draw()
+            self.password.draw()
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if aname != '' and apassword != '':
