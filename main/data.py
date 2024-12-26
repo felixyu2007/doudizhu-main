@@ -1,6 +1,6 @@
 import pygame
 #basic function
-FPS = 120
+FPS = 60
 screen_width = 1920
 screen_height = 1080
 round = 0

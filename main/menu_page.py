@@ -88,7 +88,7 @@ class Sign_page():
                     else:
                         return False
                     
-        elif self.signed == False:
+        if self.signed == False:
             self.surf.fill(orange)
             self.surf.blit(button_image07,points[13])
             self.surf.blit(button_image08,points[14])
