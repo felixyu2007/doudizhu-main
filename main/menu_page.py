@@ -2,6 +2,7 @@
 import function_data.button
 import function_data.inputbox
 import function_data.signin_and_login_system
+import function_data.algorithm
 from data import *
 
 class Sign_page():

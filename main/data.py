@@ -5,7 +5,6 @@ pygame.font.init()
 FPS = 240
 screen_width = 1920
 screen_height = 1080
-card_sended = False
 
 #背景颜色
 orange = (204,115,63)
