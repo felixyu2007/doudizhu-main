@@ -18,7 +18,6 @@ class Refresh_system():
         self.last_coordinate = [0,0]
         self.keep_show = ['','','','','','','','','','','','','','','','','']
         self.count = 0
-        self.round = 0
         self.card_sended = False
 
     def draw_refreshed(self,event,mouseevent):
@@ -51,5 +50,4 @@ class Refresh_system():
                 self.surf.blit(cardback,(self.last_coordinate[0],self.last_coordinate[1]))
         else:
             if self.card_sended == True:
-                if self.round == 0:
-                    self.ga.run(event,mouseevent)
+                self.ga.run(event,mouseevent)

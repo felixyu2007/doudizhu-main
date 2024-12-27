@@ -14,8 +14,11 @@ class Game_algorithm():
         self.choosed_poker02 = []
         self.user_choosed_poker = []
         self.round = 0
-        self.increase_btn = Button(self.surf,1200,550,'increase')
+        self.price = 0
+        self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
+        self.pricetext = pygame.font.Font(None,100)
+        self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
 
         for p in imgs:
             self.poker.append(p)
@@ -37,6 +40,15 @@ class Game_algorithm():
 
     def run(self,event,mouseevent):
         if self.round == 0:
-            self.increase_btn.clickbutton(mouseevent,event)
-            self.decrease_btn.clickbutton(mouseevent,event)
-
+            h = self.increase_btn.clickbutton(mouseevent,event)
+            l = self.decrease_btn.clickbutton(mouseevent,event)
+            pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,100))
+            self.surf.blit(self.priceshow,(1450,650))
+            if h == True:
+                self.price += 100
+            else:
+                h = False
+            if l == True:
+                self.price -= 100
+            else:
+                l = False
