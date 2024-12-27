@@ -1,38 +1,52 @@
 import bgdata
 import random
 import os
+import button
 
 poker_image_path = r'PNG-cards-1.3'
 imgs = os.listdir(poker_image_path)
-poker_data = []
-choosed_poker_data = []
+poker = []
+choosed_dizhu_poker = []
+choosed_poker01 = []
+choosed_poker02 = []
+choosed_poker03 = []
+round = 0
 
 class Game_algorithm():
-    def __init__(self):
+    def __init__(self,screen):
+        self.surf = screen
         for p in imgs:
-            poker_data.append(p)
-    def run():
+            poker.append(p)
+        print(poker)
+        for a in range(3):
+            dizhupai = random.choice(poker)
+            choosed_dizhu_poker.append(dizhupai)
+            poker.remove(dizhupai)
+        for b in range(17):
+            player1 = random.choice(poker)
+            choosed_poker01.append(player1)
+            poker.remove(player1)
+            player2 = random.choice(poker)
+            choosed_poker02.append(player2)
+            poker.remove(player2)
+            player3 = random.choice(poker)
+            choosed_poker03.append(player3)
+            poker.remove(player3)
+
+    def run(self):
+        global round,poker,choosed_dizhu_poker,choosed_poker01,choosed_poker02,choosed_poker03
         if round == 0:
-            bgdata.poker_data
-    # if card_sended == False:
-    #     rs.draw_refreshed()
-    #     if start_coordinate[0] <= end_coordinate[0] or start_coordinate[1] <= end_coordinate[1]:
-    #         screen.blit(cardback,(900,200))
-    #         start_coordinate[0] += distance[0]*10
-    #         start_coordinate[1] += distance[1]*10
-    #         screen.blit(cardback,(start_coordinate[0],start_coordinate[1]))
-    #     else:
-    #         screen.blit(cardback,(900,200))
-    #         keep_show.append('i')
-    #         last_coordinate[0] = start_coordinate[0]
-    #         last_coordinate[1] = start_coordinate[1]
-    #         start_coordinate = [900,200]
-    #         end_coordinate = [1100,600]
-    #         round += 1
-    #         if keep_show[17] == 'i':
-    #             quit
-    #     if round != 0:
-    #     screen.blit(cardback,(last_coordinate[0],last_coordinate[1]))
+            pass
 if __name__ == '__main__':
     Game_algorithm()
-    print(poker_data)
+    print('====================================================')
+    print(choosed_dizhu_poker)
+    print('====================================================')
+    print(choosed_poker01)
+    print('====================================================')
+    print(choosed_poker02)
+    print('====================================================')
+    print(choosed_poker03)
+    print('====================================================')
+    print(poker)
+    print('=======================end==========================')

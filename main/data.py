@@ -5,7 +5,6 @@ pygame.font.init()
 FPS = 240
 screen_width = 1920
 screen_height = 1080
-round = 0
 card_sended = False
 
 #背景颜色
@@ -36,7 +35,7 @@ points = [(420,200),(425,205),(400,240),(1520,240),(400,90,1100,300)
 cards_points = [(300,800),(300,810),(300,820),(300,830),(300,840),(300,850)]
 #
 disable_button = []
-keep_show = []
+
 #背景图片与图形渲染的可活动位置
 movingpoint1 = [0,0,1920,1080]
 

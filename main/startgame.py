@@ -11,11 +11,6 @@ m = Menu(screen)
 rs = Refresh_system(screen)
 ga = function_data.bgdata.Game_algorithm()
 
-start_coordinate = [900,200]
-end_coordinate = [1100,600]
-last_coordinate = [0,0]
-distance = rs.draw_moving_card(start_coordinate,end_coordinate)
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -29,7 +24,6 @@ while True:
                 started = m.draw_menu(event)
     if started == True:
         rs.draw_refreshed()
-        ga.
     pygame.display.update()
     
 
