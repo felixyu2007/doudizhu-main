@@ -1,25 +1,25 @@
-import function_data.inputbox
-import function_data.bgdata
-if __name__ == '__main__':
-    FPS = 60
-    black = (74,74,74)
-    screen_width = 1280
-    screen_height = 720
-    screen = function_data.bgdata.pygame.display.set_mode((screen_width, screen_height))
-    function_data.bgdata.pygame.display.set_caption('input_box')
-    name = function_data.inputbox.Intput_box(screen,600,500,'name')
-    password = function_data.inputbox.Intput_box(screen,600,600,'password')
+# import function_data.inputbox
+# import function_data.bgdata
+# if __name__ == '__main__':
+#     FPS = 60
+#     black = (74,74,74)
+#     screen_width = 1280
+#     screen_height = 720
+#     screen = function_data.bgdata.pygame.display.set_mode((screen_width, screen_height))
+#     function_data.bgdata.pygame.display.set_caption('input_box')
+#     name = function_data.inputbox.Intput_box(screen,600,500,'name')
+#     password = function_data.inputbox.Intput_box(screen,600,600,'password')
 
-    while True:
-        for event in function_data.bgdata.pygame.event.get():
-            if event.type == function_data.bgdata.pygame.KEYDOWN and event.key == function_data.bgdata.pygame.K_ESCAPE:
-                function_data.bgdata.ask_quetion('quit','do you want to quit right now?')
-        screen.fill(black)
-        name.draw()
-        password.draw()
-        name.interact(event)
-        password.interact(event)
-        function_data.bgdata.pygame.display.update()
+#     while True:
+#         for event in function_data.bgdata.pygame.event.get():
+#             if event.type == function_data.bgdata.pygame.KEYDOWN and event.key == function_data.bgdata.pygame.K_ESCAPE:
+#                 function_data.bgdata.ask_quetion('quit','do you want to quit right now?')
+#         screen.fill(black)
+#         name.draw()
+#         password.draw()
+#         name.interact(event)
+#         password.interact(event)
+#         function_data.bgdata.pygame.display.update()
 
 # import threading
 # import requests
@@ -35,3 +35,5 @@ if __name__ == '__main__':
 #         haha = threading.Thread(target=attack,args=(adsw,data))
 #         haha.start()
 # loop()
+print('g','g')
+print('g'+'g')

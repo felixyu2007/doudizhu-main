@@ -19,9 +19,10 @@ class Button():
                 pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
                 pygame.draw.rect(self.surf,(37,96,57),self.button_rect1)
                 self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
+                return True
             if event.type == pygame.MOUSEBUTTONUP:
                 pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
                 pygame.draw.rect(self.surf,(49,174,91),self.button_rect1)
                 self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
-                return True
+                return False
         

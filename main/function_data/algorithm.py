@@ -17,11 +17,15 @@ class Game_algorithm():
         self.price = 0
         self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
+        self.bet_button = Button(self.surf,1450,750,'bet')
         self.pricetext = pygame.font.Font(None,100)
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
 
         for p in imgs:
-            self.poker.append(p)
+            baba = os.path.dirname(os.path.abspath(p))
+            haha = os.path.join(baba,poker_image_path+'\\'+p)
+            image_path = pygame.image.load(haha)
+            self.poker.append(image_path)
         print(self.poker)
         for a in range(3):
             dizhupai = random.choice(self.poker)
@@ -40,15 +44,24 @@ class Game_algorithm():
 
     def run(self,event,mouseevent):
         if self.round == 0:
-            h = self.increase_btn.clickbutton(mouseevent,event)
-            l = self.decrease_btn.clickbutton(mouseevent,event)
-            pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,100))
+            high = self.increase_btn.clickbutton(mouseevent,event)
+            low = self.decrease_btn.clickbutton(mouseevent,event)
+            bet = self.bet_button.clickbutton(mouseevent,event)
+            pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
             self.surf.blit(self.priceshow,(1450,650))
-            if h == True:
+            if high == True:
                 self.price += 100
-            else:
-                h = False
-            if l == True:
+                if self.price >= 10000:
+                        self.price = 10000
+                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+            if low == True:
                 self.price -= 100
-            else:
-                l = False
+                if self.price <= 0:
+                    self.price = 0
+                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+            if bet == True:
+                self.round += 1
+        else:
+            self.surf.blit(self.user_choosed_poker[0],(600,500))
+
+

@@ -29,8 +29,8 @@ class Refresh_system():
         if self.card_sended == False:
             if self.start_coordinate[0] <= self.end_coordinate[0] or self.start_coordinate[1] <= self.end_coordinate[1]:
                 self.surf.blit(cardback,(900,200))
-                self.start_coordinate[0] += self.distance[0]*10
-                self.start_coordinate[1] += self.distance[1]*10
+                self.start_coordinate[0] += self.distance[0]*40
+                self.start_coordinate[1] += self.distance[1]*40
                 self.surf.blit(cardback,(self.start_coordinate[0],self.start_coordinate[1]))
             else:
                 self.surf.blit(cardback,(900,200))
@@ -39,7 +39,7 @@ class Refresh_system():
                 self.start_coordinate = [900,200]
                 self.end_coordinate = [1100,600]
                 print(self.keep_show)
-                if self.keep_show[16] == 'i':
+                if self.keep_show[15] == 'i':
                     self.card_sended = True
                     print(self.card_sended)
                     print('done')
@@ -49,5 +49,4 @@ class Refresh_system():
             if self.count != 0:
                 self.surf.blit(cardback,(self.last_coordinate[0],self.last_coordinate[1]))
         else:
-            if self.card_sended == True:
-                self.ga.run(event,mouseevent)
+            self.ga.run(event,mouseevent)
