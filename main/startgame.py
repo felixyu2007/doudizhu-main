@@ -1,4 +1,4 @@
-from algorithm import *
+from main.update import *
 import function_data.bgdata
 
 clock = pygame.time.Clock()
@@ -9,6 +9,7 @@ pygame.display.set_caption('歡樂鬥地主')
 sp = Sign_page(screen,signed,login_mode)
 m = Menu(screen)
 rs = Refresh_system(screen)
+ga = function_data.bgdata.Game_algorithm()
 
 start_coordinate = [900,200]
 end_coordinate = [1100,600]
@@ -27,7 +28,8 @@ while True:
                 getin = True
                 started = m.draw_menu(event)
     if started == True:
-        rs.game_algorithm(round)
+        rs.draw_refreshed()
+        ga.
     pygame.display.update()
     
 

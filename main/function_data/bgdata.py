@@ -1,4 +1,5 @@
 from tkinter import messagebox
+
 def ask_quetion(input_title,input_message):
     global ined
     ans = messagebox.askquestion(title=input_title,message=input_message)
@@ -8,3 +9,4 @@ def ask_quetion(input_title,input_message):
         ined = True
     if ans == 'yes' and input_title == 'sign error':
         return False
+    
