@@ -8,11 +8,13 @@ class Game_algorithm():
         self.surf = screen
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
-        self.poker = []
-        self.choosed_dizhu_poker = []
-        self.choosed_poker01 = []
-        self.choosed_poker02 = []
-        self.user_choosed_poker = []
+        self.poker = {}
+        self.choosed_dizhu_poker = {}
+        self.choosed_poker01 = {}
+        self.choosed_poker02 = {}
+        self.user_choosed_poker = {}
+        self.choosed_poker_cache = {}
+        self.choose_poker = []
         self.round = 0
         self.price = 0
         self.increase_btn = Button(self.surf,1200,650,'increase')
@@ -20,36 +22,40 @@ class Game_algorithm():
         self.bet_button = Button(self.surf,1450,750,'bet')
         self.pricetext = pygame.font.Font(None,100)
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
-        self.suit = ['a','b','c','d']
-        self.rank = ['1','2','3','4','5','6','7','8','9','10','11','12','13']
+        self.card_start_point = [450,750]
 
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
-            haha = os.path.join(baba,poker_image_path+'\\'+p)
-            self.image_path = pygame.image.load(haha)
-            self.poker.append(self.image_path)
-            print(p)
-        for x in range(4):
-            for y in range(13):
-                self.cards = {self.suit[x]+self.rank[y]:self.image_path}
-                
+            self.haha = os.path.join(baba,poker_image_path+'\\'+p)
+            self.image_path = pygame.image.load(self.haha)
+            poker_dict = {p:self.image_path}
+            self.poker.update(poker_dict)
 
-        for a in range(3):
-            dizhupai = random.choice(self.poker)
-            self.choosed_dizhu_poker.append(dizhupai)
-            self.poker.remove(dizhupai)
-            
+        for self.a in range(3):
+            self.choose_poker = random.choice(list(self.poker.keys()))
+            self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
+            self.choosed_dizhu_poker.update(self.choosed_poker_cache)
+            del self.poker[self.choose_poker]
+        
         for b in range(17):
-            player1 = random.choice(self.poker)
-            self.choosed_poker01.append(player1)
-            self.poker.remove(player1)
-            player2 = random.choice(self.poker)
-            self.choosed_poker02.append(player2)
-            self.poker.remove(player2)
-            player3 = random.choice(self.poker)
-            self.user_choosed_poker.append(player3)
-            self.poker.remove(player3)
             
+            self.choose_poker = random.choice(list(self.poker.keys()))
+            self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
+            self.choosed_poker01.update(self.choosed_poker_cache)
+            del self.poker[self.choose_poker]
+
+            self.choose_poker = random.choice(list(self.poker.keys()))
+            self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
+            self.choosed_poker02.update(self.choosed_poker_cache)
+            del self.poker[self.choose_poker]
+
+            self.choose_poker = random.choice(list(self.poker.keys()))
+            self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
+            self.user_choosed_poker.update(self.choosed_poker_cache)
+            del self.poker[self.choose_poker]
+        
+        self.count = list(self.user_choosed_poker.values())
+
     def run(self,event,mouseevent):
         if self.round == 0:
             high = self.increase_btn.clickbutton(mouseevent,event)
@@ -70,23 +76,14 @@ class Game_algorithm():
             if bet == True and self.price != 0:
                 self.round += 1
         else:
-            p1 = self.surf.blit(self.user_choosed_poker[0],(450,700))
-            p2 = self.surf.blit(self.user_choosed_poker[1],(500,700))
-            p3 = self.surf.blit(self.user_choosed_poker[2],(550,700))
-            p4 = self.surf.blit(self.user_choosed_poker[3],(600,700))
-            p5 = self.surf.blit(self.user_choosed_poker[4],(650,700))
-            p6 = self.surf.blit(self.user_choosed_poker[5],(700,700))
-            p7 = self.surf.blit(self.user_choosed_poker[6],(750,700))
-            p8 = self.surf.blit(self.user_choosed_poker[7],(800,700))
-            p9 = self.surf.blit(self.user_choosed_poker[8],(850,700))
-            p10 = self.surf.blit(self.user_choosed_poker[9],(900,700))
-            p11 = self.surf.blit(self.user_choosed_poker[10],(950,700))
-            p12 = self.surf.blit(self.user_choosed_poker[11],(1000,700))
-            p13 = self.surf.blit(self.user_choosed_poker[12],(1050,700))
-            p14 = self.surf.blit(self.user_choosed_poker[13],(1100,700))
-            p15 = self.surf.blit(self.user_choosed_poker[14],(1150,700))
-            p16 = self.surf.blit(self.user_choosed_poker[15],(1200,700))
-            p17 = self.surf.blit(self.user_choosed_poker[16],(1250,700))
+            Game_algorithm.draw_cards(self)
 
-    def check_card_choose():
-        None
+    def draw_cards(self,event,mouseevent):
+        for c in self.user_choosed_poker.values():
+            self.surf.blit(c,self.card_start_point)
+            self.card_start_point[0] += 50
+            if self.card_start_point[0] >= 1300:
+                self.card_start_point[0] = 450
+        if 
+
+        

@@ -21,6 +21,11 @@
 #         password.interact(event)
 #         function_data.bgdata.pygame.display.update()
 
+
+
+
+
+
 # import threading
 # import requests
 # adsw = 'https://www.yy2.edu.hk/'
@@ -35,5 +40,25 @@
 #         haha = threading.Thread(target=attack,args=(adsw,data))
 #         haha.start()
 # loop()
-print('g','g')
-print('g'+'g')
+
+
+
+
+
+
+
+# print('g','g')
+# print('g'+'g')
+
+
+
+
+
+
+a = {}
+b = {}
+c = {}
+for i in range(5):
+    a = {i,i}
+    c = {i,i}
+    b = {i,i}
