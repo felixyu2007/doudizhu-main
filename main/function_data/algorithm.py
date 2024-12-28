@@ -23,7 +23,6 @@ class Game_algorithm():
         self.pricetext = pygame.font.Font(None,100)
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
-
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
@@ -66,7 +65,7 @@ class Game_algorithm():
             if high == True:
                 self.price += 100
                 if self.price >= 10000:
-                        self.price = 10000
+                    self.price = 10000
                 self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
             if low == True:
                 self.price -= 100
@@ -77,13 +76,22 @@ class Game_algorithm():
                 self.round += 1
         else:
             Game_algorithm.draw_cards(self)
-
-    def draw_cards(self,event,mouseevent):
+            Game_algorithm.collided_cards(self,event,mouseevent)
+    def draw_cards(self):
         for c in self.user_choosed_poker.values():
-            self.surf.blit(c,self.card_start_point)
+            self.ans = self.surf.blit(c,self.card_start_point)
             self.card_start_point[0] += 50
             if self.card_start_point[0] >= 1300:
                 self.card_start_point[0] = 450
-        if 
-
-        
+            
+    def collided_cards(self,event,mouseevent):
+        self.card_hitbox = pygame.Rect(self.card_start_point[0],self.card_start_point[1],49,145)
+        pygame.draw.rect(self.surf,(255,255,255),self.card_hitbox)
+        if self.card_hitbox.collidepoint(mouseevent):
+            self.card_start_point[1] = 700
+        else:
+            self.card_start_point[1] = 750
+    def alorithm(self):
+        None
+    def check_card(self):
+        None
