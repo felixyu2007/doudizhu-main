@@ -83,7 +83,9 @@ class Game_algorithm():
             self.card_start_point[0] += 50
             if self.card_start_point[0] >= 1300:
                 self.card_start_point[0] = 450
-            
+        
+        for d in self.user_choosed_poker.values():
+            pass
     def collided_cards(self,event,mouseevent):
         self.card_hitbox = pygame.Rect(self.card_start_point[0],self.card_start_point[1],49,145)
         pygame.draw.rect(self.surf,(255,255,255),self.card_hitbox)
