@@ -62,17 +62,17 @@ class Game_algorithm():
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
         if self.round == 0:
-            grab = self.grab_button.clickbutton(mouseevent,event)
-            ungrab = self.unrob_button.clickbutton(mouseevent,event)
-            if grab == True:
-                self.round += 1
-                self.choosen = False
-            if ungrab == True:
-                self.round += 1
-                self.choosen == True
+            # grab = self.grab_button.clickbutton(mouseevent,event)
+            # ungrab = self.unrob_button.clickbutton(mouseevent,event)
+            # if grab == True:
+            #     self.round += 1
+            #     self.choosen = False
+            # if ungrab == True:
+            #     self.round += 1
+            #     self.choosen == True
         #第一回合需要下注与创建玩家所持的卡的字典，其中是{卡的surface：【卡绘制的位置x，卡绘制的位置y】}
-        if self.round == 1:
-            if self.choosen == False:#判断是否抢地主
+        # if self.round == 1:
+        #     if self.choosen == False:#判断是否抢地主
                 high = self.increase_btn.clickbutton(mouseevent,event)
                 low = self.decrease_btn.clickbutton(mouseevent,event)
                 bet = self.bet_button.clickbutton(mouseevent,event)
@@ -95,33 +95,33 @@ class Game_algorithm():
                         self.position += 50
                     self.round += 1
                     print(self.card_blit_point)
-            if self.choosen == True:#判断是否抢地主
-                ungrab = True
-                high = self.increase_btn.clickbutton(mouseevent,event)
-                low = self.decrease_btn.clickbutton(mouseevent,event)
-                bet = self.bet_button.clickbutton(mouseevent,event)
-                pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
-                self.surf.blit(self.priceshow,(1450,650))
-                if high == True:
-                    self.price += 100
-                    if self.price >= 10000:
-                        self.price = 10000
-                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
-                if low == True:
-                    self.price -= 100
-                    if self.price <= 0:
-                        self.price = 0
-                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
-                if bet == True and self.price != 0:
-                    self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
-                    for d in self.user_choosed_poker.values():
-                        self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
-                        self.card_blit_point.update(self.cache)
-                        self.position += 50
-                    self.round += 1
-                    print(self.card_blit_point)
+            # if self.choosen == True:#判断是否抢地主
+            #     ungrab = True
+            #     high = self.increase_btn.clickbutton(mouseevent,event)
+            #     low = self.decrease_btn.clickbutton(mouseevent,event)
+            #     bet = self.bet_button.clickbutton(mouseevent,event)
+            #     pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
+            #     self.surf.blit(self.priceshow,(1450,650))
+            #     if high == True:
+            #         self.price += 100
+            #         if self.price >= 10000:
+            #             self.price = 10000
+            #         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+            #     if low == True:
+            #         self.price -= 100
+            #         if self.price <= 0:
+            #             self.price = 0
+            #         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+            #     if bet == True and self.price != 0:
+            #         self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
+            #         for d in self.user_choosed_poker.values():
+            #             self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
+            #             self.card_blit_point.update(self.cache)
+            #             self.position += 50
+            #         self.round += 1
+            #         print(self.card_blit_point)
         else:
-            # Game_algorithm.draw_cards(self,event,mouseevent)
+            Game_algorithm.draw_cards(self,event,mouseevent)
             None
 
     def draw_cards(self,event,mouseevent):
