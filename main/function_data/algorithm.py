@@ -23,6 +23,7 @@ class Game_algorithm():
         self.pricetext = pygame.font.Font(None,100)
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
+        self.card_blit_point = {}
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
@@ -53,8 +54,7 @@ class Game_algorithm():
             self.user_choosed_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
         
-        self.count = list(self.user_choosed_poker.values())
-
+        
     def run(self,event,mouseevent):
         if self.round == 0:
             high = self.increase_btn.clickbutton(mouseevent,event)
@@ -73,26 +73,27 @@ class Game_algorithm():
                     self.price = 0
                 self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
             if bet == True and self.price != 0:
+                for d in self.user_choosed_poker.values():
+                    self.cache = {d:self.card_start_point}
+                    self.card_blit_point.update(self.cache)
+                    #+++++++++++++++++++error++++++++++++++++++++++++++
+                    self.card_start_point[0] += 50
                 self.round += 1
+                print(self.card_blit_point)
         else:
-            Game_algorithm.draw_cards(self)
-            Game_algorithm.collided_cards(self,event,mouseevent)
-    def draw_cards(self):
+            Game_algorithm.draw_cards(self,event,mouseevent)
+
+    def draw_cards(self,event,mouseevent):
         for c in self.user_choosed_poker.values():
-            self.ans = self.surf.blit(c,self.card_start_point)
-            self.card_start_point[0] += 50
-            if self.card_start_point[0] >= 1300:
-                self.card_start_point[0] = 450
-        
-        for d in self.user_choosed_poker.values():
-            pass
-    def collided_cards(self,event,mouseevent):
-        self.card_hitbox = pygame.Rect(self.card_start_point[0],self.card_start_point[1],49,145)
-        pygame.draw.rect(self.surf,(255,255,255),self.card_hitbox)
-        if self.card_hitbox.collidepoint(mouseevent):
-            self.card_start_point[1] = 700
-        else:
-            self.card_start_point[1] = 750
+            self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
+            self.surf.blit(c,self.card_blit_point[c])
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.image_scale.collidepoint(mouseevent):
+                    self.card_blit_point[c] = [450,700]
+            if event.type == pygame.MOUSEBUTTONUP:
+                if self.image_scale.collidepoint(mouseevent):
+                    self.card_blit_point[c] = [450,750]
+            
     def alorithm(self):
         None
     def check_card(self):
