@@ -24,6 +24,7 @@ class Game_algorithm():
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
         self.card_blit_point = {}
+        
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
