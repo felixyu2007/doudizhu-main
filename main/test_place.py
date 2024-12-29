@@ -55,11 +55,12 @@
 
 #要实现用for循环达到值变换而被写入字典
 
-c = [1,1]
+d = 0
 a = {}
-for g in range(5):
-    for i in range(5):
-        b = {g:c}
-        a.update(b)
-        c[0] += 1
+c = [1,1]
+for i in range(5):
+    b = {i:c}
+    a.update(b)
+    c[0] += 1
+        
 print(a)

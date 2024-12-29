@@ -20,11 +20,14 @@ class Game_algorithm():
         self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
         self.bet_button = Button(self.surf,1450,750,'bet')
+        self.grab_button = Button(self.surf,1450,850,'be the landlord')
+        self.unrob_button = Button(self.surf,1450,1000,'be the people')
         self.pricetext = pygame.font.Font(None,100)
         self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
+        self.position = 0
         self.card_blit_point = {}
-        
+        self.choosen = False
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
@@ -58,29 +61,63 @@ class Game_algorithm():
         
     def run(self,event,mouseevent):
         if self.round == 0:
-            high = self.increase_btn.clickbutton(mouseevent,event)
-            low = self.decrease_btn.clickbutton(mouseevent,event)
-            bet = self.bet_button.clickbutton(mouseevent,event)
-            pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
-            self.surf.blit(self.priceshow,(1450,650))
-            if high == True:
-                self.price += 100
-                if self.price >= 10000:
-                    self.price = 10000
-                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
-            if low == True:
-                self.price -= 100
-                if self.price <= 0:
-                    self.price = 0
-                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
-            if bet == True and self.price != 0:
-                for d in self.user_choosed_poker.values():
-                    self.cache = {d:self.card_start_point}
-                    self.card_blit_point.update(self.cache)
-                    #+++++++++++++++++++error++++++++++++++++++++++++++
-                    self.card_start_point[0] += 50
+            grab = self.grab_button.clickbutton(mouseevent,event)
+            ungrab = self.unrob_button.clickbutton(mouseevent,event)
+            if grab == True:
                 self.round += 1
-                print(self.card_blit_point)
+                self.choosen = False
+            if ungrab == True:
+                self.round += 1
+                self.choosen == True
+        if self.round == 1:
+            if self.choosen == False:
+                high = self.increase_btn.clickbutton(mouseevent,event)
+                low = self.decrease_btn.clickbutton(mouseevent,event)
+                bet = self.bet_button.clickbutton(mouseevent,event)
+                pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
+                self.surf.blit(self.priceshow,(1450,650))
+                if high == True:
+                    self.price += 100
+                    if self.price >= 10000:
+                        self.price = 10000
+                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                if low == True:
+                    self.price -= 100
+                    if self.price <= 0:
+                        self.price = 0
+                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                if bet == True and self.price != 0:
+                    for d in self.user_choosed_poker.values():
+                        self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
+                        self.card_blit_point.update(self.cache)
+                        self.position += 50
+                    self.round += 1
+                    print(self.card_blit_point)
+            if self.choosen == True:
+                ungrab = True
+                high = self.increase_btn.clickbutton(mouseevent,event)
+                low = self.decrease_btn.clickbutton(mouseevent,event)
+                bet = self.bet_button.clickbutton(mouseevent,event)
+                pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
+                self.surf.blit(self.priceshow,(1450,650))
+                if high == True:
+                    self.price += 100
+                    if self.price >= 10000:
+                        self.price = 10000
+                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                if low == True:
+                    self.price -= 100
+                    if self.price <= 0:
+                        self.price = 0
+                    self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                if bet == True and self.price != 0:
+                    self.card_blit_point.update(self.choosed_dizhu_poker)
+                    for d in self.user_choosed_poker.values():
+                        self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
+                        self.card_blit_point.update(self.cache)
+                        self.position += 50
+                    self.round += 1
+                    print(self.card_blit_point)
         else:
             Game_algorithm.draw_cards(self,event,mouseevent)
 
@@ -90,12 +127,12 @@ class Game_algorithm():
             self.surf.blit(c,self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
-                    self.card_blit_point[c] = [450,700]
+                    self.card_blit_point[c] = [self.card_blit_point[c][0],700]
             if event.type == pygame.MOUSEBUTTONUP:
                 if self.image_scale.collidepoint(mouseevent):
-                    self.card_blit_point[c] = [450,750]
+                    self.card_blit_point[c] = [self.card_blit_point[c][0],750]
             
     def alorithm(self):
         None
-    def check_card(self):
+    def check_hand(self):
         None
