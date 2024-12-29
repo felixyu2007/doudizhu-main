@@ -35,7 +35,7 @@ class Game_algorithm():
             poker_dict = {p:self.image_path}
             self.poker.update(poker_dict)
 
-        for self.a in range(3):
+        for a in range(3):
             self.choose_poker = random.choice(list(self.poker.keys()))
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.choosed_dizhu_poker.update(self.choosed_poker_cache)
@@ -113,7 +113,7 @@ class Game_algorithm():
                         self.price = 0
                     self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
                 if bet == True and self.price != 0:
-                    self.card_blit_point.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
+                    self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
                     for d in self.user_choosed_poker.values():
                         self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                         self.card_blit_point.update(self.cache)
@@ -121,7 +121,8 @@ class Game_algorithm():
                     self.round += 1
                     print(self.card_blit_point)
         else:
-            Game_algorithm.draw_cards(self,event,mouseevent)
+            # Game_algorithm.draw_cards(self,event,mouseevent)
+            None
 
     def draw_cards(self,event,mouseevent):
         for c in self.user_choosed_poker.values():
