@@ -8,6 +8,8 @@ class Game_algorithm():
         self.surf = screen
         self.round = 0
         self.price = 0
+        self.prevous_card = {}
+        self.current_card = {}
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
