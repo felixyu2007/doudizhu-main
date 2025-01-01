@@ -113,7 +113,11 @@ class Game_algorithm():
             passround = self.pass_btn.clickbutton(mouseevent,event)
             if passround:
                 self.round += 1
-
+                #here the ai algorithm
+                Game_algorithm.ai_alorithm(self)
+            ans = Game_algorithm.check_hand(self)
+            if ans:
+                Game_algorithm.ai_alorithm(self)
     def draw_cards(self,event,mouseevent):
         for c in self.user_choosed_poker.values():
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
@@ -122,7 +126,7 @@ class Game_algorithm():
                 if self.image_scale.collidepoint(mouseevent):
                     self.card_blit_point[c] = [self.card_blit_point[c][0],700]
             
-    def alorithm(self):
+    def ai_alorithm(self):
         None
     def check_hand(self):
         None
