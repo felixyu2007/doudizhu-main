@@ -55,12 +55,23 @@
 
 #要实现用for循环达到值变换而被写入字典
 
-d = 0
-a = {}
-c = [1,1]
-for i in range(5):
-    b = {i:c}
-    a.update(b)
-    c[0] += 1
+# d = 0
+# a = {}
+# c = [1,1]
+# for i in range(5):
+#     b = {i:c}
+#     a.update(b)
+#     c[0] += 1
         
-print(a)
+# print(a)
+
+
+
+
+dict1 = {
+    'str':['a','b','c'],
+    'int':[1,2,3],
+    'bool':[True,False,None]
+}
+if dict1['str'][2] == 'c':
+    print('find it!')

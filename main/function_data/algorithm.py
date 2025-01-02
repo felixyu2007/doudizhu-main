@@ -118,13 +118,13 @@ class Game_algorithm():
                 self.round += 1
                 #here the ai algorithm
                 Game_algorithm.ai_alorithm(self)
-            ans = Game_algorithm.check_hand(self)
-            if ans:
-                play = self.play_btn.clickbutton(mouseevent,event)
-                if play:
-                    Game_algorithm.ai_alorithm(self)
-            else:
-                pass
+            # ans = Game_algorithm.check_hand(self)
+            # if ans:
+            #     play = self.play_btn.clickbutton(mouseevent,event)
+            #     if play:
+            #         Game_algorithm.ai_alorithm(self)
+            # else:
+            #     pass
     def draw_cards(self,event,mouseevent):
         for c in self.user_choosed_poker.values():
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
