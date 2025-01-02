@@ -39,9 +39,10 @@ class Game_algorithm():
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
-            self.image_path = pygame.image.load(self.haha)
-            poker_dict = {p:self.image_path}
+            self.image_surface = pygame.image.load(self.haha)
+            poker_dict = {p:self.image_surface}
             self.poker.update(poker_dict)
+            print(p,)
         #地主牌的
         for a in range(3):
             self.choose_poker = random.choice(list(self.poker.keys()))
@@ -130,9 +131,16 @@ class Game_algorithm():
             self.surf.blit(c,self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
-                    self.card_blit_point[c] = [self.card_blit_point[c][0],700]
-            
+                    if self.card_blit_point[c][1] == 750:
+                        self.card_blit_point[c] = {c:[self.card_blit_point[c][0],700]}
+                    if self.card_blit_point[c][1] == 700:
+                        self.card_blit_point[c] = {c:[self.card_blit_point[c][0],750]}
+
     def ai_alorithm(self):
         None
     def check_hand(self):
-        None
+        for e in self.user_choosed_poker.keys():
+            if self.card_blit_point[self.user_choosed_poker[e]][1] == 700:
+                self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
+                self.current_card.update(self.choosed_poker_cache)
+                print(self.current_card)

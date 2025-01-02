@@ -23,6 +23,6 @@ while True:
                 started = m.draw_menu(event)
     if started == True: 
         rs.draw_refreshed(event,pygame.mouse.get_pos())
-    pygame.display.update() 
+    pygame.display.update()
     
 
