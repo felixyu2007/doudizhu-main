@@ -10,6 +10,7 @@ class Game_algorithm():
         self.price = 0
         self.prevous_card = {}
         self.current_card = {}
+        self.free_hand = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
@@ -131,7 +132,7 @@ class Game_algorithm():
             self.surf.blit(c,self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
-                    if self.card_blit_point[c][1] == 750:
+                    if self.card_blit_point[c][1] == 750:# 重大错误，不知道为什么key_error
                         self.card_blit_point[c] = {c:[self.card_blit_point[c][0],700]}
                     if self.card_blit_point[c][1] == 700:
                         self.card_blit_point[c] = {c:[self.card_blit_point[c][0],750]}
@@ -139,8 +140,11 @@ class Game_algorithm():
     def ai_alorithm(self):
         None
     def check_hand(self):
+        # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
         for e in self.user_choosed_poker.keys():
             if self.card_blit_point[self.user_choosed_poker[e]][1] == 700:
                 self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
                 self.current_card.update(self.choosed_poker_cache)
                 print(self.current_card)
+            #if self.free_hand == True:
+                #if self.current_card[e]      
