@@ -30,12 +30,15 @@ class Game_algorithm():
         self.pass_btn = Button(self.surf,1200,650,'pass')
         self.play_btn = Button(self.surf,1200,650,'pass')
         #要把下注的金额绘制出来
-        self.pricetext = pygame.font.Font(None,100)
-        self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+        self.text = pygame.font.Font(None,100)
+        self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
         self.position = 0
         self.card_blit_point = {}
         self.choosen = False
+        #繪製ai玩家的咨詢
+        self.ai_info = self.text.render(''.join(str(self.price)),True,(255,255,255))
+        
         #往牌组里随机抽出牌然后分别放入（地主牌，3个玩家各17张）
         for p in imgs:
             baba = os.path.dirname(os.path.abspath(p))
@@ -91,12 +94,12 @@ class Game_algorithm():
                 self.price += 100
                 if self.price >= 10000:
                     self.price = 10000
-                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
             if low == True:
                 self.price -= 100
                 if self.price <= 0:
                     self.price = 0
-                self.priceshow = self.pricetext.render(''.join(str(self.price)),True,(255,255,255))
+                self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
             if bet == True and self.price != 0 and self.choosen == False:#判断是否抢地主
                 for d in self.user_choosed_poker.values():
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
@@ -104,6 +107,7 @@ class Game_algorithm():
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
+
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
                 for d in self.user_choosed_poker.values():
@@ -113,28 +117,35 @@ class Game_algorithm():
                 self.round += 1
                 print(self.card_blit_point)
         else:
+            # self.surf.blit()
             Game_algorithm.draw_cards(self,event,mouseevent)
-            passround = self.pass_btn.clickbutton(mouseevent,event)
-            if passround:
+            if self.choosen == False or self.round == 2:
                 self.round += 1
                 #here the ai algorithm
                 Game_algorithm.ai_alorithm(self)
-            # ans = Game_algorithm.check_hand(self)
-            # if ans:
-            #     play = self.play_btn.clickbutton(mouseevent,event)
-            #     if play:
-            #         Game_algorithm.ai_alorithm(self)
-            # else:
-            #     pass
+            else:
+                #自動pass,且決定地主
+                passround = self.pass_btn.clickbutton(mouseevent,event)
+                ans = Game_algorithm.check_hand(self)
+                if ans:
+                    play = self.play_btn.clickbutton(mouseevent,event)
+                    if play:
+                        self.round += 1
+                        Game_algorithm.ai_alorithm(self)
+                elif passround:
+                    self.round += 1
+                    Game_algorithm.ai_alorithm(self)
+
+
     def draw_cards(self,event,mouseevent):
         for c in self.user_choosed_poker.values():
-            self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
+            self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
             self.surf.blit(c,self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
                     if self.card_blit_point[c][1] == 750:# 重大错误，不知道为什么key_error
                         self.card_blit_point[c] = {c:[self.card_blit_point[c][0],700]}
-                    if self.card_blit_point[c][1] == 700:
+                    elif self.card_blit_point[c][1] == 700:# 重大错误，不知道为什么key_error
                         self.card_blit_point[c] = {c:[self.card_blit_point[c][0],750]}
 
     def ai_alorithm(self):
@@ -147,4 +158,4 @@ class Game_algorithm():
                 self.current_card.update(self.choosed_poker_cache)
                 print(self.current_card)
             #if self.free_hand == True:
-                #if self.current_card[e]      
+                #if self.current_card[e]
