@@ -73,5 +73,9 @@ dict1 = {
     'int':[1,2,3],
     'bool':[True,False,None]
 }
-if dict1['str'][2] == 'c':
-    print('find it!')
+for a in dict1.keys():
+    ans = {dict1['str'][2],dict1['str'][1]}
+    if dict1[a][1] == 1:
+        print('find it!')
+        print(dict1[a][0])
+print(ans)

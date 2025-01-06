@@ -20,6 +20,7 @@ class Game_algorithm():
         self.choosed_poker02 = {}
         self.user_choosed_poker = {}
         self.choosed_poker_cache = {}
+        self.card_blit_point = {}
         self.choose_poker = []
         #调用先前写好的按钮函数
         self.increase_btn = Button(self.surf,1200,650,'increase')
@@ -34,7 +35,7 @@ class Game_algorithm():
         self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
         self.card_start_point = [450,750]
         self.position = 0
-        self.card_blit_point = {}
+        
         self.choosen = False
         #繪製ai玩家的咨詢
         self.ai_info = self.text.render(''.join(str(self.price)),True,(255,255,255))
@@ -101,7 +102,7 @@ class Game_algorithm():
                     self.price = 0
                 self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
             if bet == True and self.price != 0 and self.choosen == False:#判断是否抢地主
-                for d in self.user_choosed_poker.values():
+                for d in self.user_choosed_poker.keys():#為path
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
                     self.position += 50
@@ -110,7 +111,7 @@ class Game_algorithm():
 
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
-                for d in self.user_choosed_poker.values():#為surface
+                for d in self.user_choosed_poker.keys():#為path
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
                     self.position += 50
@@ -137,9 +138,9 @@ class Game_algorithm():
 
 
     def draw_cards(self,event,mouseevent):
-        for c in self.user_choosed_poker.values():#為surface
+        for c in self.card_blit_point.keys():#為path
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
-            self.surf.blit(c,self.card_blit_point[c])
+            self.surf.blit(self.user_choosed_poker[c],self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
                     # print(self.card_blit_point[c][1])
@@ -152,9 +153,10 @@ class Game_algorithm():
         None
     def check_hand(self):
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
-        for e in self.user_choosed_poker.values():#為surface
-            if self.card_blit_point[e][0] == 700:
-                self.choosed_poker_cache = {e:e}
+        print(self.card_blit_point)
+        for e in self.card_blit_point.keys():#為path
+            if self.card_blit_point[f'{e}'] == [self.card_blit_point[f'{e}'][0],700]:
+                self.choosed_poker_cache = {e:self.card_blit_point[e]}
                 self.current_card.update(self.choosed_poker_cache)
                 # print(self.current_card)
             #if self.free_hand == True:
