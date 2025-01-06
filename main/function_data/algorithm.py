@@ -110,14 +110,13 @@ class Game_algorithm():
 
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
-                for d in self.user_choosed_poker.values():
+                for d in self.user_choosed_poker.values():#為surface
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
         else:
-            # self.surf.blit()
             Game_algorithm.draw_cards(self,event,mouseevent)
             if self.choosen == False or self.round == 2:
                 self.round += 1
@@ -138,11 +137,12 @@ class Game_algorithm():
 
 
     def draw_cards(self,event,mouseevent):
-        for c in self.user_choosed_poker.values():
+        for c in self.user_choosed_poker.values():#為surface
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
             self.surf.blit(c,self.card_blit_point[c])
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.image_scale.collidepoint(mouseevent):
+                    # print(self.card_blit_point[c][1])
                     if self.card_blit_point[c][1] == 750:# 重大错误，不知道为什么key_error
                         self.card_blit_point[c] = {c:[self.card_blit_point[c][0],700]}
                     elif self.card_blit_point[c][1] == 700:# 重大错误，不知道为什么key_error
@@ -152,10 +152,10 @@ class Game_algorithm():
         None
     def check_hand(self):
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
-        for e in self.user_choosed_poker.keys():
-            if self.card_blit_point[self.user_choosed_poker[e]][1] == 700:
-                self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
+        for e in self.user_choosed_poker.values():#為surface
+            if self.card_blit_point[e][0] == 700:
+                self.choosed_poker_cache = {e:e}
                 self.current_card.update(self.choosed_poker_cache)
-                print(self.current_card)
+                # print(self.current_card)
             #if self.free_hand == True:
                 #if self.current_card[e]
