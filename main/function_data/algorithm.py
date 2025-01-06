@@ -141,22 +141,21 @@ class Game_algorithm():
         for c in self.card_blit_point.keys():#為path
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
             self.surf.blit(self.user_choosed_poker[c],self.card_blit_point[c])
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.image_scale.collidepoint(mouseevent):
-                    # print(self.card_blit_point[c][1])
-                    if self.card_blit_point[c][1] == 750:# 重大错误，不知道为什么key_error
-                        self.card_blit_point[c] = {c:[self.card_blit_point[c][0],700]}
-                    elif self.card_blit_point[c][1] == 700:# 重大错误，不知道为什么key_error
-                        self.card_blit_point[c] = {c:[self.card_blit_point[c][0],750]}
+            if self.image_scale.collidepoint(mouseevent):
+                if self.card_blit_point[c][1] == 750:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.card_blit_point[c] = [self.card_blit_point[c][0],700]
+                if self.card_blit_point[c][1] == 700:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.card_blit_point[c] = [self.card_blit_point[c][0],750]
 
     def ai_alorithm(self):
         None
     def check_hand(self):
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
-        print(self.card_blit_point)
         for e in self.card_blit_point.keys():#為path
-            if self.card_blit_point[f'{e}'] == [self.card_blit_point[f'{e}'][0],700]:
-                self.choosed_poker_cache = {e:self.card_blit_point[e]}
+            if self.card_blit_point[e][1] == 700:
+                self.choosed_poker_cache = {e:e}
                 self.current_card.update(self.choosed_poker_cache)
                 # print(self.current_card)
             #if self.free_hand == True:
