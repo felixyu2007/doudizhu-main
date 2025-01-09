@@ -108,6 +108,15 @@ class Game_algorithm():
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
+                dizhu = random.randint(1,0)
+                if dizhu:
+                    self.choosed_poker01.update(self.choosed_dizhu_poker)
+                else:
+                    self.choosed_poker02.update(self.choosed_dizhu_poker)
+                #ai 一号的手牌
+                print(self.choosed_poker01)
+                #ai 二号的手牌
+                print(self.choosed_poker02)
 
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
@@ -117,14 +126,14 @@ class Game_algorithm():
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
-        else:
+        else:#开始算法
             Game_algorithm.draw_cards(self,event,mouseevent)
             if self.choosen == False or self.round == 2:
                 self.round += 1
+                #自動pass,且決定地主
                 #here the ai algorithm
                 Game_algorithm.ai_alorithm(self)
             else:
-                #自動pass,且決定地主
                 passround = self.pass_btn.clickbutton(mouseevent,event)
                 ans = Game_algorithm.check_hand(self)
                 if ans:
@@ -141,13 +150,18 @@ class Game_algorithm():
         for c in self.card_blit_point.keys():#為path
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
             self.surf.blit(self.user_choosed_poker[c],self.card_blit_point[c])
+
             if self.image_scale.collidepoint(mouseevent):
-                if self.card_blit_point[c][1] == 750:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.card_blit_point[c] = [self.card_blit_point[c][0],700]
-                if self.card_blit_point[c][1] == 700:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.card_blit_point[c] = [self.card_blit_point[c][0],750]
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.card_blit_point[c][1] == 730:
+                        self.card_blit_point[c][1] = 700
+                    elif self.card_blit_point[c][1] == 700:
+                        self.card_blit_point[c][1] = 730
+                else:
+                    if self.card_blit_point[c][1] == 750:
+                        self.card_blit_point[c][1] = 730
+            elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
+                self.card_blit_point[c][1] = 750
 
     def ai_alorithm(self):
         None
@@ -157,6 +171,6 @@ class Game_algorithm():
             if self.card_blit_point[e][1] == 700:
                 self.choosed_poker_cache = {e:e}
                 self.current_card.update(self.choosed_poker_cache)
-                # print(self.current_card)
-            #if self.free_hand == True:
-                #if self.current_card[e]
+        #         print(self.current_card)
+        #     if self.free_hand == True:
+        #         if self.current_card[e]
