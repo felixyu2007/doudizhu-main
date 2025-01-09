@@ -141,14 +141,21 @@ class Game_algorithm():
         for c in self.card_blit_point.keys():#為path
             self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
             self.surf.blit(self.user_choosed_poker[c],self.card_blit_point[c])
-            if self.image_scale.collidepoint(mouseevent):
-                if self.card_blit_point[c][1] == 750:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.card_blit_point[c] = [self.card_blit_point[c][0],700]
-                if self.card_blit_point[c][1] == 700:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.card_blit_point[c] = [self.card_blit_point[c][0],750]
 
+            if self.image_scale.collidepoint(mouseevent):
+                self.card_blit_point[c] = [self.card_blit_point[c][0],730]
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.card_blit_point[c][1] == 730:
+                        self.card_blit_point[c] = [self.card_blit_point[c][0],700]
+                    elif self.card_blit_point[c][1] == 700:
+                        self.card_blit_point[c] = [self.card_blit_point[c][0],730]
+            else:
+                if self.card_blit_point[c] == [self.card_blit_point[c][0],700]:
+                        self.card_blit_point[c] = [self.card_blit_point[c][0],700]
+                else:
+                    self.card_blit_point[c] = [self.card_blit_point[c][0],750]
+                
+                
     def ai_alorithm(self):
         None
     def check_hand(self):
