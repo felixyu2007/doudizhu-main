@@ -5,12 +5,12 @@ def sign_up(usertextname: str,usertextpassword: str):
     usp = usertextpassword
     usm = 10000
     usinfo = {'username':usn,'userpassword':usp,'userfunding':usm}
-    with open(r'player_infomation\player_info.json',mode='w',encoding='utf-8') as opw:
+    with open('player_infomation\player_info.json',mode='w',encoding='utf-8') as opw:
         json.dump(usinfo,opw)
         print(usinfo,opw)
 
 def login(usertextname: str,usertextpassword: str):
-    with open(r'player_infomation\player_info.json',mode='r',encoding='utf-8') as opr:
+    with open('player_infomation\player_info.json',mode='r',encoding='utf-8') as opr:
         userinfo = json.load(opr)
         print(userinfo)
     if usertextname != userinfo['username'] or usertextpassword != userinfo['userpassword']:
@@ -20,7 +20,7 @@ def login(usertextname: str,usertextpassword: str):
         return True
     
 def get_userinfo():
-    with open(r'player_infomation\player_info.json',mode='r',encoding='utf-8') as get:
+    with open('player_infomation\player_info.json',mode='r',encoding='utf-8') as get:
         userinfo = json.load(get)
         ans = [userinfo['username'],userinfo['userfunding']]
         return ans
