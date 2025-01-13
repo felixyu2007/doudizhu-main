@@ -68,14 +68,30 @@
 
 
 
-dict1 = {
-    'str':['a','b','c'],
-    'int':[1,2,3],
-    'bool':[True,False,None]
-}
-for a in dict1.keys():
-    ans = {dict1['str'][2],dict1['str'][1]}
-    if dict1[a][1] == 1:
-        print('find it!')
-        print(dict1[a][0])
-print(ans)
+# dict1 = {
+#     'str':['a','b','c'],
+#     'int':[1,2,3],
+#     'bool':[True,False,None]
+# }
+# for a in dict1.keys():
+#     ans = {dict1['str'][2],dict1['str'][1]}
+#     if dict1[a][1] == 1:
+#         print('find it!')
+#         print(dict1[a][0])
+# print(ans)
+
+
+
+
+
+
+
+a = 'a11'
+
+def get_first_word(string):
+    b = len(string)-1
+    ans = string[:-b]
+    ans2 = string[1:3]
+    print(ans)
+    print(ans2)
+get_first_word(a)

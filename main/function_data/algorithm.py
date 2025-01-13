@@ -22,6 +22,7 @@ class Game_algorithm():
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
         self.choose_poker = []
+        self.key_list2 = {}
         #调用先前写好的按钮函数
         self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
@@ -172,8 +173,14 @@ class Game_algorithm():
             if self.card_blit_point[e][1] == 700:
                 self.choosed_poker_cache = {e:self.card_blit_point[e]}
                 self.current_card.update(self.choosed_poker_cache)
-        print(self.current_card)
-        if self.free_hand == True:
-            Game_algorithm.check_ranks_suits(self.current_card)
-    def check_ranks_suits(self,current_card):
-        pass
+        # self.suit = 
+        # self.rank = 
+        Game_algorithm.check_ranks_suits(self)
+    def check_ranks_suits(self):
+        self.key_list2.clear()
+        key_list = list(self.current_card.keys())
+        len_key_list = len(key_list)
+        for kl in range(len_key_list):
+            self.cache = {kl:key_list[kl][1:3]}
+            self.key_list2.update(self.cache)
+        print(self.key_list2)
