@@ -22,6 +22,7 @@ class Game_algorithm():
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
         self.choose_poker = []
+        self.key_dict1 = {}
         self.key_dict2 = {}
         #调用先前写好的按钮函数
         self.increase_btn = Button(self.surf,1200,650,'increase')
@@ -72,7 +73,6 @@ class Game_algorithm():
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.user_choosed_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
-        
         
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
@@ -125,6 +125,7 @@ class Game_algorithm():
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
                     self.position += 50
+
                 self.round += 1
                 print(self.card_blit_point)
         else:#开始算法
@@ -183,18 +184,7 @@ class Game_algorithm():
         for kl in range(len_key_list):
             self.cache = {kl:int(key_list[kl][1:3])}
             self.key_dict2.update(self.cache)
-        print(self.key_dict2)
-        #先重新排列大小
-        for order in self.key_dict2.keys():
-            if len(self.key_dict2.keys()) == 1:
-                pass
-            elif len(self.key_dict2.keys()) != 1 and order != len(self.key_dict2.keys()):
-                if self.key_dict2[order] <= self.key_dict2[order+1]:
-                    self.key_dict2[order],self.key_dict2[order+1] = self.key_dict2[order+1],self.key_dict2[order]
-            elif order == len(self.key_dict2.keys()):
-                if self.key_dict2[order] <= self.key_dict2[order-1]:
-                    self.key_dict2[order],self.key_dict2[order-1] = self.key_dict2[order-1],self.key_dict2[order]
-        
+        print(self.key_dict2)   
         #开始算法
         
 

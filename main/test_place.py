@@ -86,12 +86,24 @@
 
 
 
-a = 'a11'
+# a = 'a11'
 
-def get_first_word(string):
-    b = len(string)-1
-    ans = string[:-b]
-    ans2 = string[1:3]
-    print(ans)
-    print(ans2)
-get_first_word(a)
+# def get_first_word(string):
+#     b = len(string)-1
+#     ans = string[:-b]
+#     ans2 = string[1:3]
+#     print(ans)
+#     print(ans2)
+# get_first_word(a)
+
+
+
+
+
+
+a = 'abc'
+b = 'ABC'
+if b > a :
+    print(b)
+elif a > b :
+    print(a)
