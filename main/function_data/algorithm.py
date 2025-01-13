@@ -166,11 +166,14 @@ class Game_algorithm():
     def ai_alorithm(self):
         None
     def check_hand(self):
+        self.current_card.clear()
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
         for e in self.card_blit_point.keys():#為path
             if self.card_blit_point[e][1] == 700:
-                self.choosed_poker_cache = {e:e}
+                self.choosed_poker_cache = {e:self.card_blit_point[e]}
                 self.current_card.update(self.choosed_poker_cache)
-        #         print(self.current_card)
-        #     if self.free_hand == True:
-        #         if self.current_card[e]
+        print(self.current_card)
+            # if self.free_hand == True:
+            #     
+    def check_ranks_suits(self,current_card):
+        pass
