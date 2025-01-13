@@ -35,7 +35,7 @@ class Intput_box():
                 self.focus = True
             else:
                 self.focus = False
-        elif self.focus == True:
+        if self.focus == True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     self.delete = True
@@ -45,7 +45,6 @@ class Intput_box():
                 if self.delete == True and self.input_text_data != '':
                     self.input_text_data = self.input_text_data[:-1]
                     self.delete = False
-                else:
-                    return self.input_text_data
+        return self.input_text_data
             
 

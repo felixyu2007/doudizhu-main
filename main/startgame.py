@@ -1,3 +1,4 @@
+print('==========================python_running_log=====================================')
 from update import *
 from function_data.bgdata import *
 

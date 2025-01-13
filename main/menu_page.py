@@ -46,7 +46,7 @@ class Sign_page():
             self.password.draw()
             aname = self.name.interact(event)
             apassword = self.password.interact(event)
-
+            
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if aname != '' and apassword != '':
                 if getinbutton == True and getinbutton not in disable_button:
@@ -82,7 +82,6 @@ class Sign_page():
             if name != '' and password != '':
                 if getinbutton == True and getinbutton not in disable_button:
                     ans = function_data.signin_and_login_system.login(name,password)
-                    print(ans)
                     if ans == True:
                         disable_button.append(getinbutton)
                         return getinbutton
