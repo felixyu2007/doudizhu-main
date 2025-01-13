@@ -173,7 +173,7 @@ class Game_algorithm():
                 self.choosed_poker_cache = {e:self.card_blit_point[e]}
                 self.current_card.update(self.choosed_poker_cache)
         print(self.current_card)
-            # if self.free_hand == True:
-            #     
+        if self.free_hand == True:
+            Game_algorithm.check_ranks_suits(self.current_card)
     def check_ranks_suits(self,current_card):
         pass

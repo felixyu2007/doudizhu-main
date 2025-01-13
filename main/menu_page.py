@@ -42,17 +42,16 @@ class Sign_page():
             self.surf.blit(self.bgtitle,points[1])
             self.surf.blit(self.title,points[0])
 
-            aname = self.name.interact(event)
-            apassword = self.password.interact(event)
             self.name.draw()
             self.password.draw()
+            aname = self.name.interact(event)
+            apassword = self.password.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if aname != '' and apassword != '':
                 if getinbutton == True and getinbutton not in disable_button:
                     disable_button.append(getinbutton)
                     function_data.signin_and_login_system.sign_up(aname,apassword)
-                    print(disable_button)
                     getin = True
                     return getin
         if self.signed == True and self.login_mode == True:
@@ -83,9 +82,9 @@ class Sign_page():
             if name != '' and password != '':
                 if getinbutton == True and getinbutton not in disable_button:
                     ans = function_data.signin_and_login_system.login(name,password)
+                    print(ans)
                     if ans == True:
                         disable_button.append(getinbutton)
-                        print(disable_button)
                         return getinbutton
                     else:
                         return False
