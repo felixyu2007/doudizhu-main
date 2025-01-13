@@ -41,12 +41,11 @@ class Intput_box():
                     self.delete = True
                 elif event.key != pygame.K_BACKSPACE and event.key != pygame.K_ESCAPE:
                     self.input_text_data += event.unicode
-                    #删除方法
+                #删除方法
                 if self.delete == True and self.input_text_data != '':
                     self.input_text_data = self.input_text_data[:-1]
                     self.delete = False
                 else:
-                    pass
-        else:
-            return self.input_text_data
+                    return self.input_text_data
+            
 
