@@ -101,9 +101,7 @@
 
 
 
-a = 'abc'
-b = 'ABC'
-if b > a :
-    print(b)
-elif a > b :
-    print(a)
+a = {'abc':'123','abdf':'18753'}
+
+print(len(a))
+

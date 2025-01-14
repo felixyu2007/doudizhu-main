@@ -24,8 +24,7 @@ class Game_algorithm():
         self.choose_poker = []
         self.sort_cache = []
         self.sort_cache_dict = {}
-        self.key_dict1 = {}
-        self.key_dict2 = {}
+        self.key_dict = {}
         #调用先前写好的按钮函数
         self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
@@ -175,7 +174,7 @@ class Game_algorithm():
 
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
-
+                self.free_hand = True
                 self.sort_cache = list(self.user_choosed_poker.keys())
                 self.sort_cache.sort(reverse=False)
                 line()
@@ -244,40 +243,38 @@ class Game_algorithm():
         # self.rank = 
         Game_algorithm.check_ranks_suits(self)
     def check_ranks_suits(self):
-        self.key_dict2.clear()
+        self.key_dict.clear()
         key_list = list(self.current_card.keys())
-        len_key_list = len(key_list)
-        for kl in range(len_key_list):
+        for kl in range(len(key_list)):
             self.cache = {kl:int(key_list[kl][0:2])}
-            self.key_dict2.update(self.cache)  
+            self.key_dict.update(self.cache)  
         #开始算法
         if self.free_hand == True:
-            if len(self.key_dict2) == 1:
+            if len(self.key_dict) == 1:
                 return True
             else:
-                if len(self.key_dict2) == 2:
-                    if self.key_dict2[0] == self.key_dict2[1]:
+                if len(self.key_dict) == 2:
+                    if self.key_dict[0] == self.key_dict[1]:
                         return True
                     else:
                         return False
-                if len(self.key_dict2) == 4:
-                    if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] == self.key_dict2[3]:
+                if len(self.key_dict) == 4:
+                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
                         return True
                     else:
                         return False
-                if len(self.key_dict2) >= 5:
-                    for num1 in range(len(self.key_dict2)):
-                        if not num1 == len(self.key_dict2):
-                            if self.key_dict2[num1] + 1 == self.key_dict2[num1 + 1]:
+                if len(self.key_dict) >= 5:
+                    for num1 in range(len(self.key_dict)):
+                        if not num1 == len(self.key_dict):
+                            if self.key_dict[num1] + 1 == self.key_dict[num1 + 1]:
                                 return True
                             else:
                                 return False
-                        elif num1 == len(self.key_dict2):
-                            if self.key_dict2[num1] - 1 == self.key_dict2[num1 - 1]:
+                        elif num1 == len(self.key_dict):
+                            if self.key_dict[num1] - 1 == self.key_dict[num1 - 1]:
                                 return True
                             else:
                                 return False
-                        # if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] and self.key_dict2[3] == self.key_dict2[4]:
+                        # if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]:
                         #     return True
-
 
