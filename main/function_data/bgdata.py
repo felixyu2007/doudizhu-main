@@ -9,4 +9,5 @@ def ask_quetion(input_title,input_message):
         ined = True
     if ans == 'yes' and input_title == 'sign error':
         return False
-    
+def line():
+    print('='*152)

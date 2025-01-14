@@ -22,8 +22,8 @@ class Game_algorithm():
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
         self.choose_poker = []
-        self.sort_cache1 = []
-        self.sort_cache2 = []
+        self.sort_cache = []
+        self.sort_cache_dict = {}
         self.key_dict1 = {}
         self.key_dict2 = {}
         #调用先前写好的按钮函数
@@ -58,10 +58,18 @@ class Game_algorithm():
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.choosed_dizhu_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
-            #======================change================================
-        self.sort_cache1 = list(self.choosed_dizhu_poker.keys())
-        self.sort_cache1.sort()
-        print(self.sort_cache1)
+            
+        self.sort_cache = list(self.choosed_dizhu_poker.keys())
+        self.sort_cache.sort(reverse=False)
+        line()
+        print(self.sort_cache)
+        for a in self.sort_cache:
+            self.choosed_poker_cache = {a:self.choosed_dizhu_poker[a]}
+            self.sort_cache_dict.update(self.choosed_poker_cache)
+        self.choosed_dizhu_poker.clear()
+        self.choosed_dizhu_poker.update(self.sort_cache_dict)
+        line()
+        print(self.choosed_dizhu_poker)
 
         #3个玩家的
         for b in range(17):
@@ -80,6 +88,45 @@ class Game_algorithm():
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.user_choosed_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
+        #ai的  
+        self.sort_cache = list(self.choosed_poker01.keys())
+        self.sort_cache.sort(reverse=False)
+        line()
+        print(self.sort_cache)
+        for b in self.sort_cache:
+            self.choosed_poker_cache = {b:self.choosed_poker01[b]}
+            self.sort_cache_dict.update(self.choosed_poker_cache)
+        self.choosed_poker01.clear()
+        self.choosed_poker01.update(self.sort_cache_dict)
+        self.sort_cache_dict.clear()
+        line()
+        print(self.choosed_poker01)
+        #ai的
+        self.sort_cache = list(self.choosed_poker02.keys())
+        self.sort_cache.sort(reverse=False)
+        line()
+        print(self.sort_cache)
+        for b in self.sort_cache:
+            self.choosed_poker_cache = {b:self.choosed_poker02[b]}
+            self.sort_cache_dict.update(self.choosed_poker_cache)
+        self.choosed_poker02.clear()
+        self.choosed_poker02.update(self.sort_cache_dict)
+        self.sort_cache_dict.clear()
+        line()
+        print(self.choosed_poker02)
+        #玩家的
+        self.sort_cache = list(self.user_choosed_poker.keys())
+        self.sort_cache.sort(reverse=False)
+        line()
+        print(self.sort_cache)
+        for b in self.sort_cache:
+            self.choosed_poker_cache = {b:self.user_choosed_poker[b]}
+            self.sort_cache_dict.update(self.choosed_poker_cache)
+        self.user_choosed_poker.clear()
+        self.user_choosed_poker.update(self.sort_cache_dict)
+        self.sort_cache_dict.clear()
+        line()
+        print(self.user_choosed_poker)
 
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
@@ -128,6 +175,20 @@ class Game_algorithm():
 
             if bet == True and self.price != 0 and self.choosen == True:#判断是否抢地主
                 self.user_choosed_poker.update(self.choosed_dizhu_poker)#抢了地主会额外拿到3张牌
+
+                self.sort_cache = list(self.user_choosed_poker.keys())
+                self.sort_cache.sort(reverse=False)
+                line()
+                print(self.sort_cache)
+                for d in self.sort_cache:
+                    self.choosed_poker_cache = {d:self.user_choosed_poker[d]}
+                    self.sort_cache_dict.update(self.choosed_poker_cache)
+                self.user_choosed_poker.clear()
+                self.user_choosed_poker.update(self.sort_cache_dict)
+                self.sort_cache_dict.clear()
+                line()
+                print(self.user_choosed_poker)
+
                 for d in self.user_choosed_poker.keys():#為path
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
@@ -144,12 +205,12 @@ class Game_algorithm():
             else:
                 passround = self.pass_btn.clickbutton(mouseevent,event)
                 ans = Game_algorithm.check_hand(self)
-                if ans:
+                if ans == True:
                     play = self.play_btn.clickbutton(mouseevent,event)
                     if play:
                         self.round += 1
                         Game_algorithm.ai_alorithm(self)
-                elif passround:
+                elif passround == True:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
 
@@ -171,7 +232,7 @@ class Game_algorithm():
                 self.card_blit_point[c][1] = 750
 
     def ai_alorithm(self):
-        None
+        print('in!!!')
     def check_hand(self):
         self.current_card.clear()
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
@@ -187,30 +248,27 @@ class Game_algorithm():
         key_list = list(self.current_card.keys())
         len_key_list = len(key_list)
         for kl in range(len_key_list):
-            self.cache = {kl:int(key_list[kl][1:3])}
-            self.key_dict2.update(self.cache)
-        print(self.key_dict2)   
+            self.cache = {kl:int(key_list[kl][0:2])}
+            self.key_dict2.update(self.cache)  
         #开始算法
-        
-
-        # if self.free_hand == True:
-        #     if len(self.key_dict2) == 1:
-        #             return True
-        #     if len(self.key_dict2) == 2:
-        #         if self.key_dict2[0] == self.key_dict2[1]:
-        #             return True
-        #     if len(self.key_dict2) == 4:
-        #         if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] == self.key_dict2[3]:
-        #             return True
-        #     if len(self.key_dict2) >= 5:
-        #         for num1 in range(len(self.key_dict2)):
-        #             if not num1 == len(self.key_dict2):
-        #                 if self.key_dict2[num1] + 1 == self.key_dict2[num1 + 1]:
-        #                     return True
-        #             elif num1 == len(self.key_dict2):
-        #                 if self.key_dict2[num1] - 1 == self.key_dict2[num1 - 1]:
-        #                     return True
-        #             if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] and self.key_dict2[3] == self.key_dict2[4]:
-        #                 return True
+        if self.free_hand == True:
+            if len(self.key_dict2) == 1:
+                    return True
+            if len(self.key_dict2) == 2:
+                if self.key_dict2[0] == self.key_dict2[1]:
+                    return True
+            if len(self.key_dict2) == 4:
+                if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] == self.key_dict2[3]:
+                    return True
+            if len(self.key_dict2) >= 5:
+                for num1 in range(len(self.key_dict2)):
+                    if not num1 == len(self.key_dict2):
+                        if self.key_dict2[num1] + 1 == self.key_dict2[num1 + 1]:
+                            return True
+                    elif num1 == len(self.key_dict2):
+                        if self.key_dict2[num1] - 1 == self.key_dict2[num1 - 1]:
+                            return True
+                    if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] and self.key_dict2[3] == self.key_dict2[4]:
+                        return True
 
 

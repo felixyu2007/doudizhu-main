@@ -25,4 +25,3 @@ while True:
         rs.draw_refreshed(event,pygame.mouse.get_pos())
     pygame.display.update()
     
-
