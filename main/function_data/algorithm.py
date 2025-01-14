@@ -197,7 +197,7 @@ class Game_algorithm():
                 print(self.card_blit_point)
         else:#开始算法
             Game_algorithm.draw_cards(self,event,mouseevent)
-            if self.choosen == False or self.round == 2:
+            if self.choosen == False and self.round == 2:
                 self.round += 1
                 #自動pass,且決定地主
                 #here the ai algorithm
@@ -210,7 +210,7 @@ class Game_algorithm():
                     if play:
                         self.round += 1
                         Game_algorithm.ai_alorithm(self)
-                elif passround == True:
+                if passround == True:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
 
@@ -253,22 +253,31 @@ class Game_algorithm():
         #开始算法
         if self.free_hand == True:
             if len(self.key_dict2) == 1:
-                    return True
-            if len(self.key_dict2) == 2:
-                if self.key_dict2[0] == self.key_dict2[1]:
-                    return True
-            if len(self.key_dict2) == 4:
-                if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] == self.key_dict2[3]:
-                    return True
-            if len(self.key_dict2) >= 5:
-                for num1 in range(len(self.key_dict2)):
-                    if not num1 == len(self.key_dict2):
-                        if self.key_dict2[num1] + 1 == self.key_dict2[num1 + 1]:
-                            return True
-                    elif num1 == len(self.key_dict2):
-                        if self.key_dict2[num1] - 1 == self.key_dict2[num1 - 1]:
-                            return True
-                    if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] and self.key_dict2[3] == self.key_dict2[4]:
+                return True
+            else:
+                if len(self.key_dict2) == 2:
+                    if self.key_dict2[0] == self.key_dict2[1]:
                         return True
+                    else:
+                        return False
+                if len(self.key_dict2) == 4:
+                    if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] == self.key_dict2[3]:
+                        return True
+                    else:
+                        return False
+                if len(self.key_dict2) >= 5:
+                    for num1 in range(len(self.key_dict2)):
+                        if not num1 == len(self.key_dict2):
+                            if self.key_dict2[num1] + 1 == self.key_dict2[num1 + 1]:
+                                return True
+                            else:
+                                return False
+                        elif num1 == len(self.key_dict2):
+                            if self.key_dict2[num1] - 1 == self.key_dict2[num1 - 1]:
+                                return True
+                            else:
+                                return False
+                        # if self.key_dict2[0] == self.key_dict2[1] == self.key_dict2[2] and self.key_dict2[3] == self.key_dict2[4]:
+                        #     return True
 
 
