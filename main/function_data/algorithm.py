@@ -33,7 +33,7 @@ class Game_algorithm():
         self.grab_button = Button(self.surf,1450,850,'be the landlord')
         self.unrob_button = Button(self.surf,1450,900,'be the people')
         self.pass_btn = Button(self.surf,1200,650,'pass')
-        self.play_btn = Button(self.surf,1200,650,'pass')
+        self.play_btn = Button(self.surf,1500,650,'play')
         #要把下注的金额绘制出来
         self.text = pygame.font.Font(None,100)
         self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
