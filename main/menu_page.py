@@ -106,12 +106,12 @@ class Menu():
         self.rule_slogan_size = pygame.font.Font(None,120)
         self.userinfo_size = pygame.font.Font(None,80)
         self.surf = surf
-        self.ans = function_data.signin_and_login_system.get_userinfo()
-        self.name = self.userinfo_size.render(self.ans[0],True,black)
-        self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
 
     def draw_menu(self,event):
+        self.ans = function_data.signin_and_login_system.get_userinfo()
+        self.name = self.userinfo_size.render(self.ans[0],True,black)
+        self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
