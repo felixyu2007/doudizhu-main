@@ -22,6 +22,8 @@ class Game_algorithm():
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
         self.choose_poker = []
+        self.sort_cache1 = []
+        self.sort_cache2 = []
         self.key_dict1 = {}
         self.key_dict2 = {}
         #调用先前写好的按钮函数
@@ -56,6 +58,11 @@ class Game_algorithm():
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.choosed_dizhu_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
+            #======================change================================
+        self.sort_cache1 = list(self.choosed_dizhu_poker.keys())
+        self.sort_cache1.sort()
+        print(self.sort_cache1)
+
         #3个玩家的
         for b in range(17):
             #ai的
@@ -73,7 +80,7 @@ class Game_algorithm():
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
             self.user_choosed_poker.update(self.choosed_poker_cache)
             del self.poker[self.choose_poker]
-        
+
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
         if self.round == 0:
@@ -109,7 +116,7 @@ class Game_algorithm():
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
-                dizhu = random.randint(1,0)
+                dizhu = random.randint(0,1)
                 if dizhu:
                     self.choosed_poker01.update(self.choosed_dizhu_poker)
                 else:
@@ -125,7 +132,6 @@ class Game_algorithm():
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
                     self.card_blit_point.update(self.cache)
                     self.position += 50
-
                 self.round += 1
                 print(self.card_blit_point)
         else:#开始算法
@@ -146,7 +152,6 @@ class Game_algorithm():
                 elif passround:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
-
 
     def draw_cards(self,event,mouseevent):
         for c in self.card_blit_point.keys():#為path
