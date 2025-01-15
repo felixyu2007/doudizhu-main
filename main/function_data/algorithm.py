@@ -268,7 +268,6 @@ class Game_algorithm():
                         return False
                 if len(self.key_dict) >= 5:
                     for num in range(len(self.key_dict)):
-                        print(num)
                         if num != len(self.key_dict)-1:
                             if self.key_dict[num] != self.key_dict[num+1]:
                                 if self.key_dict[num] + 1 == self.key_dict[num + 1]:
@@ -278,13 +277,12 @@ class Game_algorithm():
                             elif len(self.key_dict)%2 == 0:
                                 if num%2 == 0:
                                     if self.key_dict[num] == self.key_dict[num + 1]:
+                                        print('haha')
                                         pass
                                     else:
                                         return False
-                                elif self.key_dict[num] == self.key_dict[num + 1] + 1:
-                                    pass
                                 else:
-                                    return False
+                                    pass
                             else:
                                 return False
                         if num == len(self.key_dict)-1:
@@ -295,6 +293,9 @@ class Game_algorithm():
                                     return False
                             elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
                                 return True
+                            elif num%2 != 0:
+                                if self.key_dict[num] == self.key_dict[num - 1] ==  self.key_dict[num - 2] - 1:
+                                    return True
                             else:
                                 return False
                     
