@@ -241,7 +241,8 @@ class Game_algorithm():
                 self.current_card.update(self.choosed_poker_cache)
         # self.suit = 
         # self.rank = 
-        Game_algorithm.check_ranks_suits(self)
+        ans = Game_algorithm.check_ranks_suits(self)
+        return ans
     def check_ranks_suits(self):
         self.key_dict.clear()
         key_list = list(self.current_card.keys())
@@ -261,20 +262,28 @@ class Game_algorithm():
                 if len(self.key_dict) == 4:
                     if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
                         return True
+                    elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
+                        return True
                     else:
                         return False
                 if len(self.key_dict) >= 5:
-                    for num1 in range(len(self.key_dict)):
-                        if not num1 == len(self.key_dict):
-                            if self.key_dict[num1] + 1 == self.key_dict[num1 + 1]:
+                    for num in range(len(self.key_dict)):
+                        if num != len(self.key_dict)-1:
+                            if self.key_dict[num] != self.key_dict[num+1]:
+                                if self.key_dict[num] + 1 == self.key_dict[num + 1]:
+                                    pass
+                            elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
                                 return True
                             else:
                                 return False
-                        elif num1 == len(self.key_dict):
-                            if self.key_dict[num1] - 1 == self.key_dict[num1 - 1]:
+                        if num == len(self.key_dict)-1:
+                            if self.key_dict[num] != self.key_dict[num-1]:
+                                if self.key_dict[num] - 1 == self.key_dict[num - 1]:
+                                    return True
+                                else:
+                                    return False
+                            elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
                                 return True
                             else:
                                 return False
-                        # if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]:
-                        #     return True
 
