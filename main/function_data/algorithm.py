@@ -11,6 +11,7 @@ class Game_algorithm():
         self.prevous_card = {}
         self.current_card = {}
         self.free_hand = False
+        self.cursor = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
@@ -22,6 +23,7 @@ class Game_algorithm():
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
         self.card_play_point = {}
+        self.prevous_card_point = {}
         self.choose_poker = []
         self.sort_cache = []
         self.sort_cache_dict = {}
@@ -244,11 +246,14 @@ class Game_algorithm():
                         for f in self.user_choosed_poker.keys():#为{path:surface}
                             self.cache = {f:[500+self.position,300]}
                             self.card_play_point.update(self.cache)#为{path:position}
+                            self.cache = {f:[self.card_play_point[f][0],self.card_play_point[f][1]+50]}
+                            self.prevous_card_point.update(self.cache)
                             self.position += 50
 
                         for f in self.current_card.keys():#为{path:surface}
                             self.surf.blit(self.current_card[f],self.card_play_point[f])
-                
+                        self.cursor = True
+
                 if passround == True:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
@@ -272,12 +277,16 @@ class Game_algorithm():
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
 
-        if self.round >= 3:
             for f in self.current_card.keys():#为{path:surface}
                 self.prevous_card.update(self.current_card)
-                self.surf.blit(self.prevous_card[f],(self.card_play_point[f][0],self.card_play_point[f][1]+50))
-                del self.user_choosed_poker[f]
-                del self.card_blit_point[f]
+                self.surf.blit(self.prevous_card[f],(self.prevous_card_point[f][0],self.prevous_card_point[f][1]+50))
+                if self.cursor == True:
+                    del self.user_choosed_poker[f]
+                    del self.card_blit_point[f]
+                    self.cursor = False
+                    
+        for f in self.prevous_card:
+            self.surf.blit(self.prevous_card[f],self.prevous_card_point[f])
 
 ######################################################################################################################################################################
 
