@@ -21,6 +21,7 @@ class Game_algorithm():
         self.user_choosed_poker = {}
         self.choosed_poker_cache = {}
         self.card_blit_point = {}
+        self.card_play_point = {}
         self.choose_poker = []
         self.sort_cache = []
         self.sort_cache_dict = {}
@@ -42,6 +43,8 @@ class Game_algorithm():
         self.choosen = False
         #繪製ai玩家的咨詢
         self.ai_info = self.text.render(''.join(str(self.price)),True,(255,255,255))
+
+######################################################################################################################################################################
         
         #往牌组里随机抽出牌然后分别放入（地主牌，3个玩家各17张）
         for p in imgs:
@@ -49,13 +52,15 @@ class Game_algorithm():
             self.haha = os.path.join(baba,poker_image_path+'\\'+p)
             self.image_surface = pygame.image.load(self.haha)
             poker_dict = {p:self.image_surface}
-            self.poker.update(poker_dict)
-            print(p,)
+            self.poker.update(poker_dict)#为{path:surface}
+
+######################################################################################################################################################################
+        
         #地主牌的
         for a in range(3):
             self.choose_poker = random.choice(list(self.poker.keys()))
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
-            self.choosed_dizhu_poker.update(self.choosed_poker_cache)
+            self.choosed_dizhu_poker.update(self.choosed_poker_cache)#为{path:surface}
             del self.poker[self.choose_poker]
             
         self.sort_cache = list(self.choosed_dizhu_poker.keys())
@@ -70,23 +75,28 @@ class Game_algorithm():
         line()
         print(self.choosed_dizhu_poker)
 
+######################################################################################################################################################################
+        
         #3个玩家的
         for b in range(17):
             #ai的
             self.choose_poker = random.choice(list(self.poker.keys()))
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
-            self.choosed_poker01.update(self.choosed_poker_cache)
+            self.choosed_poker01.update(self.choosed_poker_cache)#为{path:surface}
             del self.poker[self.choose_poker]
             #ai的
             self.choose_poker = random.choice(list(self.poker.keys()))
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
-            self.choosed_poker02.update(self.choosed_poker_cache)
+            self.choosed_poker02.update(self.choosed_poker_cache)#为{path:surface}
             del self.poker[self.choose_poker]
             #玩家的
             self.choose_poker = random.choice(list(self.poker.keys()))
             self.choosed_poker_cache = {self.choose_poker:self.poker[self.choose_poker]}
-            self.user_choosed_poker.update(self.choosed_poker_cache)
+            self.user_choosed_poker.update(self.choosed_poker_cache)#为{path:surface}
             del self.poker[self.choose_poker]
+
+######################################################################################################################################################################
+        
         #ai的  
         self.sort_cache = list(self.choosed_poker01.keys())
         self.sort_cache.sort(reverse=False)
@@ -100,6 +110,7 @@ class Game_algorithm():
         self.sort_cache_dict.clear()
         line()
         print(self.choosed_poker01)
+        
         #ai的
         self.sort_cache = list(self.choosed_poker02.keys())
         self.sort_cache.sort(reverse=False)
@@ -113,6 +124,7 @@ class Game_algorithm():
         self.sort_cache_dict.clear()
         line()
         print(self.choosed_poker02)
+
         #玩家的
         self.sort_cache = list(self.user_choosed_poker.keys())
         self.sort_cache.sort(reverse=False)
@@ -127,6 +139,8 @@ class Game_algorithm():
         line()
         print(self.user_choosed_poker)
 
+######################################################################################################################################################################
+
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
         if self.round == 0:
@@ -138,6 +152,9 @@ class Game_algorithm():
             if ungrab == True:
                 self.round += 1
                 self.choosen == False
+
+######################################################################################################################################################################
+    
         #第一回合需要下注与创建玩家所持的卡的字典，其中是{卡的surface：【卡绘制的位置x，卡绘制的位置y】}
         elif self.round == 1:
             high = self.increase_btn.clickbutton(mouseevent,event)
@@ -155,10 +172,13 @@ class Game_algorithm():
                 if self.price <= 0:
                     self.price = 0
                 self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
+
+######################################################################################################################################################################
+
             if bet == True and self.price != 0 and self.choosen == False:#判断是否抢地主
-                for d in self.user_choosed_poker.keys():#為path
+                for d in self.user_choosed_poker.keys():##为{path:surface}
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
-                    self.card_blit_point.update(self.cache)
+                    self.card_blit_point.update(self.cache)#为{path:position}
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
@@ -190,10 +210,13 @@ class Game_algorithm():
 
                 for d in self.user_choosed_poker.keys():#為path
                     self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
-                    self.card_blit_point.update(self.cache)
+                    self.card_blit_point.update(self.cache)#为{path:position}
                     self.position += 50
                 self.round += 1
                 print(self.card_blit_point)
+
+######################################################################################################################################################################
+        
         else:#开始算法
             Game_algorithm.draw_cards(self,event,mouseevent)
             if self.choosen == False and self.round == 2:
@@ -213,9 +236,11 @@ class Game_algorithm():
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
 
+######################################################################################################################################################################
+
     def draw_cards(self,event,mouseevent):
-        for c in self.card_blit_point.keys():#為path
-            self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)# 重大错误，不知道为什么key_error
+        for c in self.card_blit_point.keys():#为{path:position}
+            self.image_scale = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
             self.surf.blit(self.user_choosed_poker[c],self.card_blit_point[c])
 
             if self.image_scale.collidepoint(mouseevent):
@@ -230,19 +255,37 @@ class Game_algorithm():
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
 
+        self.position = 0  
+        for c in self.user_choosed_poker.keys():#为{path:surface}
+            self.cache = {c:[500+self.position,300]}
+            self.card_play_point.update(self.cache)
+            self.position += 50
+        
+        for c in self.current_card.keys():#为{path:surface}
+            self.image_scale2 = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
+            self.surf.blit(self.current_card[c],self.card_play_point[c])
+
+######################################################################################################################################################################
+
     def ai_alorithm(self):
         print('in!!!')
+
+######################################################################################################################################################################
+
     def check_hand(self):
         self.current_card.clear()
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
-        for e in self.card_blit_point.keys():#為path
+        for e in self.card_blit_point.keys():#为{path:position}
             if self.card_blit_point[e][1] == 700:
-                self.choosed_poker_cache = {e:self.card_blit_point[e]}
-                self.current_card.update(self.choosed_poker_cache)
+                self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
+                self.current_card.update(self.choosed_poker_cache)#为{path:surface}
         # self.suit = 
         # self.rank = 
         ans = Game_algorithm.check_ranks_suits(self)
         return ans
+        
+######################################################################################################################################################################
+
     def check_ranks_suits(self):
         self.key_dict.clear()
         key_list = list(self.current_card.keys())
