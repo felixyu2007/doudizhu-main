@@ -242,6 +242,11 @@ class Game_algorithm():
                             self.surf.blit(self.current_card[f],self.card_play_point[f])
                             del self.user_choosed_poker[f]
                             del self.card_blit_point[f]
+                        self.position = 0
+                        for d in self.user_choosed_poker.keys():#为{path:surface}
+                            self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
+                            self.card_blit_point.update(self.cache)#为{path:position}
+                            self.position += 50
                         Game_algorithm.ai_alorithm(self)
                 if passround == True:
                     self.round += 1
@@ -265,11 +270,6 @@ class Game_algorithm():
                         self.card_blit_point[c][1] = 730
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
-        for d in self.user_choosed_poker.keys():#为{path:surface}
-            self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
-            self.card_blit_point.update(self.cache)#为{path:position}
-            self.position += 50
-            self.position = 0
         
 ######################################################################################################################################################################
 
