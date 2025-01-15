@@ -231,6 +231,13 @@ class Game_algorithm():
                     play = self.play_btn.clickbutton(mouseevent,event)
                     if play:
                         self.round += 1
+                        self.position = 0
+                        for f in self.user_choosed_poker.keys():#为{path:surface}
+                            self.cache = {f:[500+self.position,300]}
+                            self.card_play_point.update(self.cache)
+                            self.position += 50
+                        for f in self.current_card.keys():#为{path:surface}
+                            self.surf.blit(self.current_card[f],self.card_play_point[f])
                         Game_algorithm.ai_alorithm(self)
                 if passround == True:
                     self.round += 1
@@ -255,20 +262,10 @@ class Game_algorithm():
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
 
-        self.position = 0  
-        for c in self.user_choosed_poker.keys():#为{path:surface}
-            self.cache = {c:[500+self.position,300]}
-            self.card_play_point.update(self.cache)
-            self.position += 50
-        
-        for c in self.current_card.keys():#为{path:surface}
-            self.image_scale2 = pygame.Rect(self.card_blit_point[c][0],self.card_blit_point[c][1],49,145)
-            self.surf.blit(self.current_card[c],self.card_play_point[c])
-
 ######################################################################################################################################################################
 
     def ai_alorithm(self):
-        print('in!!!')
+        pass
 
 ######################################################################################################################################################################
 
@@ -279,8 +276,6 @@ class Game_algorithm():
             if self.card_blit_point[e][1] == 700:
                 self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
                 self.current_card.update(self.choosed_poker_cache)#为{path:surface}
-        # self.suit = 
-        # self.rank = 
         ans = Game_algorithm.check_ranks_suits(self)
         return ans
         
