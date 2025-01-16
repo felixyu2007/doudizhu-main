@@ -303,11 +303,11 @@ class Game_algorithm():
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-            self.position = 0
+            
             for g in range(len(key_list)):
                 self.cache = {g:int(key_list[g][0:2])}
                 self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
-
+                self.position = 0
                 self.ai_prevous_card.clear()
                 self.ai_prevous_card_point.clear()
                 
@@ -386,7 +386,7 @@ class Game_algorithm():
                         return False
                     
                     if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[2] != self.key_dict[2] or self.key_dict[1] == self.key_dict[2] == self.key_dict[3] and self.key_dict[0] != self.key_dict[1]:
-                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2]:
+                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2] and :
                             self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
                             self.ai_prevous_card.update(self.cache)#为{path:surface}
                             self.cache = {key_list[g+1]:self.choosed_poker01[key_list[g+1]]}
@@ -407,8 +407,9 @@ class Game_algorithm():
                             del self.choosed_poker01[g+1]
                             del self.choosed_poker01[g+2]
                             return True
-                    else:
+                    elif g == len(key_list)-4:
                         return False
+                    
                 
 
 ######################################################################################################################################################################
