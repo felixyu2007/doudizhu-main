@@ -274,9 +274,9 @@ class Game_algorithm():
 
                 if passround == True:
                     self.round += 1
-                    Game_algorithm.ai_alorithm(self)
                     self.ai_free_hand == True
-                    passround == False
+                    Game_algorithm.ai_alorithm(self)
+                    
                 else:pass
 
 ######################################################################################################################################################################
@@ -333,13 +333,9 @@ class Game_algorithm():
             self.cache = {key_list[ans]:[self.position+1200,200]}
             self.ai_prevous_card_point.update(self.cache)#为{path:position}
 
-            line()
-            print(self.ai_prevous_card)
             self.ai_free_hand = False
             return True
         else: 
-            self.ai_prevous_card.clear()
-            self.ai_prevous_card_point.clear() 
             for g in range(len(key_list)):
                 self.position = 0
                 self.ai_prevous_card.clear()
