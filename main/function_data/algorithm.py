@@ -217,11 +217,13 @@ class Game_algorithm():
                     self.position += 50
                 self.position = 0
                 self.round += 1
+                line()
                 print(self.card_blit_point)
+                
 
-######################################################################################################################################################################
+############################################开始算法####################################################################################################################
         
-        else:#开始算法
+        else:
             Game_algorithm.draw_cards(self,event,mouseevent)
             if self.choosen == False and self.round == 2:
                 self.round += 1
@@ -237,23 +239,26 @@ class Game_algorithm():
                     if play:
                         self.round += 1
                         self.position = 0
-                        for d in self.user_choosed_poker.keys():#为{path:surface}
-                            self.cache = {d:[self.card_start_point[0]+self.position,self.card_start_point[1]]}
-                            self.card_blit_point.update(self.cache)#为{path:position}
-                            self.position += 50
-
-                        self.position = 0
-                        for f in self.user_choosed_poker.keys():#为{path:surface}
-                            self.cache = {f:[500+self.position,300]}
+                        for d in self.current_card.keys():
+                            self.cache = {d:[500+self.position,self.card_blit_point[d][1]-300]}
                             self.card_play_point.update(self.cache)#为{path:position}
-                            self.cache = {f:[self.card_play_point[f][0],self.card_play_point[f][1]+50]}
-                            self.prevous_card_point.update(self.cache)
+                            line()
+                            print(self.card_play_point)
+
+                            self.cache = {d:[self.card_play_point[d][0],self.card_play_point[d][1]-50]}
+                            self.prevous_card_point.update(self.cache)#为{path:position}
+
+                            del self.card_blit_point[d]
+                            del self.user_choosed_poker[d]
+
+                            self.surf.blit(self.current_card[d],self.card_play_point[d])
                             self.position += 50
-
-                        for f in self.current_card.keys():#为{path:surface}
-                            self.surf.blit(self.current_card[f],self.card_play_point[f])
-                        self.cursor = True
-
+                        
+                        self.prevous_card.update(self.current_card)#为{path:surface}
+                        self.current_card.clear()
+                        # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
+                else:
+                    pass
                 if passround == True:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
@@ -277,16 +282,9 @@ class Game_algorithm():
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
 
-            for f in self.current_card.keys():#为{path:surface}
-                self.prevous_card.update(self.current_card)
-                self.surf.blit(self.prevous_card[f],(self.prevous_card_point[f][0],self.prevous_card_point[f][1]+50))
-                if self.cursor == True:
-                    del self.user_choosed_poker[f]
-                    del self.card_blit_point[f]
-                    self.cursor = False
-                    
-        for f in self.prevous_card:
-            self.surf.blit(self.prevous_card[f],self.prevous_card_point[f])
+        for d in self.prevous_card.keys():
+            self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
+
 
 ######################################################################################################################################################################
 
@@ -297,12 +295,10 @@ class Game_algorithm():
 ######################################################################################################################################################################
 
     def check_hand(self):
-        self.current_card.clear()
-        # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
         for e in self.card_blit_point.keys():#为{path:position}
             if self.card_blit_point[e][1] == 700:
-                self.choosed_poker_cache = {e:self.user_choosed_poker[e]}
-                self.current_card.update(self.choosed_poker_cache)#为{path:surface}
+                self.cache = {e:self.user_choosed_poker[e]}
+                self.current_card.update(self.cache)#为{path:surface}
         ans = Game_algorithm.check_ranks_suits(self)
         return ans
         
@@ -313,56 +309,60 @@ class Game_algorithm():
         key_list = list(self.current_card.keys())
         for kl in range(len(key_list)):
             self.cache = {kl:int(key_list[kl][0:2])}
-            self.key_dict.update(self.cache)  
+            self.key_dict.update(self.cache)
+        self.cache.clear()
         #开始算法
+        print(self.current_card)
         if self.free_hand == True:
             if len(self.key_dict) == 1:
                 return True
+            elif len(self.key_dict) == 2:
+                if self.key_dict[0] == self.key_dict[1]:
+                    return True
+                else:
+                    return False
+            elif len(self.key_dict) == 4:
+                if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
+                    return True
+                elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
+                    return True
+                else:
+                    return False
+            elif len(self.key_dict) >= 5:
+                for num in range(len(self.key_dict)):
+                    if num != len(self.key_dict)-1:
+                        if self.key_dict[num] != self.key_dict[num+1]:
+                            if self.key_dict[num] + 1 == self.key_dict[num + 1]:
+                                pass
+                        elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
+                            return True
+                        elif len(self.key_dict)%2 == 0:
+                            if num%2 == 0:
+                                if self.key_dict[num] == self.key_dict[num + 1]:
+                                    pass
+                                else:
+                                    return False
+                            else:
+                                pass
+                        else:
+                            return False
+                    elif num == len(self.key_dict)-1:
+                        if self.key_dict[num] != self.key_dict[num-1]:
+                            if self.key_dict[num] - 1 == self.key_dict[num - 1]:
+                                return True
+                            else:
+                                return False
+                        elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
+                            return True
+                        elif len(self.key_dict)%2 == 0:
+                            if self.key_dict[num] == self.key_dict[num - 1] ==  self.key_dict[num - 2] + 1:
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
             else:
-                if len(self.key_dict) == 2:
-                    if self.key_dict[0] == self.key_dict[1]:
-                        return True
-                    else:
-                        return False
-                if len(self.key_dict) == 4:
-                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
-                        return True
-                    elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
-                        return True
-                    else:
-                        return False
-                if len(self.key_dict) >= 5:
-                    for num in range(len(self.key_dict)):
-                        if num != len(self.key_dict)-1:
-                            if self.key_dict[num] != self.key_dict[num+1]:
-                                if self.key_dict[num] + 1 == self.key_dict[num + 1]:
-                                    pass
-                            elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
-                                return True
-                            elif len(self.key_dict)%2 == 0:
-                                if num%2 == 0:
-                                    if self.key_dict[num] == self.key_dict[num + 1]:
-                                        pass
-                                    else:
-                                        return False
-                                else:
-                                    pass
-                            else:
-                                return False
-                        elif num == len(self.key_dict)-1:
-                            if self.key_dict[num] != self.key_dict[num-1]:
-                                if self.key_dict[num] - 1 == self.key_dict[num - 1]:
-                                    return True
-                                else:
-                                    return False
-                            elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
-                                return True
-                            elif len(self.key_dict)%2 == 0:
-                                if self.key_dict[num] == self.key_dict[num - 1] ==  self.key_dict[num - 2] + 1:
-                                    return True
-                                else:
-                                    return False
-                            else:
-                                return False
-                    
+                return False    
+        else:
+            pass        
 
