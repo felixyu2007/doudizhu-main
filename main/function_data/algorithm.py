@@ -328,7 +328,7 @@ class Game_algorithm():
             ans = random.choice(list(self.choosed_poker01.keys()))
             self.cache = {key_list[ans]:self.choosed_poker01[key_list[ans]]}
             self.ai_prevous_card.update(self.cache)#为{path:surface}
-            del self.choosed_poker01[key_list[ans]]
+            del self.choosed_poker01[ans]
 
             self.cache = {key_list[ans]:[self.position+1200,200]}
             self.ai_prevous_card_point.update(self.cache)#为{path:position}
@@ -338,8 +338,8 @@ class Game_algorithm():
             self.ai_free_hand = False
             return True
         else: 
-            line()
-            print(self.key_dict2)  
+            self.ai_prevous_card.clear()
+            self.ai_prevous_card_point.clear() 
             for g in range(len(key_list)):
                 self.position = 0
                 self.ai_prevous_card.clear()
@@ -431,7 +431,7 @@ class Game_algorithm():
                             ans = random.choice(list(self.choosed_poker01.keys()))
                             self.cache = {key_list[ans]:self.choosed_poker01[key_list[ans]]}
                             self.ai_prevous_card.update(self.cache)#为{path:surface}
-                            del self.choosed_poker01[key_list[ans]]
+                            del self.choosed_poker01[ans]
 
                             self.cache = {key_list[g]:[self.position+1200,200]}
                             self.ai_prevous_card_point.update(self.cache)#为{path:position}
