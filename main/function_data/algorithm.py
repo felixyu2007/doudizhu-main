@@ -510,9 +510,9 @@ class Game_algorithm():
         self.key_dict.clear()
         self.key_dict2.clear()
         key_list = list(self.current_card.keys())
-        target_key_lis = list(self.ai_prevous_card.keys())
-        for tkl in range(len(target_key_lis)):
-            self.cache = {kl:int(key_list[kl][0:2])}
+        target_key_list = list(self.ai_prevous_card.keys())
+        for tkl in range(len(target_key_list)):
+            self.cache = {tkl:int(key_list[kl][0:2])}
             self.key_dict2.update(self.cache)#{num:card rank}
         for kl in range(len(key_list)):
             self.cache = {kl:int(key_list[kl][0:2])}
