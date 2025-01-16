@@ -522,15 +522,13 @@ class Game_algorithm():
                     return True
                 elif self.key_dict[0] + self.key_dict[1] == 51:
                     return True
-                else:
-                    return False
+                else:return False
             elif len(self.key_dict) == 4:
                 if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
                     return True
                 elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
                     return True
-                else:
-                    return False
+                else:return False
             elif len(self.key_dict) >= 5:
                 for num in range(len(self.key_dict)):
                     if num != len(self.key_dict)-1:
@@ -543,31 +541,53 @@ class Game_algorithm():
                             if num%2 == 0:
                                 if self.key_dict[num] == self.key_dict[num + 1]:
                                     pass
-                                else:
-                                    return False
-                            else:
-                                pass
-                        else:
-                            return False
+                                else:return False
+                            else:pass
+                        else:return False
                     elif num == len(self.key_dict)-1:
                         if self.key_dict[num] != self.key_dict[num-1]:
                             if self.key_dict[num] - 1 == self.key_dict[num - 1]:
                                 return True
-                            else:
-                                return False
+                            else:return False
                         elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]) or (self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[3] == self.key_dict[4]):
                             return True
                         elif len(self.key_dict)%2 == 0:
                             if self.key_dict[num] == self.key_dict[num - 1] ==  self.key_dict[num - 2] + 1:
                                 return True
-                            else:
-                                return False
-                        else:
-                            return False
+                            else:return False  
+                        else:return False
             else:
                 return False    
         elif self.free_hand == False:
             if len(self.ai_prevous_card.keys()) == 1 and len(self.key_dict.keys) == len(self.ai_prevous_card.keys()):
                 if self.key_dict[0] > self.ai_prevous_card[0]:
                     return True
-
+                else:return False
+            elif len(self.ai_prevous_card.keys()) == 2 and len(self.key_dict.keys) == len(self.ai_prevous_card.keys()):
+                if self.key_dict[0] == self.key_dict[1] and self.key_dict[0] > self.ai_prevous_card[0]:
+                    return True
+                else:return False
+            elif len(self.ai_prevous_card.keys()) == 4 and len(self.key_dict.keys) == len(self.ai_prevous_card.keys()):
+                if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3] and self.key_dict[0] > self.ai_prevous_card[0]:
+                    return True
+                elif self.ai_prevous_card[0] != self.ai_prevous_card[1] and self.ai_prevous_card[1] == self.ai_prevous_card[2] == self.ai_prevous_card[3] or self.ai_prevous_card[2] != self.ai_prevous_card[3] and self.ai_prevous_card[0] == self.ai_prevous_card[1] == self.ai_prevous_card[2]:
+                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[2] != self.key_dict[3] or self.key_dict[1] == self.key_dict[2] == self.key_dict[3] and self.key_dict[1] != self.key_dict[1]:
+                        if self.key_dict[1] > self.ai_prevous_card[1]:
+                            return True
+                        else:return False
+                    else:return False
+                else:pass
+            elif len(self.ai_prevous_card.keys()) >= 5 and len(self.key_dict.keys) == len(self.ai_prevous_card.keys()):
+                if self.ai_prevous_card[0] == self.ai_prevous_card[1] and self.ai_prevous_card[2] == self.ai_prevous_card[3] == self.ai_prevous_card[4] or self.ai_prevous_card[0] == self.ai_prevous_card[1] and self.ai_prevous_card[2] == self.ai_prevous_card[3] == self.ai_prevous_card[4]:
+                    if self.key_dict[0] == self.key_dict[1] and self.key_dict[2] == self.key_dict[2] == self.key_dict[3] or self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4]:
+                        if self.key_dict[2] > self.ai_prevous_card[2]:
+                            return True
+                        else:return False
+                    else:return False
+                elif self.ai_prevous_card[0]+4 == self.ai_prevous_card[1]+3 == self.ai_prevous_card[2]+2 == self.ai_prevous_card[3]+1 == self.ai_prevous_card[4]:
+                    if self.key_dict[0]+4 == self.key_dict[1]+3 == self.key_dict[2]+2 == self.key_dict[3]+1 == self.key_dict[4]:
+                        if self.key_dict[0] > self.ai_prevous_card[0]:
+                            return True
+                        else:return False
+                    else:return False
+                else:return False
