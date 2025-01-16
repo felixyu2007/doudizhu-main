@@ -388,7 +388,7 @@ class Game_algorithm():
                     elif g == len(key_list)-4:
                         return False
                     
-                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[2] != self.key_dict[2] or self.key_dict[1] == self.key_dict[2] == self.key_dict[3] and self.key_dict[0] != self.key_dict[1]:
+                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[2] != self.key_dict[3] or self.key_dict[1] == self.key_dict[2] == self.key_dict[3] and self.key_dict[0] != self.key_dict[1]:
                         if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2]:
                             if len(self.choosed_poker01) > 3:
                                 self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
@@ -426,7 +426,11 @@ class Game_algorithm():
                             pass
                     elif g == len(key_list)-4:
                         return False
-                elif 
+                    
+                elif len(self.key_dict) == 5:
+                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] and self.key_dict[3] == self.key_dict[4] or self.key_dict[2] == self.key_dict[3] == self.key_dict[4] and self.key_dict[0] == self.key_dict[1]:
+                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2]:
+                            
                     
                 
 
