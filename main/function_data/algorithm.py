@@ -255,8 +255,7 @@ class Game_algorithm():
                             self.position += 50
                         
                         self.prevous_card.update(self.current_card)#为{path:surface}
-                        self.current_card.clear()
-                        # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
+
                 else:
                     pass
                 if passround == True:
@@ -283,6 +282,8 @@ class Game_algorithm():
                 self.card_blit_point[c][1] = 750
 
         for d in self.prevous_card.keys():
+            print(self.card_play_point)
+            print(self.prevous_card_point)
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
 
 
@@ -295,6 +296,8 @@ class Game_algorithm():
 ######################################################################################################################################################################
 
     def check_hand(self):
+        self.current_card.clear()
+        # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
         for e in self.card_blit_point.keys():#为{path:position}
             if self.card_blit_point[e][1] == 700:
                 self.cache = {e:self.user_choosed_poker[e]}
@@ -312,7 +315,6 @@ class Game_algorithm():
             self.key_dict.update(self.cache)
         self.cache.clear()
         #开始算法
-        print(self.current_card)
         if self.free_hand == True:
             if len(self.key_dict) == 1:
                 return True
