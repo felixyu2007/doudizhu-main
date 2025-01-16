@@ -232,13 +232,15 @@ class Game_algorithm():
                 Game_algorithm.ai_alorithm(self)
             else:
                 passround = self.pass_btn.clickbutton(mouseevent,event)
-                ans = Game_algorithm.check_hand(self)
+                ans = Game_algorithm.check_hand(self)#self.card_play_point.clear() and self.current_card.clear()
                 
                 if ans == True:
                     play = self.play_btn.clickbutton(mouseevent,event)
                     if play:
                         self.round += 1
                         self.position = 0
+                        self.prevous_card_point.clear()
+                        self.prevous_card.clear()
                         for d in self.current_card.keys():
                             self.cache = {d:[500+self.position,self.card_blit_point[d][1]-300]}
                             self.card_play_point.update(self.cache)#为{path:position}
@@ -255,7 +257,7 @@ class Game_algorithm():
                             self.position += 50
                         
                         self.prevous_card.update(self.current_card)#为{path:surface}
-
+                        Game_algorithm.ai_alorithm(self)
                 else:
                     pass
                 if passround == True:
@@ -282,8 +284,6 @@ class Game_algorithm():
                 self.card_blit_point[c][1] = 750
 
         for d in self.prevous_card.keys():
-            print(self.card_play_point)
-            print(self.prevous_card_point)
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
 
 
@@ -297,6 +297,7 @@ class Game_algorithm():
 
     def check_hand(self):
         self.current_card.clear()
+        self.card_play_point.clear()
         # 可以试试删除字典里所有东西，然后重新写入来更新，反正是用侦测坐标来获取所选卡牌
         for e in self.card_blit_point.keys():#为{path:position}
             if self.card_blit_point[e][1] == 700:
