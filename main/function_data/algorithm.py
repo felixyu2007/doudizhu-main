@@ -263,21 +263,23 @@ class Game_algorithm():
                         
                         self.prevous_card.update(self.current_card)#为{path:surface}
                         ans2 = Game_algorithm.ai_alorithm(self)
-                        print(ans)
                         if ans2:
                             self.free_hand = False
                             print('not free')
                         else:
                             self.free_hand = True
                             print('free')
-                else:pass
-
-                if passround == True:
+                elif passround == True:
                     self.round += 1
                     self.ai_free_hand == True
-                    Game_algorithm.ai_alorithm(self)
+                    ans2 = Game_algorithm.ai_alorithm(self)
+                    if ans2:
+                        self.free_hand = False
+                        print('not free')
+                    else:
+                        self.free_hand = True
+                        print('free')
                     
-                else:pass
 
 ######################################################################################################################################################################
 
@@ -425,7 +427,7 @@ class Game_algorithm():
                             del self.choosed_poker01[key_list[g+1]]
                             del self.choosed_poker01[key_list[g+2]]
                             ans = random.choice(list(self.choosed_poker01.keys()))
-                            self.cache = {key_list[ans]:self.choosed_poker01[key_list[ans]]}
+                            self.cache = {ans:self.choosed_poker01[ans]}
                             self.ai_prevous_card.update(self.cache)#为{path:surface}
                             del self.choosed_poker01[ans]
 
@@ -499,8 +501,9 @@ class Game_algorithm():
                                 return True
                             else:pass
                         else:pass
-                    else:
-                        return False
+                    else:return False
+                else:return False
+                        
 
 ######################################################################################################################################################################
 
@@ -528,8 +531,6 @@ class Game_algorithm():
         for kl in range(len(key_list)):
             self.cache = {kl:int(key_list[kl][0:2])}
             self.key_dict.update(self.cache)#{num:card rank}
-        print(self.key_dict2)
-        print(self.key_dict2)
         #开始算法
         if self.free_hand == True:
             if len(self.key_dict) == 1:
