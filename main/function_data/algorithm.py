@@ -78,8 +78,10 @@ class Game_algorithm():
             self.sort_cache_dict.update(self.choosed_poker_cache)
         self.choosed_dizhu_poker.clear()
         self.choosed_dizhu_poker.update(self.sort_cache_dict)
+        self.sort_cache_dict.clear()
         line()
         print(self.choosed_dizhu_poker)
+        line()
 
 ######################################################################################################################################################################
         
@@ -307,6 +309,8 @@ class Game_algorithm():
         self.key_dict2.clear()
         target_key_list = list(self.prevous_card.keys())#path
         key_list = list(self.choosed_poker01.keys())#path
+        line()
+        print(self.key_dict2)
         for kl in range(len(target_key_list)):
             self.cache = {kl:int(target_key_list[kl][0:2])}
             self.key_dict.update(self.cache)#path of previous_card with no (letter).png
