@@ -9,6 +9,7 @@ class Game_algorithm():
         self.round = 0
         self.price = 0
         self.prevous_card = {}
+        self.ai_prevous_card = {}
         self.current_card = {}
         self.free_hand = False
         self.cursor = False
@@ -24,10 +25,12 @@ class Game_algorithm():
         self.card_blit_point = {}
         self.card_play_point = {}
         self.prevous_card_point = {}
+        self.ai_prevous_card_point = {}
         self.choose_poker = []
         self.sort_cache = []
         self.sort_cache_dict = {}
         self.key_dict = {}
+        self.key_dict2 = {}
         #调用先前写好的按钮函数
         self.increase_btn = Button(self.surf,1200,650,'increase')
         self.decrease_btn = Button(self.surf,1200,750,'decrease')
@@ -221,7 +224,7 @@ class Game_algorithm():
                 print(self.card_blit_point)
                 
 
-############################################开始算法####################################################################################################################
+############################################开始算法###################################################################################################################
         
         else:
             Game_algorithm.draw_cards(self,event,mouseevent)
@@ -244,8 +247,6 @@ class Game_algorithm():
                         for d in self.current_card.keys():
                             self.cache = {d:[500+self.position,self.card_blit_point[d][1]-300]}
                             self.card_play_point.update(self.cache)#为{path:position}
-                            line()
-                            print(self.card_play_point)
 
                             self.cache = {d:[self.card_play_point[d][0],self.card_play_point[d][1]-50]}
                             self.prevous_card_point.update(self.cache)#为{path:position}
@@ -285,13 +286,51 @@ class Game_algorithm():
 
         for d in self.prevous_card.keys():
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
-
+        
 
 ######################################################################################################################################################################
 
-    def ai_alorithm(self):
-        pass
-        
+    def ai_alorithm(self,mode):
+        if self.round == 2:
+            pass
+        elif mode == 1:
+            self.key_dict.clear()
+            self.key_dict2.clear()
+            target_key_list = list(self.prevous_card.keys())#path
+            key_list = list(self.choosed_poker01.keys())#path
+
+            for kl in range(len(target_key_list)):
+                self.cache = {kl:int(target_key_list[kl][0:2])}
+                self.key_dict.update(self.cache)#path of previous_card with no (letter).png
+            self.position = 0
+            for g in range(len(key_list)):
+                self.cache = {g:int(key_list[g][0:2])}
+                self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
+
+                if len(self.key_dict) == 1:
+                    if self.key_dict2[g] > self.key_dict.values():
+                        self.ai_prevous_card_point.clear()
+                        self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
+                        self.ai_prevous_card.update(self.cache)
+                        self.cache = {key_list[g]:[self.position+1200,300]}
+                        self.ai_prevous_card_point.update(self.cache)
+                        return True
+                    
+                    
+                # elif len(self.key_dict) == 2:
+                #     if self.key_dict[0] == self.key_dict[1]:
+                #         return True
+                #     else:
+                #         return False
+                    
+                # elif len(self.key_dict) == 4:
+                #     if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
+                #         return True
+                #     elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
+                #         return True
+                #     else:
+                #         return False
+
 
 ######################################################################################################################################################################
 
