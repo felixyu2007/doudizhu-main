@@ -308,30 +308,38 @@ class Game_algorithm():
                 self.cache = {g:int(key_list[g][0:2])}
                 self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
 
+                self.ai_prevous_card.clear()
+                self.ai_prevous_card_point.clear()
+                
                 if len(self.key_dict) == 1:
                     if self.key_dict2[g] > self.key_dict[0]:
-                        self.ai_prevous_card.clear()
-                        self.ai_prevous_card_point.clear()
+                        
                         self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
                         self.ai_prevous_card.update(self.cache)#为{path:surface}
-                        self.cache = {key_list[g]:[self.position+1200,300]}
+                        self.cache = {key_list[g]:[self.position+1200,200]}
                         self.ai_prevous_card_point.update(self.cache)#为{path:position}
+
+                        del self.choosed_poker01[g]
+                        line()
+                        print(self.ai_prevous_card)
                         return True
+                    else:
+                        return False
+     
+                elif len(self.key_dict) == 2:
+                    if self.key_dict[g] == self.key_dict[g + 1]:
+                        if self.key_dict2[g] > self.key_dict[0]:
+                            return True
+                    else:
+                        return False
                     
-                    
-                # elif len(self.key_dict) == 2:
-                #     if self.key_dict[0] == self.key_dict[1]:
-                #         return True
-                #     else:
-                #         return False
-                    
-                # elif len(self.key_dict) == 4:
-                #     if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
-                #         return True
-                #     elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
-                #         return True
-                #     else:
-                #         return False
+                elif len(self.key_dict) == 4:
+                    if self.key_dict[0] == self.key_dict[1] == self.key_dict[2] == self.key_dict[3]:
+                        return True
+                    elif (self.key_dict[0] == self.key_dict[1] == self.key_dict[2]) or (self.key_dict[1] == self.key_dict[2] == self.key_dict[3]):
+                        return True
+                    else:
+                        return False
 
 
 ######################################################################################################################################################################
