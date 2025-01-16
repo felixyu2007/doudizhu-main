@@ -286,14 +286,15 @@ class Game_algorithm():
 
         for d in self.prevous_card.keys():
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
-        
+        for d in self.ai_prevous_card.keys():
+            self.surf.blit(self.ai_prevous_card[d],self.ai_prevous_card_point[d])
 
 ######################################################################################################################################################################
 
-    def ai_alorithm(self,mode):
+    def ai_alorithm(self):
         if self.round == 2:
             pass
-        elif mode == 1:
+        else:
             self.key_dict.clear()
             self.key_dict2.clear()
             target_key_list = list(self.prevous_card.keys())#path
@@ -311,9 +312,9 @@ class Game_algorithm():
                     if self.key_dict2[g] > self.key_dict.values():
                         self.ai_prevous_card_point.clear()
                         self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
-                        self.ai_prevous_card.update(self.cache)
+                        self.ai_prevous_card.update(self.cache)#为{path:surface}
                         self.cache = {key_list[g]:[self.position+1200,300]}
-                        self.ai_prevous_card_point.update(self.cache)
+                        self.ai_prevous_card_point.update(self.cache)#为{path:position}
                         return True
                     
                     
