@@ -13,6 +13,7 @@ class Game_algorithm():
         self.ai_prevous_card = {}
         self.current_card = {}
         self.free_hand = False
+        self.ai_free_hand = False
         self.cursor = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
@@ -274,6 +275,7 @@ class Game_algorithm():
                 if passround == True:
                     self.round += 1
                     Game_algorithm.ai_alorithm(self)
+                    self.ai_free_hand == True
                     passround == False
                 else:pass
 
@@ -320,8 +322,21 @@ class Game_algorithm():
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
 
-        if self.round == 2:
-            pass
+        if self.round == 2 or self.ai_free_hand == True:
+            self.ai_prevous_card.clear()
+            self.ai_prevous_card_point.clear()
+            ans = random.choice(list(self.choosed_poker01.keys()))
+            self.cache = {key_list[ans]:self.choosed_poker01[key_list[ans]]}
+            self.ai_prevous_card.update(self.cache)#为{path:surface}
+            del self.choosed_poker01[key_list[ans]]
+
+            self.cache = {key_list[ans]:[self.position+1200,200]}
+            self.ai_prevous_card_point.update(self.cache)#为{path:position}
+
+            line()
+            print(self.ai_prevous_card)
+            self.ai_free_hand = False
+            return True
         else: 
             line()
             print(self.key_dict2)  
