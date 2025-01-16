@@ -310,6 +310,7 @@ class Game_algorithm():
 
                 if len(self.key_dict) == 1:
                     if self.key_dict2[g] > self.key_dict[0]:
+                        self.ai_prevous_card.clear()
                         self.ai_prevous_card_point.clear()
                         self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
                         self.ai_prevous_card.update(self.cache)#为{path:surface}
