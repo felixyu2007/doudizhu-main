@@ -228,13 +228,13 @@ class Game_algorithm():
 ############################################开始算法###################################################################################################################
         
         else:
-            Game_algorithm.draw_cards(self,event,mouseevent)
             if self.choosen == False and self.round == 2:
                 self.round += 1
                 #自動pass,且決定地主
                 #here the ai algorithm
                 Game_algorithm.ai_alorithm(self)
             else:
+                Game_algorithm.draw_cards(self,event,mouseevent)
                 passround = self.pass_btn.clickbutton(mouseevent,event)
                 ans = Game_algorithm.check_hand(self)#self.card_play_point.clear() and self.current_card.clear()
                 
@@ -284,11 +284,12 @@ class Game_algorithm():
                         self.card_blit_point[c][1] = 730
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
-
+        if self.choosen == False and self.round == 2:
+            for d in self.ai_prevous_card.keys():
+                self.surf.blit(self.ai_prevous_card[d],self.ai_prevous_card_point[d])
         for d in self.prevous_card.keys():
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
-        for d in self.ai_prevous_card.keys():
-            self.surf.blit(self.ai_prevous_card[d],self.ai_prevous_card_point[d])
+        
 
 ######################################################################################################################################################################
 
@@ -325,7 +326,9 @@ class Game_algorithm():
                         pass
      
                 elif len(self.key_dict) == 2:
-                    if self.key_dict2[g] == self.key_dict2[g + 1]:
+                    if g == len(key_list)-2:
+                        return False
+                    elif self.key_dict2[g] == self.key_dict2[g + 1]:
                         if self.key_dict2[g] > self.key_dict[0]:
                             self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
                             self.ai_prevous_card.update(self.cache)#为{path:surface}
@@ -345,11 +348,11 @@ class Game_algorithm():
                             return True
                         else:
                             pass
-                    elif g == len(key_list)-2:
-                        return False
                     
                 elif len(self.key_dict) == 4:
-                    if self.key_dict[0] == self.key_dict[3]:
+                    if g == len(key_list)-4:
+                        return False
+                    elif self.key_dict[0] == self.key_dict[3]:
                         if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2] == self.key_dict2[g+3]:
                             if self.key_dict2[g] > self.key_dict[0]:
                                 self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
@@ -418,8 +421,6 @@ class Game_algorithm():
                             return True
                         else:
                             pass
-                    elif g == len(key_list)-4:
-                        return False
                     
                 elif len(self.key_dict) >= 5:
                     if self.key_dict[0]+1 == self.key_dict[1]:
@@ -430,6 +431,9 @@ class Game_algorithm():
                             self.cursor = True
                     elif self.key_dict[0] == self.key_dict[1]:
                         self.cursor = False
+
+                    if g == len(key_list)-5:
+                        return False
 
                     if self.cursor == True:
                         if self.key_dict2[g]+4 == self.key_dict2[g+1]+3 == self.key_dict2[g+2]+2 == self.key_dict2[g+3]+1 == self.key_dict2[g+4]:
@@ -473,13 +477,8 @@ class Game_algorithm():
                                 pass
                         else:
                             pass
-                    elif self.cursor == False:
-                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2] :
-                            
-
-                    if g == len(key_list)-5:
+                    else:
                         return False
-                
 
 ######################################################################################################################################################################
 
