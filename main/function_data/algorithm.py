@@ -299,12 +299,9 @@ class Game_algorithm():
                         self.card_blit_point[c][1] = 730
             elif not self.image_scale.collidepoint(mouseevent) and self.card_blit_point[c][1] != 700:
                 self.card_blit_point[c][1] = 750
-        # if self.free_hand == True:
-        #     pass
-        # elif self.choosen == False and self.free_hand == False:
+                
         for d in self.ai_prevous_card.keys():
             self.surf.blit(self.ai_prevous_card[d],self.ai_prevous_card_point[d])
-        # elif self.choosen == True and self.free_hand == False:
         for d in self.prevous_card.keys():
             self.surf.blit(self.prevous_card[d],self.prevous_card_point[d])
         
