@@ -50,6 +50,7 @@ class Game_algorithm():
         self.choosen = False
         #繪製ai玩家的咨詢
         self.ai_info = self.text.render(''.join(str(self.price)),True,(255,255,255))
+        
 
 ######################################################################################################################################################################
         
@@ -265,6 +266,7 @@ class Game_algorithm():
                         ans2 = Game_algorithm.ai_alorithm(self)
                         if ans2:
                             self.free_hand = False
+                            self.surf.blit()
                             print('not free')
                         else:
                             self.free_hand = True
