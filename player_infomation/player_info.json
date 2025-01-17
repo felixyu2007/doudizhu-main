@@ -1,1 +1,4 @@
-{"username": "gil", "userpassword": "tiul", "userfunding": 10000}
+[
+{"username": "gil", "userpassword": "tiul", "userfunding": 10000},
+{"ai_username": "Bill Gate", "userpassword": "", "userfunding": 1000000}
+]

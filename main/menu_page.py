@@ -17,9 +17,14 @@ class Sign_page():
         self.signed = signed
         self.surf = surf
         self.login_mode = login_mode
-        self.getinbtn = function_data.button.Button(self.surf,1200,550,'get in!')
+        self.check_account_mode = False
+        self.getinbtn = function_data.button.Button(self.surf,1200,450,'Enter',green)
+        self.signinbtn = function_data.button.Button(self.surf,1200,400,'sign in',orange2)
+        self.loginbtn = function_data.button.Button(self.surf,1200,600,'log in',orange2)
+        self.delaccbtn = function_data.button.Button(self.surf,1200,800,'find and delete accounts',orange2)
         self.name = function_data.inputbox.Intput_box(self.surf,600,500,'name')
         self.password = function_data.inputbox.Intput_box(self.surf,600,600,'password')
+        self.del_account = function_data.inputbox.Intput_box(self.surf,600,400,'Enter the account name you want to delete')
 
     def sign_page(self,event,mouseevent):
         global getin
@@ -50,7 +55,6 @@ class Sign_page():
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if aname != '' and apassword != '':
                 if getinbutton == True and getinbutton not in disable_button:
-                    disable_button.append(getinbutton)
                     function_data.signin_and_login_system.sign_up(aname,apassword)
                     getin = True
                     return getin
@@ -83,21 +87,42 @@ class Sign_page():
                 if getinbutton == True and getinbutton not in disable_button:
                     ans = function_data.signin_and_login_system.login(name,password)
                     if ans == True:
-                        disable_button.append(getinbutton)
                         return getinbutton
                     else:
                         return False
-                    
+        
+        if self.check_account_mode == True:
+            self.surf.fill(black)
+            pygame.draw.rect(self.surf,orange,points[15])
+            pygame.draw.polygon(self.surf,orange2,draw_points1,0)
+            pygame.draw.polygon(self.surf,red2,draw_points2,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points3,0)
+            pygame.draw.polygon(self.surf,red2,draw_points4,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points5,0)
+
+            self.del_account.draw()
+            delete = self.del_account.interact(event)
+
+            getinbutton = self.getinbtn.clickbutton(mouseevent,event)
+            if delete != '':
+                ans = function_data.signin_and_login_system.del_account(delete)
+                if ans:
+                    pass
+                else:
+                    pass
+
         if self.signed == False:
             self.surf.fill(orange)
-            self.surf.blit(button_image07,points[13])
-            self.surf.blit(button_image08,points[14])
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if 100 < pygame.mouse.get_pos()[0] < 796 and 100 < pygame.mouse.get_pos()[1] < 455:
-                    self.signed = True
-                    self.login_mode = True
-                if 900 < pygame.mouse.get_pos()[0] < 1596 and 100 < pygame.mouse.get_pos()[1] < 495:
-                    self.signed = True
+            a = self.signinbtn.clickbutton(mouseevent,event)
+            b = self.loginbtn.clickbutton(mouseevent,event)
+            c = self.delaccbtn.clickbutton(mouseevent,event)
+            if a:
+                self.signed = True
+                self.login_mode = True
+            elif b:
+                self.signed = True
+            elif c:
+                self.check_account_mode = True
 
 class Menu():
     def __init__(self,surf):
