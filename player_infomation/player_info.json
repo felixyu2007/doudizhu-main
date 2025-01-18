@@ -1,69 +1,78 @@
 {
-    "user":[
+    "user": [
         {
-            "username":"gfd"
+            "yuyuyuyu": "asdasdasd",
+            "asdasdyu": "ththththth",
+            "12121212": "123456789",
+            "12121213": "123456789"
         },
         {
-            "password":"dgf"
+            "yuyuyuyu": "asdasdasd",
+            "asdasdyu": "ththththth",
+            "12121212": "123456789",
+            "12121213": "123456789"
         },
         {
-            "fund":10000
+            "yuyuyuyu": 10000,
+            "asdasdyu": 10000,
+            "12121212": 10000,
+            "12121213": 10000
         }
     ],
-    "bernard":[
+    "bernard": [
         {
-            "username":"Bernard Arnault"
+            "username": "Bernard Arnault"
         },
         {
-            "fund":23300000000
+            "fund": 23300000000
         }
     ],
-    "elon":[
+    "elon": [
         {
-            "username":"Elon Musk"
+            "username": "Elon Musk"
         },
         {
-            "fund":19500000000
+            "fund": 19500000000
         }
     ],
-    "jeff":[
+    "jeff": [
         {
-            "username":"Jeff Bezos"
+            "username": "Jeff Bezos"
         },
         {
-            "fund":19400000000
+            "fund": 19400000000
         }
     ],
-    "mark":[
+    "mark": [
         {
-            "username":"Mark Zuckerburg"
+            "username": "Mark Zuckerburg"
         },
         {
-            "fund":17700000000
+            "fund": 17700000000
         }
     ],
-    "larry":[
+    "larry": [
         {
-            "username":"Larry Ellison"
+            "username": "Larry Ellison"
         },
         {
-            "fund":14100000000
+            "fund": 14100000000
         }
     ],
-    "warren":[
+    "warren": [
         {
-            "username":"Warren Buffett"
+            "username": "Warren Buffett"
         },
         {
-            "fund":23300000000
+            "fund": 23300000000
         }
     ],
-    "bill":[
+    "bill": [
         {
-            "username":"Bill Gates"
+            "username": "Bill Gates"
         },
         {
-            "fund":12800000000
+            "fund": 12800000000
         }
     ]
 }

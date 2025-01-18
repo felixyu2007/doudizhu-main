@@ -1,4 +1,5 @@
 #import cache and refresh_system
+import function_data.bgdata
 import function_data.button
 import function_data.inputbox
 import function_data.signin_and_login_system
@@ -22,15 +23,36 @@ class Sign_page():
         self.getinbtn = function_data.button.Button(self.surf,1200,650,'Enter',green)
         self.signinbtn = function_data.button.Button(self.surf,1200,400,'sign in',orange2)
         self.loginbtn = function_data.button.Button(self.surf,1200,600,'log in',orange2)
-        self.delaccbtn = function_data.button.Button(self.surf,1200,800,'find and delete accounts',orange2)
-        self.user_id = function_data.inputbox.Intput_box(self.surf,600,500,'user id (must be integer and longer than 7)')
-        self.name = function_data.inputbox.Intput_box(self.surf,600,600,'name (must be longer than 7)')
-        self.password = function_data.inputbox.Intput_box(self.surf,600,700,'password (must be longer than 7)')
+        self.delaccbtn = function_data.button.Button(self.surf,1200,800,'del account',orange2)
+        self.user_id = function_data.inputbox.Intput_box(self.surf,600,500,'user id (must be integer and 8 letters)')
+        self.name = function_data.inputbox.Intput_box(self.surf,600,600,'name (must be longer than 7 letters)')
+        self.password = function_data.inputbox.Intput_box(self.surf,600,700,'password (must be longer than 7 letters)')
         self.del_account = function_data.inputbox.Intput_box(self.surf,600,400,'Enter the account id you want to delete')
 
     def sign_page(self,event,mouseevent):
         global getin
-        if self.signed == True and self.login_mode == False: 
+
+        if self.signed == False and self.del_account_mode == True:
+            self.surf.fill(black)
+            pygame.draw.rect(self.surf,orange,points[15])
+            pygame.draw.polygon(self.surf,orange2,draw_points1,0)
+            pygame.draw.polygon(self.surf,red2,draw_points2,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points3,0)
+            pygame.draw.polygon(self.surf,red2,draw_points4,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points5,0)
+
+            self.del_account.draw()
+            userid = self.del_account.interact(event)
+
+            getinbutton = self.getinbtn.clickbutton(mouseevent,event)
+            if userid != '' and len(userid) == 8:
+                ans = self.sign.delete_account(userid)
+                if ans:
+                    function_data.bgdata.ask_quetion('notice','account delete')
+                else:
+                    pass
+
+        elif self.signed == True and self.login_mode == False: 
             self.surf.fill(black)
             pygame.draw.rect(self.surf,orange,points[15])
             pygame.draw.polygon(self.surf,orange2,draw_points1,0)
@@ -57,11 +79,11 @@ class Sign_page():
             password = self.password.interact(event)
             
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if (userid != '' and name != '' and password != '') and len(userid,name,password) == (8,8,8) and userid == int:
+            if (userid != '' and name != '' and password != '') and (len(userid) == 8 and len(name) >= 8 and len(password) >= 8):
                 if getinbutton == True:
-                    getin = self.sign.create_account(userid,name,password)
-                    return getin
-        if self.signed == True and self.login_mode == True:
+                    ans = self.sign.login(userid,name,password)
+                    return ans
+        elif self.signed == True and self.login_mode == True:
             self.surf.fill(black)
             pygame.draw.rect(self.surf,orange,points[15])
             pygame.draw.polygon(self.surf,orange2,draw_points1,0)
@@ -88,32 +110,12 @@ class Sign_page():
             password = self.password.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if (userid != '' and name != '' and password != '') and len(userid,name,password) == (8,8,8) and userid == int:
+            if (userid != '' and name != '' and password != '') and (len(userid) == 8 and len(name) >= 8 and len(password) >= 8):
                 if getinbutton == True:
-                    ans = self.sign.login(userid,name,password)
+                    ans = self.sign.create_account(userid,name,password)
                     return ans
-        
-        if self.del_account_mode == True:
-            self.surf.fill(black)
-            pygame.draw.rect(self.surf,orange,points[15])
-            pygame.draw.polygon(self.surf,orange2,draw_points1,0)
-            pygame.draw.polygon(self.surf,red2,draw_points2,0)
-            pygame.draw.polygon(self.surf,orange2,draw_points3,0)
-            pygame.draw.polygon(self.surf,red2,draw_points4,0)
-            pygame.draw.polygon(self.surf,orange2,draw_points5,0)
 
-            self.del_account.draw()
-            userid = self.del_account.interact(event)
-
-            getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if userid != '':
-                ans = self.sign.delete_account(userid)
-                if ans:
-                    pass
-                else:
-                    pass
-
-        if self.signed == False:
+        if self.signed == False and self.del_account_mode == False:
             self.surf.fill(black)
             pygame.draw.rect(self.surf,orange,points[15])
             pygame.draw.polygon(self.surf,orange2,draw_points1,0)
@@ -131,7 +133,8 @@ class Sign_page():
             elif b:
                 self.signed = True
             elif c:
-                self.check_account_mode = True
+                self.signed = False
+                self.del_account_mode = True
 
 class Menu():
     def __init__(self,surf):
