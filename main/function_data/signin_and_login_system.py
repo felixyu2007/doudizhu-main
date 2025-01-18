@@ -25,10 +25,12 @@ class Signin_and_login_method():
         with open(self.path,mode='r+') as opr:
             self.data = json.load(opr)
             if target in self.data:
-
-                
+                return True
             if target not in self.data:
                 function_data.bgdata.ask_quetion('sign_error','account not existed')
+                return False
     def get_userinfo(self):
-        pass
+        with open(self.path,mode='r') as opr:
+            self.data = json.load(opr)
+            
             

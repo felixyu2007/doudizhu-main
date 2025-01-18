@@ -49,16 +49,4 @@ login_mode = False
 #background and cardback and button image
 background_image = pygame.image.load(r'button_image\background.png')
 cardback = pygame.image.load('button_image\card_back.png')
-# button_image01 = pygame.image.load(r'button_image\background.png')
-# button_image02 = pygame.image.load(r'button_image\button01.jpg')
-# button_image03 = pygame.image.load(r'button_image\button02.jpg')
-# button_image04 = pygame.image.load(r'button_image\button(1).png')
-# button_image05 = pygame.image.load(r'button_image\button01(1).png')
-# button_image06 = pygame.image.load(r'button_image\button02(1).png')
-button_image07 = pygame.image.load('button_image\SIGNIN.png')
-button_image08 = pygame.image.load('button_image\png.png')
 button_image09 = pygame.image.load(r'button_image\rule.png')
-# textfont = pygame.font.SysFont('Raleway_Bold',50)
-# roundtext = textfont.render('第1回合',True,'white')
-# yifapaitext = textfont.render('已经发牌了哦~~~',True,'white')
-#poker image
