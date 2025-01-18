@@ -45,10 +45,11 @@ class Sign_page():
             userid = self.del_account.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if userid != '' and len(userid) == 8 and getinbutton:
+            if userid != '' and len(userid) == 8 and getinbutton == True:
                 ans = self.sign.delete_account(userid)
                 if ans:
-                    function_data.bgdata.ask_quetion('notice','account delete')
+                    function_data.bgdata.ask_quetion('sign_error','account deleted')
+                    self.del_account_mode == False
                 else:
                     pass
 

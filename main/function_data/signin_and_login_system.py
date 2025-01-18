@@ -35,14 +35,16 @@ class Signin_and_login_method():
             json.dump(self.data,opw,indent=4)
 
     def delete_account(self,target):
-        with open(self.path,mode='w') as opw:
+        with open(self.path,mode='w',encoding='utf-8') as opw:
             if target in self.data['user'][0]:
                 del self.data['user'][0][target]
                 del self.data['user'][1][target]
                 del self.data['user'][2][target]
-                json.dump(self.data,opw)
+                print(self.data)
+                json.dump(self.data,opw,indent=4)
                 return True
-            if target not in self.data:
+            if target not in self.data['user'][0]:
+                json.dump(self.data,opw,indent=4)
                 function_data.bgdata.ask_quetion('sign_error','account not existed')
                 return False
     def get_userinfo(self,userid):
