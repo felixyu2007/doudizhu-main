@@ -18,6 +18,7 @@ class Sign_page():
         self.surf = surf
         self.login_mode = login_mode
         self.check_account_mode = False
+        self.sign = function_data.signin_and_login_system.Signin_and_login_method()
         self.getinbtn = function_data.button.Button(self.surf,1200,450,'Enter',green)
         self.signinbtn = function_data.button.Button(self.surf,1200,400,'sign in',orange2)
         self.loginbtn = function_data.button.Button(self.surf,1200,600,'log in',orange2)
@@ -49,14 +50,13 @@ class Sign_page():
 
             self.name.draw()
             self.password.draw()
-            aname = self.name.interact(event)
-            apassword = self.password.interact(event)
+            name = self.name.interact(event)
+            password = self.password.interact(event)
             
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if aname != '' and apassword != '':
+            if name != '' and password != '':
                 if getinbutton == True and getinbutton not in disable_button:
-                    function_data.signin_and_login_system.sign_up(aname,apassword)
-                    getin = True
+                    getin = self.sign.create_account(name,password)
                     return getin
         if self.signed == True and self.login_mode == True:
             self.surf.fill(black)
@@ -85,7 +85,7 @@ class Sign_page():
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if name != '' and password != '':
                 if getinbutton == True and getinbutton not in disable_button:
-                    ans = function_data.signin_and_login_system.login(name,password)
+                    ans = self.sign.create_account(name,password)
                     if ans == True:
                         return getinbutton
                     else:
@@ -105,7 +105,7 @@ class Sign_page():
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if delete != '':
-                ans = function_data.signin_and_login_system.del_account(delete)
+                ans = self.sign.delete_account(delete)
                 if ans:
                     pass
                 else:
