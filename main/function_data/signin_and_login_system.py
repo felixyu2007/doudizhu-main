@@ -3,36 +3,42 @@ import json
 class Signin_and_login_method():
     def __init__(self):
         self.path = 'player_infomation\player_info.json'
-        self.data = ''
-    def load_account(self):
-        try:
-            with open(self.path,mode='r') as opr:
-                self.data = {'users':[{user['username']:user for user in json.load(opr)}]}
-                print(self.data)
-        except:
-            self.data = {}
-    def create_account(self,username,password):
-        if username in self.data:
+        self.cache1 = {}
+        self.cache2 = {}
+        with open(self.path,mode='r',encoding='utf-8') as opr:
+            self.data = json.load(opr)
+            print(self.data)
+
+    def create_account(self,user_id,username,password):
+        if user_id in self.data['user'][0]:
             function_data.bgdata.ask_quetion('sign_error','account existed')
             return False
-        elif username not in self.data:
-            Signin_and_login_method.save_account(self,username,password)
+        if user_id not in self.data['user'][0]:
+            Signin_and_login_method.save_account(self,user_id,username,password)
             function_data.bgdata.ask_quetion('login?','account created')
             return True
 
-    def login(self):
-        pass
+    def login(self,user_id,username,password):
+        if username == self.data['user'][0][user_id] and password == self.data['user'][1][user_id]:
+            return True
 
-    def save_account(self,username,password):
-        with open(self.path,mode='a') as opw:
-            cache = {'username':username,'password':password}
-            json.dump(cache,opw,indent=4,skipkeys=(',',':'))
+    def save_account(self,user_id,username,password):
+        with open(self.path,mode='w') as opw:
+            self.cache1 = {user_id:username}
+            self.cache2 = {user_id:password}
+            self.cache3 = {user_id:10000}
+            self.data['user'][0].update(self.cache1)
+            self.data['user'][1].update(self.cache2)
+            self.data['user'][2].update(self.cache3)
+            json.dump(self.data,opw)
 
     def delete_account(self,target):
-        with open(self.path,mode='r+') as opr:
-            self.data = json.load(opr)
-            if target in self.data:
-                return True
+        with open(self.path,mode='w') as opw:
+            if target in self.data['user'][0]:
+                del self.data['user'][0][target]
+                del self.data['user'][1][target]
+                del self.data['user'][2][target]
+                json.dump(self.data,opw)
             if target not in self.data:
                 function_data.bgdata.ask_quetion('sign_error','account not existed')
                 return False

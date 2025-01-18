@@ -1,3 +1,69 @@
 {
-    "users" : []
+    "user":[
+        {
+            "username":"gfd"
+        },
+        {
+            "password":"dgf"
+        },
+        {
+            "fund":10000
+        }
+    ],
+    "bernard":[
+        {
+            "username":"Bernard Arnault"
+        },
+        {
+            "fund":23300000000
+        }
+    ],
+    "elon":[
+        {
+            "username":"Elon Musk"
+        },
+        {
+            "fund":19500000000
+        }
+    ],
+    "jeff":[
+        {
+            "username":"Jeff Bezos"
+        },
+        {
+            "fund":19400000000
+        }
+    ],
+    "mark":[
+        {
+            "username":"Mark Zuckerburg"
+        },
+        {
+            "fund":17700000000
+        }
+    ],
+    "larry":[
+        {
+            "username":"Larry Ellison"
+        },
+        {
+            "fund":14100000000
+        }
+    ],
+    "warren":[
+        {
+            "username":"Warren Buffett"
+        },
+        {
+            "fund":23300000000
+        }
+    ],
+    "bill":[
+        {
+            "username":"Bill Gates"
+        },
+        {
+            "fund":12800000000
+        }
+    ]
 }

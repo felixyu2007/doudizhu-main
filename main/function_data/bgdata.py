@@ -7,7 +7,7 @@ def ask_quetion(input_title,input_message):
         quit()
     if ans == 'yes' and input_title == 'login?':
         ined = True
-    if ans == 'yes' and input_title == 'sign error':
+    if ans == 'yes' and input_title == 'sign_error':
         return False
 def line():
     print('='*152)

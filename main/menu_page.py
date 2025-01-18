@@ -17,15 +17,16 @@ class Sign_page():
         self.signed = signed
         self.surf = surf
         self.login_mode = login_mode
-        self.check_account_mode = False
+        self.del_account_mode = False
         self.sign = function_data.signin_and_login_system.Signin_and_login_method()
-        self.getinbtn = function_data.button.Button(self.surf,1200,450,'Enter',green)
+        self.getinbtn = function_data.button.Button(self.surf,1200,650,'Enter',green)
         self.signinbtn = function_data.button.Button(self.surf,1200,400,'sign in',orange2)
         self.loginbtn = function_data.button.Button(self.surf,1200,600,'log in',orange2)
         self.delaccbtn = function_data.button.Button(self.surf,1200,800,'find and delete accounts',orange2)
-        self.name = function_data.inputbox.Intput_box(self.surf,600,500,'name')
-        self.password = function_data.inputbox.Intput_box(self.surf,600,600,'password')
-        self.del_account = function_data.inputbox.Intput_box(self.surf,600,400,'Enter the account name you want to delete')
+        self.user_id = function_data.inputbox.Intput_box(self.surf,600,500,'user id (must be integer and longer than 7)')
+        self.name = function_data.inputbox.Intput_box(self.surf,600,600,'name (must be longer than 7)')
+        self.password = function_data.inputbox.Intput_box(self.surf,600,700,'password (must be longer than 7)')
+        self.del_account = function_data.inputbox.Intput_box(self.surf,600,400,'Enter the account id you want to delete')
 
     def sign_page(self,event,mouseevent):
         global getin
@@ -50,13 +51,15 @@ class Sign_page():
 
             self.name.draw()
             self.password.draw()
+            self.user_id.draw()
+            userid = self.user_id.interact(event)
             name = self.name.interact(event)
             password = self.password.interact(event)
             
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if name != '' and password != '':
-                if getinbutton == True and getinbutton not in disable_button:
-                    getin = self.sign.create_account(name,password)
+            if (userid != '' and name != '' and password != '') and len(userid,name,password) == (8,8,8) and userid == int:
+                if getinbutton == True:
+                    getin = self.sign.create_account(userid,name,password)
                     return getin
         if self.signed == True and self.login_mode == True:
             self.surf.fill(black)
@@ -79,19 +82,18 @@ class Sign_page():
 
             self.name.draw()
             self.password.draw()
+            self.user_id.draw()
+            userid = self.user_id.interact(event)
             name = self.name.interact(event)
             password = self.password.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if name != '' and password != '':
-                if getinbutton == True and getinbutton not in disable_button:
-                    ans = self.sign.create_account(name,password)
-                    if ans == True:
-                        return getinbutton
-                    else:
-                        return False
+            if (userid != '' and name != '' and password != '') and len(userid,name,password) == (8,8,8) and userid == int:
+                if getinbutton == True:
+                    ans = self.sign.login(userid,name,password)
+                    return ans
         
-        if self.check_account_mode == True:
+        if self.del_account_mode == True:
             self.surf.fill(black)
             pygame.draw.rect(self.surf,orange,points[15])
             pygame.draw.polygon(self.surf,orange2,draw_points1,0)
@@ -101,18 +103,25 @@ class Sign_page():
             pygame.draw.polygon(self.surf,orange2,draw_points5,0)
 
             self.del_account.draw()
-            delete = self.del_account.interact(event)
+            userid = self.del_account.interact(event)
 
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
-            if delete != '':
-                ans = self.sign.delete_account(delete)
+            if userid != '':
+                ans = self.sign.delete_account(userid)
                 if ans:
                     pass
                 else:
                     pass
 
         if self.signed == False:
-            self.surf.fill(orange)
+            self.surf.fill(black)
+            pygame.draw.rect(self.surf,orange,points[15])
+            pygame.draw.polygon(self.surf,orange2,draw_points1,0)
+            pygame.draw.polygon(self.surf,red2,draw_points2,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points3,0)
+            pygame.draw.polygon(self.surf,red2,draw_points4,0)
+            pygame.draw.polygon(self.surf,orange2,draw_points5,0)
+
             a = self.signinbtn.clickbutton(mouseevent,event)
             b = self.loginbtn.clickbutton(mouseevent,event)
             c = self.delaccbtn.clickbutton(mouseevent,event)
