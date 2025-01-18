@@ -1,0 +1,79 @@
+{
+    "user": [
+        {
+            "yuyuyuyu": "asdasdasd",
+            "asdasdyu": "ththththth",
+            "12121212": "123456789",
+            "12121213": "123456789"
+        },
+        {
+            "yuyuyuyu": "asdasdasd",
+            "asdasdyu": "ththththth",
+            "12121212": "123456789",
+            "12121213": "123456789"
+        },
+        {
+            "yuyuyuyu": 10000,
+            "asdasdyu": 10000,
+            "12121212": 10000,
+            "12121213": 10000
+        }
+    ],
+    "bernard": [
+        {
+            "username": "Bernard Arnault"
+        },
+        {
+            "fund": 23300000000
+        }
+    ],
+    "elon": [
+        {
+            "username": "Elon Musk"
+        },
+        {
+            "fund": 19500000000
+        }
+    ],
+    "jeff": [
+        {
+            "username": "Jeff Bezos"
+        },
+        {
+            "fund": 19400000000
+        }
+    ],
+    "mark": [
+        {
+            "username": "Mark Zuckerburg"
+        },
+        {
+            "fund": 17700000000
+        }
+    ],
+    "larry": [
+        {
+            "username": "Larry Ellison"
+        },
+        {
+            "fund": 14100000000
+        }
+    ],
+    "warren": [
+        {
+            "username": "Warren Buffett"
+        },
+        {
+            "fund": 23300000000
+        }
+    ],
+    "bill": [
+        {
+            "username": "Bill Gates"
+        },
+        {
+            "fund": 12800000000
+        }
+    ]
+}
+
