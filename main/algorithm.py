@@ -16,6 +16,7 @@ class Game_algorithm():
         self.free_hand = False
         self.ai_free_hand = False
         self.cursor = False
+        self.winner = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
@@ -38,8 +39,8 @@ class Game_algorithm():
         self.increase_btn = Button(self.surf,1200,650,'increase',green)
         self.decrease_btn = Button(self.surf,1200,750,'decrease',green)
         self.bet_button = Button(self.surf,1450,750,'bet',green)
-        self.grab_button = Button(self.surf,1450,850,'be the landlord',green)
-        self.unrob_button = Button(self.surf,1450,900,'be the people',green)
+        self.grab_button = Button(self.surf,1450,850,'landlord',green)
+        self.unrob_button = Button(self.surf,1450,950,'people',green)
         self.pass_btn = Button(self.surf,1200,650,'pass',green)
         self.play_btn = Button(self.surf,1500,650,'play',green)
         #要把下注的金额绘制出来
@@ -282,7 +283,8 @@ class Game_algorithm():
                     else:
                         self.free_hand = True
                         print('free')
-                    
+                ans3 = Game_algorithm.check_winner(self)   
+                return ans3
 
 ######################################################################################################################################################################
 
@@ -609,3 +611,12 @@ class Game_algorithm():
                         else:return False
                     else:return False
                 else:return False
+    def check_winner(self):
+        if len(self.choosed_poker01) == 0 and len(self.choosed_poker02) == 0:
+            self.winner = False
+            return self.winner
+        else:pass
+        if len(self.user_choosed_poker) == 0:
+            self.winner = True
+            return self.winner
+        else:pass

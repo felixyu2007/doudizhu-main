@@ -50,5 +50,8 @@ class Refresh_system():
                     self.count += 1
             if self.count != 0:
                 self.surf.blit(cardback,(self.last_coordinate[0],self.last_coordinate[1]))
-        else:
-            self.ga.run(event,mouseevent)
+        elif self.card_sended == True:
+            ans = self.ga.run(event,mouseevent)
+            if ans == True:
+                self.card_sended = False
+            else:pass
