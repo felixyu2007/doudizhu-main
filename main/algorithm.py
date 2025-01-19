@@ -38,8 +38,8 @@ class Game_algorithm():
         self.increase_btn = Button(self.surf,1200,650,'increase',green)
         self.decrease_btn = Button(self.surf,1200,750,'decrease',green)
         self.bet_button = Button(self.surf,1450,750,'bet',green)
-        self.grab_button = Button(self.surf,1450,850,'be the landlord',green)
-        self.unrob_button = Button(self.surf,1450,900,'be the people',green)
+        self.grab_button = Button(self.surf,1450,850,'landlord',green)
+        self.unrob_button = Button(self.surf,1450,920,'people',green)
         self.pass_btn = Button(self.surf,1200,650,'pass',green)
         self.play_btn = Button(self.surf,1500,650,'play',green)
         #要把下注的金额绘制出来

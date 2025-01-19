@@ -9,6 +9,7 @@ class Refresh_system():
         self.movement_position = [900,200]
         self.sended = False
         self.userinfo_size = pygame.font.Font(None,80)
+        self.sign = Signin_and_login_method()
         self.distance = [1,3]
         self.start_coordinate = [900,200]
         self.end_coordinate = [1100,600]
@@ -16,9 +17,12 @@ class Refresh_system():
         self.keep_show = ['','','','','','','','','','','','','','','','','']
         self.count = 0
         self.card_sended = False
+        self.ai1 = None
+        self.ai2 = None
 
     def draw_refreshed(self,event,mouseevent,target):
-        self.ans = Signin_and_login_method.get_userinfo(self,target)
+        self.target = target
+        self.ans = self.sign.get_userinfo(self.target)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
@@ -50,3 +54,4 @@ class Refresh_system():
                 self.surf.blit(cardback,(self.last_coordinate[0],self.last_coordinate[1]))
         else:
             self.ga.run(event,mouseevent)
+
