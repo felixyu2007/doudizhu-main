@@ -48,10 +48,7 @@ class Signin_and_login_method():
                 return False
             
     def get_userinfo(self,userid):
-        try:
-            cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
-        except:
-            cache = ['','']
+        cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
         return cache
 
             

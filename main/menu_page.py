@@ -138,7 +138,7 @@ class Sign_page():
                 self.del_account_mode = True
 
     def sendback(self):
-        return self.user_id
+        return self.userid
 
 class Menu():
     def __init__(self,surf):
