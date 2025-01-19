@@ -1,10 +1,13 @@
 import bgdata
 import json
+import random
 class Signin_and_login_method():
     def __init__(self):
         self.path = 'player_infomation\player_info.json'
         self.cache1 = {}
         self.cache2 = {}
+        self.ai_list = ["bernard","elon","jeff","mark","larry","warren","bill"]
+        self.ais = []
         with open(self.path,mode='r',encoding='utf-8') as opr:
             self.data = json.load(opr)
 
@@ -52,5 +55,16 @@ class Signin_and_login_method():
         cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
     def get_aiinfo(self):
-        pass
+        ans = random.randint(0,6)
+        self.ais.append(self.ai_list[ans])
+        del self.ai_list[ans]
+        ans = random.randint(0,6)
+        self.ais.append(self.ai_list[ans])
+        del self.ai_list[ans]
+        ai_name = self.data[self.ais[0]][0]['username']
+        ai_fund = self.data[self.ais[0]][1]['fund']
+        ai_name2 = self.data[self.ais[1]][0]['username']
+        ai_fund2 = self.data[self.ais[1]][1]['fund']
+        print(ai_name,ai_fund,ai_name2,ai_fund2)
+        return [ai_name,ai_fund,ai_name2,ai_fund2]
             

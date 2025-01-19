@@ -10,6 +10,7 @@ class Refresh_system():
         self.movement_position = [900,200]
         self.sended = False
         self.userinfo_size = pygame.font.Font(None,80)
+        self.ai_info_size =  pygame.font.Font(None,40)
         self.sign = Signin_and_login_method()
         self.distance = [1,3]
         self.start_coordinate = [900,200]
@@ -18,20 +19,32 @@ class Refresh_system():
         self.keep_show = ['','','','','','','','','','','','','','','','','']
         self.count = 0
         self.card_sended = False
-        self.notice_size = pygame.font.Font(None,100)
+        self.notice_size = pygame.font.Font(None,300)
         self.winpage = self.notice_size.render('YOU WIN',True,red)
         self.losepage = self.notice_size.render('YOU lose',True,red)
 
     def draw_refreshed(self,event,mouseevent,target):
         self.target = target
         self.ans = self.sign.get_userinfo(self.target)
+        self.ai_ans = self.sign.get_aiinfo()
+        self.ai_name1 = self.ai_info_size.render(self.ai_ans[0],True,black)
+        self.ai_fund1 = self.ai_info_size.render(self.ai_ans[1],True,black)
+        self.ai_name2 = self.ai_info_size.render(self.ai_ans[2],True,black)
+        self.ai_fund2 = self.ai_info_size.render(self.ai_ans[3],True,black)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
+        pygame.draw.rect(self.surf,black,(0,200,100,50))
+        pygame.draw.rect(self.surf,black,(1820,200,100,50))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
+        self.surf.blit(self.ai_name1,(10,210))
+        self.surf.blit(self.ai_fund1,(10,230))
+        self.surf.blit(self.ai_name2,(1830,210))
+        self.surf.blit(self.ai_fund2,(1830,230))
+        
         if self.card_sended == False:
             if self.start_coordinate[0] <= self.end_coordinate[0] or self.start_coordinate[1] <= self.end_coordinate[1]:
                 self.surf.blit(cardback,(900,200))
