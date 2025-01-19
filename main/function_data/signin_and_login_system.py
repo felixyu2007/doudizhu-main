@@ -47,14 +47,14 @@ class Signin_and_login_method():
                 json.dump(self.data,opw,indent=4)
                 function_data.bgdata.ask_quetion('sign_error','account not existed')
                 return False
+            
     def get_userinfo(self,userid):
         with open(self.path,mode='r',encoding='utf-8') as opr:
             self.data = json.load(opr)
-            print(self.data)
-            try:
-                cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
-            except:
-                cache = ['','']
+        try:
+            cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
+        except:
+            cache = ['','']
         return cache
 
             

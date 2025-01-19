@@ -22,7 +22,7 @@ while True:
                 ans2 = sp.sendback()
                 getin = True
                 started = m.draw_menu(event,ans2)
-    if started == True: 
-        rs.draw_refreshed(event,pygame.mouse.get_pos())
+        if started == True: 
+            rs.draw_refreshed(event,pygame.mouse.get_pos())
     pygame.display.update()
     

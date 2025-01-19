@@ -151,8 +151,9 @@ class Menu():
         self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
 
     def draw_menu(self,event,target):
-        self.sign = function_data.signin_and_login_system.Signin_and_login_method()
-        self.ans = self.sign.get_userinfo(target)
+        self.sign2 = function_data.signin_and_login_system.Signin_and_login_method()
+        self.target = target
+        self.ans = self.sign2.get_userinfo(self.target)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
