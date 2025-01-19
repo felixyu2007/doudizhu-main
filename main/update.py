@@ -3,6 +3,7 @@ from algorithm import *
 
 class Refresh_system():
     def __init__(self,surf):
+        self.sign = Signin_and_login_method()
         self.surf = surf
         self.ga = Game_algorithm(self.surf)
         self.count = 0
@@ -18,7 +19,8 @@ class Refresh_system():
         self.card_sended = False
 
     def draw_refreshed(self,event,mouseevent,target):
-        self.ans = Signin_and_login_method.get_userinfo(self,target)
+        self.target = target
+        self.ans = self.sign.get_userinfo(self.target)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
