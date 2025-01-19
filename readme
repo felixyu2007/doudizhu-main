@@ -1,2 +1,9 @@
 please startgame.py to luanch the game
-!attention! this game have unseekable bug in json file loading it different from user
+before start the game , please ensure your python version higher than 3.9.0
+please enter 'win+r' -> 'cmd' to the terminal.then enter 'pip instsall pygame' and 'pip instsall Tk'
+!attention! this game have unseekable bug in json file loading it different from user you can restart game to repair it
+====================================================================================================
+请使用startgame.py来驱动游戏
+再驱动游戏之前， 请确保你的python版本是3.9.0或以上
+然后输入 'win+r' -> 'cmd' 打开运行窗，分别输入'pip instsall pygame'和'pip instsall Tk'
+！警告！ 此游戏的json档案可能会在写出时报错，重开游戏便可解决
