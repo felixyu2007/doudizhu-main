@@ -18,11 +18,11 @@ while True:
         if started == False:
             if getin == False:
                 ans = sp.sign_page(event,pygame.mouse.get_pos())
-            if ans == True or getin == True:
+            if ans == True:
                 ans2 = sp.sendback()
                 getin = True
                 started = m.draw_menu(event,ans2)
     if started == True: 
         rs.draw_refreshed(event,pygame.mouse.get_pos(),ans2)
-    pygame.display.update()
+    pygame.display.flip()
     
