@@ -48,7 +48,7 @@ class Signin_and_login_method():
                 return False
             
     def get_userinfo(self,userid):
-        cache = [self.data['user'][0][f"{userid}"],self.data['user'][2][f"{userid}"]]
+        cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
 
             

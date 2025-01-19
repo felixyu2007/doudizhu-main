@@ -121,8 +121,9 @@ class Sign_page():
             getinbutton = self.getinbtn.clickbutton(mouseevent,event)
             if (self.userid != '' and name != '' and password != '') and (len(self.userid) == 8 and len(name) >= 8 and len(password) >= 8):
                 if getinbutton == True:
-                    ans = self.sign.create_account(self.userid,name,password)
-                    return ans
+                    self.sign.create_account(self.userid,name,password)
+                    self.signed = False
+                    self.login_mode = self.del_account_mode = False
             if ans2 == True:
                 self.signed = False
                 self.del_account_mode = False
