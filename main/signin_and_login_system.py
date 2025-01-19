@@ -7,7 +7,6 @@ class Signin_and_login_method():
         self.cache2 = {}
         with open(self.path,mode='r',encoding='utf-8') as opr:
             self.data = json.load(opr)
-            print(self.data)
 
     def create_account(self,user_id,username,password):
         if user_id in self.data['user'][0]:
@@ -53,7 +52,6 @@ class Signin_and_login_method():
             cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
         except:
             cache = ['','']
-        print(cache)
         return cache
 
             
