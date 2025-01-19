@@ -7,6 +7,7 @@ class Signin_and_login_method():
         self.cache1 = {}
         self.cache2 = {}
         self.ai_list = ["bernard","elon","jeff","mark","larry","warren","bill"]
+        self.key_list = [0,1,2,3,4,5,6]
         self.ais = []
         with open(self.path,mode='r',encoding='utf-8') as opr:
             self.data = json.load(opr)
@@ -55,12 +56,14 @@ class Signin_and_login_method():
         cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
     def get_aiinfo(self):
-        ans = random.randint(0,6)
+        ans = random.choice(self.key_list)
         self.ais.append(self.ai_list[ans])
         del self.ai_list[ans]
-        ans = random.randint(0,6)
-        self.ais.append(self.ai_list[ans])
-        del self.ai_list[ans]
+        del self.key_list[ans]
+        ans2 = random.choice(self.key_list)
+        self.ais.append(self.ai_list[ans2])
+        del self.ai_list[ans2]
+        del self.key_list[ans2]
         ai_name = self.data[self.ais[0]][0]['username']
         ai_fund = self.data[self.ais[0]][1]['fund']
         ai_name2 = self.data[self.ais[1]][0]['username']
