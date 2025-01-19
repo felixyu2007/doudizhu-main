@@ -428,10 +428,14 @@ class Game_algorithm():
                             del self.choosed_poker01[key_list[g]]
                             del self.choosed_poker01[key_list[g+1]]
                             del self.choosed_poker01[key_list[g+2]]
-                            ans = random.choice(list(self.choosed_poker01.keys()))
-                            self.cache = {ans:self.choosed_poker01[ans]}
-                            self.ai_prevous_card.update(self.cache)#为{path:surface}
-                            del self.choosed_poker01[ans]
+                            ans = random.randint(len(key_list))
+                            if ans == g or g+1 or g+2:
+                                ans = random.randint(0,len(key_list))
+                            else:
+                                self.cache = {ans:self.choosed_poker01[ans]}
+                                self.ai_prevous_card.update(self.cache)#为{path:surface}
+                                del self.choosed_poker01[ans]
+                                pass
 
                             self.cache = {key_list[g]:[self.position+1200,200]}
                             self.ai_prevous_card_point.update(self.cache)#为{path:position}
@@ -614,9 +618,13 @@ class Game_algorithm():
     def check_winner(self):
         if len(self.choosed_poker01) == 0 and len(self.choosed_poker02) == 0:
             self.winner = False
+            self.round = 0
             return self.winner
+
         else:pass
         if len(self.user_choosed_poker) == 0:
             self.winner = True
+            self.round = 0
             return self.winner
+            
         else:pass

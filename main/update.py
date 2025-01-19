@@ -17,6 +17,9 @@ class Refresh_system():
         self.keep_show = ['','','','','','','','','','','','','','','','','']
         self.count = 0
         self.card_sended = False
+        self.notice_size = pygame.font.Font(None,100)
+        self.winpage = self.notice_size.render('YOU WIN',True,red)
+        self.losepage = self.notice_size.render('YOU lose',True,red)
 
     def draw_refreshed(self,event,mouseevent,target):
         self.target = target
@@ -50,8 +53,14 @@ class Refresh_system():
                     self.count += 1
             if self.count != 0:
                 self.surf.blit(cardback,(self.last_coordinate[0],self.last_coordinate[1]))
-        elif self.card_sended == True:
+        if self.card_sended == True:
             ans = self.ga.run(event,mouseevent)
             if ans == True:
-                self.card_sended = False
-            else:pass
+                started = False
+                self.surf.blit(self.winpage,(400,500))
+                return started
+            elif ans == False:
+                started = False
+                self.surf.blit(self.losepage,(400,500))
+                return started
+
