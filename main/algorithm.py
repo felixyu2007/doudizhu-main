@@ -3,10 +3,12 @@ import random
 import os
 from button import *
 from data import *
+from signin_and_login_system import * 
 
 class Game_algorithm():
     def __init__(self,screen):
         self.surf = screen
+        self.sign = Signin_and_login_method()
         self.round = 0
         self.price = 0
         self.straight = 0
@@ -178,12 +180,12 @@ class Game_algorithm():
             pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
             self.surf.blit(self.priceshow,(1450,650))
             if high == True:
-                self.price += 100
-                if self.price >= 10000:
-                    self.price = 10000
+                self.price += 10000
+                if self.price >= 1000000:
+                    self.price = 1000000
                 self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
             if low == True:
-                self.price -= 100
+                self.price -= 10000
                 if self.price <= 0:
                     self.price = 0
                 self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
@@ -514,36 +516,6 @@ class Game_algorithm():
                             else:pass
                         else:pass
                     else:return False
-                elif self.key_dict[0] != self.key_dict[3] and len(self.key_dict) != 4:
-                    self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
-                    self.ai_prevous_card1.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+1]:self.choosed_poker01[key_list[g+1]]}
-                    self.ai_prevous_card1.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+2]:self.choosed_poker01[key_list[g+2]]}
-                    self.ai_prevous_card1.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+3]:self.choosed_poker01[key_list[g+3]]}
-                    self.ai_prevous_card1.update(self.cache)#为{path:surface}
-
-                    del self.choosed_poker01[key_list[g]]
-                    del self.choosed_poker01[key_list[g+1]]
-                    del self.choosed_poker01[key_list[g+2]]
-                    del self.choosed_poker01[key_list[g+3]]
-
-                    self.cache = {key_list[g]:[self.position+1200,200]}
-                    self.ai_prevous_card_point1.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+1]:[self.position+1200,200]}
-                    self.ai_prevous_card_point1.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+2]:[self.position+1200,200]}
-                    self.ai_prevous_card_point1.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+2]:[self.position+1200,200]}
-                    self.ai_prevous_card_point1.update(self.cache)#为{path:position}
-
-                    line()
-                    print(self.ai_prevous_card1)
-                    return True
                 else:return False
 
 ######################################################################################################################################################################
@@ -551,7 +523,7 @@ class Game_algorithm():
     def ai_alorithm2(self):
         self.key_dict.clear()
         self.key_dict2.clear()
-        target_key_list = list(self.prevous_card.keys())#path
+        target_key_list = list(self.ai_prevous_card1.keys())#path
         key_list = list(self.choosed_poker02.keys())#path
         
         for kl in range(len(target_key_list)):
@@ -742,36 +714,6 @@ class Game_algorithm():
                             else:pass
                         else:pass
                     else:return False
-                elif self.key_dict[0] != self.key_dict[3] and len(self.key_dict) != 4:
-                    self.cache = {key_list[g]:self.choosed_poker02[key_list[g]]}
-                    self.ai_prevous_card2.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+1]:self.choosed_poker02[key_list[g+1]]}
-                    self.ai_prevous_card2.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+2]:self.choosed_poker02[key_list[g+2]]}
-                    self.ai_prevous_card2.update(self.cache)#为{path:surface}
-                    self.cache = {key_list[g+3]:self.choosed_poker02[key_list[g+3]]}
-                    self.ai_prevous_card2.update(self.cache)#为{path:surface}
-
-                    del self.choosed_poker02[key_list[g]]
-                    del self.choosed_poker02[key_list[g+1]]
-                    del self.choosed_poker02[key_list[g+2]]
-                    del self.choosed_poker02[key_list[g+3]]
-
-                    self.cache = {key_list[g]:[self.position+600,200]}
-                    self.ai_prevous_card_point2.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+1]:[self.position+600,200]}
-                    self.ai_prevous_card_point2.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+2]:[self.position+600,200]}
-                    self.ai_prevous_card_point2.update(self.cache)#为{path:position}
-                    self.position += 50
-                    self.cache = {key_list[g+2]:[self.position+600,200]}
-                    self.ai_prevous_card_point2.update(self.cache)#为{path:position}
-
-                    line()
-                    print(self.ai_prevous_card2)
-                    return True
                 else:return False
                         
 
@@ -880,7 +822,7 @@ class Game_algorithm():
                     else:return False
                 else:return False
     def check_winner(self):
-        if len(self.choosed_poker01) == 0 and len(self.choosed_poker02) == 0:
+        if len(self.choosed_poker01) == 0 or len(self.choosed_poker02) == 0:
             self.winner = False
             self.round = 0
             return self.winner

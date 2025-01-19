@@ -79,4 +79,4 @@ class Refresh_system():
                 started = False
                 self.surf.blit(self.losepage,(400,500))
                 return started
-
+            

@@ -51,7 +51,11 @@ class Signin_and_login_method():
                 json.dump(self.data,opw,indent=4)
                 bgdata.ask_quetion('sign_error','account not existed')
                 return False
-            
+    def spended_fund(self,num,target):
+        with open(self.path,mode='w') as opww:
+            self.cache3 = {target:self.data['user'][2] + num}
+            self.data['user'][2].update(self.cache3)
+            json.dump(self.data,opww,indent=4)
     def get_userinfo(self,userid):
         cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
