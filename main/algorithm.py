@@ -1,7 +1,8 @@
-from function_data.bgdata import *
+from bgdata import *
 import random
 import os
-from function_data.button import *
+from button import *
+from data import *
 
 class Game_algorithm():
     def __init__(self,screen):
@@ -154,8 +155,8 @@ class Game_algorithm():
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
         if self.round == 0:
-            grab = self.grab_button.clickbutton(mouseevent,event)
-            ungrab = self.unrob_button.clickbutton(mouseevent,event)
+            grab = self.grab_button.clickbutton(mouseevent,event,green)
+            ungrab = self.unrob_button.clickbutton(mouseevent,event,green)
             if grab == True:
                 self.round += 1
                 self.choosen = True
@@ -167,9 +168,9 @@ class Game_algorithm():
     
         #第一回合需要下注与创建玩家所持的卡的字典，其中是{卡的surface：【卡绘制的位置x，卡绘制的位置y】}
         elif self.round == 1:
-            high = self.increase_btn.clickbutton(mouseevent,event)
-            low = self.decrease_btn.clickbutton(mouseevent,event)
-            bet = self.bet_button.clickbutton(mouseevent,event)
+            high = self.increase_btn.clickbutton(mouseevent,event,green)
+            low = self.decrease_btn.clickbutton(mouseevent,event,green)
+            bet = self.bet_button.clickbutton(mouseevent,event,green)
             pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
             self.surf.blit(self.priceshow,(1450,650))
             if high == True:
@@ -239,11 +240,11 @@ class Game_algorithm():
                 Game_algorithm.ai_alorithm(self)
             else:
                 Game_algorithm.draw_cards(self,event,mouseevent)
-                passround = self.pass_btn.clickbutton(mouseevent,event)
+                passround = self.pass_btn.clickbutton(mouseevent,event,green)
                 ans = Game_algorithm.check_hand(self)#self.card_play_point.clear() and self.current_card.clear()
                 
                 if ans == True:
-                    play = self.play_btn.clickbutton(mouseevent,event)
+                    play = self.play_btn.clickbutton(mouseevent,event,green)
                     if play:
                         self.round += 1
                         self.position = 0

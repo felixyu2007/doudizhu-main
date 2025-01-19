@@ -1,4 +1,4 @@
-import function_data.bgdata
+import bgdata
 import json
 class Signin_and_login_method():
     def __init__(self):
@@ -11,11 +11,11 @@ class Signin_and_login_method():
 
     def create_account(self,user_id,username,password):
         if user_id in self.data['user'][0]:
-            function_data.bgdata.ask_quetion('sign_error','account existed')
+            bgdata.ask_quetion('sign_error','account existed')
             return False
         if user_id not in self.data['user'][0]:
             Signin_and_login_method.save_account(self,user_id,username,password)
-            function_data.bgdata.ask_quetion('login?','account created')
+            bgdata.ask_quetion('login?','account created')
             return True
 
     def login(self,user_id,username,password):
@@ -46,7 +46,7 @@ class Signin_and_login_method():
                 return True
             if target not in self.data['user'][0]:
                 json.dump(self.data,opw,indent=4)
-                function_data.bgdata.ask_quetion('sign_error','account not existed')
+                bgdata.ask_quetion('sign_error','account not existed')
                 return False
             
     def get_userinfo(self,userid):

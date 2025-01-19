@@ -1,6 +1,6 @@
 print('==========================python_running_log=====================================')
 from update import *
-from function_data.bgdata import *
+from bgdata import *
 
 clock = pygame.time.Clock()
 clock.tick(FPS)
@@ -22,7 +22,7 @@ while True:
                 ans2 = sp.sendback()
                 getin = True
                 started = m.draw_menu(event,ans2)
-        if started == True: 
-            rs.draw_refreshed(event,pygame.mouse.get_pos())
+    if started == True: 
+        rs.draw_refreshed(event,pygame.mouse.get_pos(),ans2)
     pygame.display.update()
     

@@ -19,7 +19,7 @@ class Button():
         if self.button_rect2.collidepoint(mouseevent):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.surf,(74,74,74),self.button_rect2)
-                pygame.draw.rect(self.surf,(37,96,57),self.button_rect1)
+                pygame.draw.rect(self.surf,(94,94,94),self.button_rect1)
                 self.surf.blit(self.button_text,(self.coordinatex,self.coordinatey))
                 self.clicked = True
             if event.type == pygame.MOUSEBUTTONUP:

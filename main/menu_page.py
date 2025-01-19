@@ -1,9 +1,8 @@
 #import cache and refresh_system
-import function_data.bgdata
-import function_data.button
-import function_data.inputbox
-import function_data.signin_and_login_system
-import function_data.algorithm
+from bgdata import *
+from button import *
+from inputbox import *
+from signin_and_login_system import *
 from data import *
 
 class Sign_page():
@@ -20,15 +19,15 @@ class Sign_page():
         self.login_mode = login_mode
         self.del_account_mode = False
         self.userid = ''
-        self.sign = function_data.signin_and_login_system.Signin_and_login_method()
-        self.getinbtn = function_data.button.Button(self.surf,1200,650,'Enter',green)
-        self.signinbtn = function_data.button.Button(self.surf,1200,400,'sign in',orange2)
-        self.loginbtn = function_data.button.Button(self.surf,1200,600,'log in',orange2)
-        self.delaccbtn = function_data.button.Button(self.surf,1200,800,'del account',orange2)
-        self.user_id = function_data.inputbox.Intput_box(self.surf,600,500,'user id (must be integer and 8 letters)')
-        self.name = function_data.inputbox.Intput_box(self.surf,600,600,'name (must be longer than 7 letters)')
-        self.password = function_data.inputbox.Intput_box(self.surf,600,700,'password (must be longer than 7 letters)')
-        self.del_account = function_data.inputbox.Intput_box(self.surf,600,400,'Enter the account id you want to delete')
+        self.sign = Signin_and_login_method()
+        self.getinbtn = Button(self.surf,1200,650,'Enter',green)
+        self.signinbtn = Button(self.surf,1200,400,'sign in',orange2)
+        self.loginbtn = Button(self.surf,1200,600,'log in',orange2)
+        self.delaccbtn = Button(self.surf,1200,800,'del account',orange2)
+        self.user_id = Intput_box(self.surf,600,500,'user id (must be integer and 8 letters)')
+        self.name = Intput_box(self.surf,600,600,'name (must be longer than 7 letters)')
+        self.password = Intput_box(self.surf,600,700,'password (must be longer than 7 letters)')
+        self.del_account = Intput_box(self.surf,600,400,'Enter the account id you want to delete')
 
     def sign_page(self,event,mouseevent):
         global getin
@@ -49,7 +48,7 @@ class Sign_page():
             if self.userid != '' and len(self.userid) == 8 and getinbutton == True:
                 ans = self.sign.delete_account(self.userid)
                 if ans:
-                    function_data.bgdata.ask_quetion('sign_error','account deleted')
+                    ask_quetion('sign_error','account deleted')
                     self.del_account_mode == False
                 else:
                     pass
@@ -151,7 +150,7 @@ class Menu():
         self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
 
     def draw_menu(self,event,target):
-        self.sign2 = function_data.signin_and_login_system.Signin_and_login_method()
+        self.sign2 = Signin_and_login_method()
         self.target = target
         self.ans = self.sign2.get_userinfo(self.target)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
