@@ -47,8 +47,8 @@ class Signin_and_login_method():
                 bgdata.ask_quetion('sign_error','account not existed')
                 return False
             
-    def get_userinfo(self,user_id):
-        cache = [self.data['user'][0][user_id],self.data['user'][2][user_id]]
+    def get_userinfo(self,userid):
+        cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
 
             

@@ -16,6 +16,7 @@ class Game_algorithm():
         self.free_hand = False
         self.ai_free_hand = False
         self.cursor = False
+        self.winner = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         poker_image_path = r'PNG-cards-1.3'
         imgs = os.listdir(poker_image_path)
@@ -39,7 +40,7 @@ class Game_algorithm():
         self.decrease_btn = Button(self.surf,1200,750,'decrease',green)
         self.bet_button = Button(self.surf,1450,750,'bet',green)
         self.grab_button = Button(self.surf,1450,850,'landlord',green)
-        self.unrob_button = Button(self.surf,1450,920,'people',green)
+        self.unrob_button = Button(self.surf,1450,950,'people',green)
         self.pass_btn = Button(self.surf,1200,650,'pass',green)
         self.play_btn = Button(self.surf,1500,650,'play',green)
         #要把下注的金额绘制出来
@@ -282,7 +283,8 @@ class Game_algorithm():
                     else:
                         self.free_hand = True
                         print('free')
-                    
+                ans3 = Game_algorithm.check_winner(self)   
+                return ans3
 
 ######################################################################################################################################################################
 
@@ -426,10 +428,14 @@ class Game_algorithm():
                             del self.choosed_poker01[key_list[g]]
                             del self.choosed_poker01[key_list[g+1]]
                             del self.choosed_poker01[key_list[g+2]]
-                            ans = random.choice(list(self.choosed_poker01.keys()))
-                            self.cache = {ans:self.choosed_poker01[ans]}
-                            self.ai_prevous_card.update(self.cache)#为{path:surface}
-                            del self.choosed_poker01[ans]
+                            ans = random.randint(len(key_list))
+                            if ans == g or g+1 or g+2:
+                                ans = random.randint(0,len(key_list))
+                            else:
+                                self.cache = {ans:self.choosed_poker01[ans]}
+                                self.ai_prevous_card.update(self.cache)#为{path:surface}
+                                del self.choosed_poker01[ans]
+                                pass
 
                             self.cache = {key_list[g]:[self.position+1200,200]}
                             self.ai_prevous_card_point.update(self.cache)#为{path:position}
@@ -609,3 +615,16 @@ class Game_algorithm():
                         else:return False
                     else:return False
                 else:return False
+    def check_winner(self):
+        if len(self.choosed_poker01) == 0 and len(self.choosed_poker02) == 0:
+            self.winner = False
+            self.round = 0
+            return self.winner
+
+        else:pass
+        if len(self.user_choosed_poker) == 0:
+            self.winner = True
+            self.round = 0
+            return self.winner
+            
+        else:pass
