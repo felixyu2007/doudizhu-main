@@ -41,7 +41,6 @@ class Signin_and_login_method():
                 del self.data['user'][0][target]
                 del self.data['user'][1][target]
                 del self.data['user'][2][target]
-                print(self.data)
                 json.dump(self.data,opw,indent=4)
                 return True
             if target not in self.data['user'][0]:
@@ -54,6 +53,7 @@ class Signin_and_login_method():
             cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
         except:
             cache = ['','']
+        print(cache)
         return cache
 
             

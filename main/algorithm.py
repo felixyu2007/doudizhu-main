@@ -35,13 +35,13 @@ class Game_algorithm():
         self.key_dict = {}
         self.key_dict2 = {}
         #调用先前写好的按钮函数
-        self.increase_btn = Button(self.surf,1200,650,'increase')
-        self.decrease_btn = Button(self.surf,1200,750,'decrease')
-        self.bet_button = Button(self.surf,1450,750,'bet')
-        self.grab_button = Button(self.surf,1450,850,'be the landlord')
-        self.unrob_button = Button(self.surf,1450,900,'be the people')
-        self.pass_btn = Button(self.surf,1200,650,'pass')
-        self.play_btn = Button(self.surf,1500,650,'play')
+        self.increase_btn = Button(self.surf,1200,650,'increase',green)
+        self.decrease_btn = Button(self.surf,1200,750,'decrease',green)
+        self.bet_button = Button(self.surf,1450,750,'bet',green)
+        self.grab_button = Button(self.surf,1450,850,'be the landlord',green)
+        self.unrob_button = Button(self.surf,1450,900,'be the people',green)
+        self.pass_btn = Button(self.surf,1200,650,'pass',green)
+        self.play_btn = Button(self.surf,1500,650,'play',green)
         #要把下注的金额绘制出来
         self.text = pygame.font.Font(None,100)
         self.priceshow = self.text.render(''.join(str(self.price)),True,(255,255,255))
@@ -155,8 +155,8 @@ class Game_algorithm():
     def run(self,event,mouseevent):
         #创建第零回合，询问是否抢地主
         if self.round == 0:
-            grab = self.grab_button.clickbutton(mouseevent,event,green)
-            ungrab = self.unrob_button.clickbutton(mouseevent,event,green)
+            grab = self.grab_button.clickbutton(mouseevent,event)
+            ungrab = self.unrob_button.clickbutton(mouseevent,event)
             if grab == True:
                 self.round += 1
                 self.choosen = True
@@ -168,9 +168,9 @@ class Game_algorithm():
     
         #第一回合需要下注与创建玩家所持的卡的字典，其中是{卡的surface：【卡绘制的位置x，卡绘制的位置y】}
         elif self.round == 1:
-            high = self.increase_btn.clickbutton(mouseevent,event,green)
-            low = self.decrease_btn.clickbutton(mouseevent,event,green)
-            bet = self.bet_button.clickbutton(mouseevent,event,green)
+            high = self.increase_btn.clickbutton(mouseevent,event)
+            low = self.decrease_btn.clickbutton(mouseevent,event)
+            bet = self.bet_button.clickbutton(mouseevent,event)
             pygame.draw.rect(self.surf,(74,74,74),(1450,650,200,60))
             self.surf.blit(self.priceshow,(1450,650))
             if high == True:
@@ -240,11 +240,11 @@ class Game_algorithm():
                 Game_algorithm.ai_alorithm(self)
             else:
                 Game_algorithm.draw_cards(self,event,mouseevent)
-                passround = self.pass_btn.clickbutton(mouseevent,event,green)
+                passround = self.pass_btn.clickbutton(mouseevent,event)
                 ans = Game_algorithm.check_hand(self)#self.card_play_point.clear() and self.current_card.clear()
                 
                 if ans == True:
-                    play = self.play_btn.clickbutton(mouseevent,event,green)
+                    play = self.play_btn.clickbutton(mouseevent,event)
                     if play:
                         self.round += 1
                         self.position = 0
@@ -267,11 +267,11 @@ class Game_algorithm():
                         ans2 = Game_algorithm.ai_alorithm(self)
                         if ans2:
                             self.free_hand = False
-                            self.surf.blit()
                             print('not free')
                         else:
                             self.free_hand = True
                             print('free')
+                    else:pass
                 elif passround == True:
                     self.round += 1
                     self.ai_free_hand == True
