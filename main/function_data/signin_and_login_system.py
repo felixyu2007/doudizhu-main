@@ -51,7 +51,10 @@ class Signin_and_login_method():
         with open(self.path,mode='r',encoding='utf-8') as opr:
             self.data = json.load(opr)
             print(self.data)
-            cache = {self.data['user'][1][userid],self.data['user'][2][userid]}
-            return cache
+            try:
+                cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
+            except:
+                cache = ['','']
+        return cache
 
             

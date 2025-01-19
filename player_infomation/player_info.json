@@ -1,8 +1,17 @@
 {
     "user": [
-        {},
-        {},
-        {}
+        {
+            "asdasdas": "asdasdasd",
+            "asdasdap": "asdasdas"
+        },
+        {
+            "asdasdas": "asdasdasd",
+            "asdasdap": "asdasdas"
+        },
+        {
+            "asdasdas": 10000,
+            "asdasdap": 10000
+        }
     ],
     "bernard": [
         {
