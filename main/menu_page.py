@@ -148,11 +148,11 @@ class Menu():
         self.userinfo_size = pygame.font.Font(None,80)
         self.surf = surf
         self.rule_slogan = self.rule_slogan_size.render('RULE',True,black)
-
+        self.start_slogan = self.rule_slogan_size.render('START',True,black)
+        self.sign = Signin_and_login_method()
     def draw_menu(self,event,target):
-        self.sign2 = Signin_and_login_method()
         self.target = target
-        self.ans = self.sign2.get_userinfo(self.target)
+        self.ans = self.sign.get_userinfo(self.target)
         self.name = self.userinfo_size.render(self.ans[0],True,black)
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
@@ -160,9 +160,10 @@ class Menu():
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         pygame.draw.rect(self.surf,green,self.rule_rect)
         pygame.draw.rect(self.surf,green,self.start_rect)
-        self.surf.blit(self.rule_slogan,(850,445))
+        self.surf.blit(self.rule_slogan,(850,450))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
+        self.surf.blit(self.start_slogan,(830,650))
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rule_rect.collidepoint(event.pos):
                 self.surf.blit(button_image09,(700,350))
