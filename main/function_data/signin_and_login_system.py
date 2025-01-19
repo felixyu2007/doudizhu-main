@@ -19,9 +19,10 @@ class Signin_and_login_method():
             return True
 
     def login(self,user_id,username,password):
-        if username == self.data['user'][0][user_id] and password == self.data['user'][1][user_id]:
-            return True
-        else:
+        try:
+            if username == self.data['user'][0][user_id] and password == self.data['user'][1][user_id]:
+                return True
+        except:
             return False
 
     def save_account(self,user_id,username,password):
@@ -49,8 +50,6 @@ class Signin_and_login_method():
                 return False
             
     def get_userinfo(self,userid):
-        with open(self.path,mode='r',encoding='utf-8') as opr:
-            self.data = json.load(opr)
         try:
             cache = [self.data['user'][1][userid],self.data['user'][2][userid]]
         except:
