@@ -22,13 +22,14 @@ class Signin_and_login_method():
             if username == self.data['user'][0][user_id] and password == self.data['user'][1][user_id]:
                 return True
         except:
+            bgdata.ask_quetion('sign_error','uid or name or password incorrect')
             return False
 
     def save_account(self,user_id,username,password):
         with open(self.path,mode='w') as opw:
             self.cache1 = {user_id:username}
             self.cache2 = {user_id:password}
-            self.cache3 = {user_id:10000}
+            self.cache3 = {user_id:10000000}
             self.data['user'][0].update(self.cache1)
             self.data['user'][1].update(self.cache2)
             self.data['user'][2].update(self.cache3)
@@ -50,5 +51,6 @@ class Signin_and_login_method():
     def get_userinfo(self,userid):
         cache = [self.data['user'][0][userid],self.data['user'][2][userid]]
         return cache
-
+    def get_aiinfo(self):
+        pass
             
