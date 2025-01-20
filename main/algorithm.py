@@ -367,8 +367,6 @@ class Game_algorithm():
             target_key_list = list(self.ai_prevous_card2.keys())#path
         else:
             target_key_list = list(self.prevous_card.keys())#path
-            self.ai_prevous_card1.clear()
-            self.ai_prevous_card1.update(self.prevous_card)
         key_list = list(self.choosed_poker01.keys())#path
         
         for kl in range(len(target_key_list)):
