@@ -23,6 +23,7 @@ class Game_algorithm():
         self.winner = False
         self.feedback1 = False
         self.feedback2 = False
+        self.passround = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
         self.poker_image_path = r'PNG-cards-1.3'
         self.imgs = os.listdir(self.poker_image_path)
@@ -256,7 +257,7 @@ class Game_algorithm():
                     print('free hand')
             else:
                 Game_algorithm.draw_cards(self,event,mouseevent)
-                passround = self.pass_btn.clickbutton(mouseevent,event)
+                self.passround = self.pass_btn.clickbutton(mouseevent,event)
                 ans = Game_algorithm.check_hand(self)#self.card_play_point.clear() and self.current_card.clear()
                 
                 if ans == True:
@@ -292,7 +293,7 @@ class Game_algorithm():
                             self.free_hand = True
                             print('free hand')
                     else:pass
-                elif passround == True:
+                elif self.passround == True:
                     self.round += 1
                     self.ai_free_hand1 == True
                     ans2 = Game_algorithm.ai_alorithm1(self)
@@ -358,10 +359,10 @@ class Game_algorithm():
         self.ai_prevous_card_point1.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
-        if self.feedback2 == False:
+        if self.passround == True:
             target_key_list = list(self.ai_prevous_card1.keys())#path
         else:
-            target_key_list = list(self.ai_prevous_card2.keys())#path
+            target_key_list = list(self.prevous_card.keys())#path
         key_list = list(self.choosed_poker01.keys())#path
         
         for kl in range(len(target_key_list)):
@@ -560,7 +561,10 @@ class Game_algorithm():
         self.ai_prevous_card_point2.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
-        target_key_list = list(self.ai_prevous_card1.keys())#path
+        if self.feedback1 == False:
+            target_key_list = list(self.prevous_card.keys())#path
+        else:
+            target_key_list = list(self.ai_prevous_card1.keys())#path
         key_list = list(self.choosed_poker02.keys())#path
         
         for kl in range(len(target_key_list)):
@@ -772,7 +776,10 @@ class Game_algorithm():
         self.key_dict.clear()
         self.key_dict2.clear()
         key_list = list(self.current_card.keys())
-        target_key_list = list(self.ai_prevous_card2.keys())
+        if self.feedback2 == False:
+            target_key_list = list(self.ai_prevous_card1.keys())#path
+        else:
+            target_key_list = list(self.ai_prevous_card2.keys())#path
         for tkl in range(len(target_key_list)):
             self.cache = {tkl:int(target_key_list[tkl][0:2])}
             self.key_dict2.update(self.cache)#{num:card rank}
