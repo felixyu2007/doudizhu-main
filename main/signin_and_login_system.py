@@ -25,9 +25,16 @@ class Signin_and_login_method():
         try:
             if username == self.data['user'][0][user_id] and password == self.data['user'][1][user_id]:
                 return True
+            else:
+                bgdata.ask_quetion('sign_error','uid or name or password incorrect')
         except:
-            bgdata.ask_quetion('sign_error','uid or name or password incorrect')
-            return False
+            try:
+                if username != self.data['user'][0][user_id] or password != self.data['user'][1][user_id]:
+                    bgdata.ask_quetion('sign_error','uid or name or password incorrect')
+                    return False
+            except:
+                bgdata.ask_quetion('sign_error','uid or name or password incorrect')
+                return False
 
     def save_account(self,user_id,username,password):
         with open(self.path,mode='w') as opw:
