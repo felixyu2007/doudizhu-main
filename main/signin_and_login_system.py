@@ -64,7 +64,7 @@ class Signin_and_login_method():
         self.ais.append(self.ai_list[ans])
         print(self.ai_list)
         print(self.key_list)
-        print(ans1)
+        print(ans)
         del self.key_list[ans]
         ans2 = random.choice(self.key_list)
         print(self.ai_list)
