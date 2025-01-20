@@ -295,6 +295,7 @@ class Game_algorithm():
                     else:pass
                 elif self.passround == True:
                     self.round += 1
+                    self.ai_free_hand1 = False
                     self.feedback1 = Game_algorithm.ai_alorithm1(self)
                     if self.feedback1 == True:
                         self.ai_free_hand2 = False
