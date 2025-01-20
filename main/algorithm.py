@@ -246,13 +246,16 @@ class Game_algorithm():
                 #自動pass,且決定地主
                 #here the ai algorithm
                 ans2 = Game_algorithm.ai_alorithm1(self)
+                if ans2 == True:
+                    self.ai_free_hand2 = False
+                elif ans2 == False:
+                    self.ai_free_hand2 = True
                 ans3 = Game_algorithm.ai_alorithm2(self)
-                if ans2 and ans3:
+                if ans3 == True:
                     self.free_hand = False
-                    print('not free')
-                else:
+                elif ans3 == False:
                     self.free_hand = True
-                    print('free')
+                    print('free hand')
             else:
                 Game_algorithm.draw_cards(self,event,mouseevent)
                 passround = self.pass_btn.clickbutton(mouseevent,event)
@@ -280,13 +283,16 @@ class Game_algorithm():
                         
                         self.prevous_card.update(self.current_card)#为{path:surface}
                         ans2 = Game_algorithm.ai_alorithm1(self)
+                        if ans2 == True:
+                            self.ai_free_hand2 = False
+                        elif ans2 == False:
+                            self.ai_free_hand2 = True
                         ans3 = Game_algorithm.ai_alorithm2(self)
-                        if ans2 and ans3:
+                        if ans3 == True:
                             self.free_hand = False
-                            print('not free')
-                        else:
+                        elif ans3 == False:
                             self.free_hand = True
-                            print('free')
+                            print('free hand')
                     else:pass
                 elif passround == True:
                     self.round += 1

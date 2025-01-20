@@ -70,8 +70,7 @@ class Signin_and_login_method():
         print(self.ai_list)
         print(self.key_list)
         print(ans2)
-        self.ais.append(self.ai_list[ans2])
-        del self.key_list[ans2]
+        self.ais.append(self.ai_list[ans2-1])
         ai_name = self.data[self.ais[0]][0]['username']
         ai_fund = self.data[self.ais[0]][1]['fund']
         ai_name2 = self.data[self.ais[1]][0]['username']
