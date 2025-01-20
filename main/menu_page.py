@@ -123,7 +123,8 @@ class Sign_page():
                 if getinbutton == True:
                     self.sign.create_account(self.userid,name,password)
                     self.signed = False
-                    self.login_mode = self.del_account_mode = False
+                    self.login_mode = False
+                    self.del_account_mode = False
             if ans2 == True:
                 self.signed = False
                 self.del_account_mode = False
