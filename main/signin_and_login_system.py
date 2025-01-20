@@ -62,11 +62,15 @@ class Signin_and_login_method():
     def get_aiinfo(self):
         ans = random.choice(self.key_list)
         self.ais.append(self.ai_list[ans])
-        del self.ai_list[ans]
+        print(self.ai_list)
+        print(self.key_list)
+        print(ans1)
         del self.key_list[ans]
         ans2 = random.choice(self.key_list)
+        print(self.ai_list)
+        print(self.key_list)
+        print(ans2)
         self.ais.append(self.ai_list[ans2])
-        del self.ai_list[ans2]
         del self.key_list[ans2]
         ai_name = self.data[self.ais[0]][0]['username']
         ai_fund = self.data[self.ais[0]][1]['fund']

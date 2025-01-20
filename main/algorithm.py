@@ -301,6 +301,16 @@ class Game_algorithm():
                         print('free')
                 ans4 = Game_algorithm.check_winner(self)
                 if ans4 == True:
+                    self.ai_prevous_card1.clear()
+                    self.ai_prevous_card2.clear()
+                    self.prevous_card.clear()
+                    self.card_blit_point.clear()
+                    self.ai_prevous_card_point1.clear()
+                    self.ai_prevous_card_point2.clear()
+                    self.choosed_dizhu_poker.clear()
+                    self.choosed_poker01.clear()
+                    self.choosed_poker02.clear()
+                    self.user_choosed_poker.clear()
                     self.round = 0
                 else:pass
                 return ans4
