@@ -351,6 +351,7 @@ class Game_algorithm():
 ######################################################################################################################################################################
 
     def ai_alorithm1(self):
+        self.ai_prevous_card_point1.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
         target_key_list = list(self.prevous_card.keys())#path
@@ -367,11 +368,11 @@ class Game_algorithm():
             self.ai_prevous_card1.clear()
             self.ai_prevous_card_point1.clear()
             ans = random.choice(list(self.choosed_poker01.keys()))
-            self.cache = {key_list[ans]:self.choosed_poker01[key_list[ans]]}
+            self.cache = {ans:self.choosed_poker01[key_list[ans]]}
             self.ai_prevous_card1.update(self.cache)#为{path:surface}
             del self.choosed_poker01[ans]
 
-            self.cache = {key_list[ans]:[self.position+1200,200]}
+            self.cache = {ans:[self.position+1200,200]}
             self.ai_prevous_card_point1.update(self.cache)#为{path:position}
 
             self.ai_free_hand1 = False
@@ -549,6 +550,7 @@ class Game_algorithm():
 ######################################################################################################################################################################
 
     def ai_alorithm2(self):
+        self.ai_prevous_card_point2.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
         target_key_list = list(self.ai_prevous_card1.keys())#path
@@ -565,11 +567,11 @@ class Game_algorithm():
             self.ai_prevous_card2.clear()
             self.ai_prevous_card_point2.clear()
             ans = random.choice(list(self.choosed_poker02.keys()))
-            self.cache = {key_list[ans]:self.choosed_poker02[key_list[ans]]}
+            self.cache = {ans:self.choosed_poker02[key_list[ans]]}
             self.ai_prevous_card2.update(self.cache)#为{path:surface}
             del self.choosed_poker02[ans]
 
-            self.cache = {key_list[ans]:[self.position+600,200]}
+            self.cache = {ans:[self.position+600,200]}
             self.ai_prevous_card_point2.update(self.cache)#为{path:position}
 
             self.ai_free_hand2 = False
