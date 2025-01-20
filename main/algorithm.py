@@ -292,6 +292,8 @@ class Game_algorithm():
                         elif self.feedback2 == False and self.feedback1 == False:
                             self.free_hand = True
                             print('free hand')
+                        else:
+                            self.free_hand = False
                     else:pass
                 elif self.passround == True:
                     self.round += 1
