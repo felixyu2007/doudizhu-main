@@ -22,8 +22,8 @@ class Game_algorithm():
         self.cursor = False
         self.winner = False
         #创建各种牌组和字典（地主牌3张，3个玩家各17张）
-        poker_image_path = r'PNG-cards-1.3'
-        imgs = os.listdir(poker_image_path)
+        self.poker_image_path = r'PNG-cards-1.3'
+        self.imgs = os.listdir(self.poker_image_path)
         self.poker = {}
         self.choosed_dizhu_poker = {}
         self.choosed_poker01 = {}
@@ -58,13 +58,13 @@ class Game_algorithm():
         #繪製ai玩家的咨詢
         self.ai_info = self.text.render(''.join(str(self.price)),True,(255,255,255))
         
-
+    def get_poker(self):
 ######################################################################################################################################################################
         
         #往牌组里随机抽出牌然后分别放入（地主牌，3个玩家各17张）
-        for p in imgs:
+        for p in self.imgs:
             baba = os.path.dirname(os.path.abspath(p))
-            self.haha = os.path.join(baba,poker_image_path+'\\'+p)
+            self.haha = os.path.join(baba,self.poker_image_path+'\\'+p)
             self.image_surface = pygame.image.load(self.haha)
             poker_dict = {p:self.image_surface}
             self.poker.update(poker_dict)#为{path:surface}
@@ -165,9 +165,11 @@ class Game_algorithm():
             ungrab = self.unrob_button.clickbutton(mouseevent,event)
             if grab == True:
                 self.round += 1
+                Game_algorithm.get_poker(self)
                 self.choosen = True
             if ungrab == True:
                 self.round += 1
+                Game_algorithm.get_poker(self)
                 self.choosen == False
 
 ######################################################################################################################################################################
@@ -243,7 +245,14 @@ class Game_algorithm():
                 self.round += 1
                 #自動pass,且決定地主
                 #here the ai algorithm
-                Game_algorithm.ai_alorithm(self)
+                ans2 = Game_algorithm.ai_alorithm1(self)
+                ans3 = Game_algorithm.ai_alorithm2(self)
+                if ans2 and ans3:
+                    self.free_hand = False
+                    print('not free')
+                else:
+                    self.free_hand = True
+                    print('free')
             else:
                 Game_algorithm.draw_cards(self,event,mouseevent)
                 passround = self.pass_btn.clickbutton(mouseevent,event)
@@ -290,7 +299,10 @@ class Game_algorithm():
                     else:
                         self.free_hand = True
                         print('free')
-                ans4 = Game_algorithm.check_winner(self)   
+                ans4 = Game_algorithm.check_winner(self)
+                if ans4 == True:
+                    self.round = 0
+                else:pass
                 return ans4
 
 ######################################################################################################################################################################

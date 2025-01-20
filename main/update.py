@@ -17,7 +17,6 @@ class Refresh_system():
         self.end_coordinate = [1100,600]
         self.last_coordinate = [0,0]
         self.keep_show = ['','','','','','','','','','','','','','','','','']
-        self.count = 0
         self.card_sended = False
         self.notice_size = pygame.font.Font(None,300)
         self.winpage = self.notice_size.render('YOU WIN',True,red)
@@ -35,17 +34,17 @@ class Refresh_system():
         self.fund = self.userinfo_size.render(str(self.ans[1]),True,green)
         self.surf.blit(background_image,(0,0))
         pygame.draw.rect(self.surf,orange,(0,200,200,100))
-        pygame.draw.rect(self.surf,orange,(1720,200,200,100))
+        pygame.draw.rect(self.surf,orange,(1620,200,300,100))
         pygame.draw.rect(self.surf,black,(0,200,200,50))
-        pygame.draw.rect(self.surf,black,(1720,200,200,50))
+        pygame.draw.rect(self.surf,black,(1620,200,300,50))
         pygame.draw.rect(self.surf,black,(0,0,1920,100))
         pygame.draw.rect(self.surf,orange,(10,10,300,80))
         self.surf.blit(self.name,(20,20))
         self.surf.blit(self.fund,(1600,20))
         self.surf.blit(self.ai_name1,(10,210))
         self.surf.blit(self.ai_fund1,(10,250))
-        self.surf.blit(self.ai_name2,(1730,210))
-        self.surf.blit(self.ai_fund2,(1730,250))
+        self.surf.blit(self.ai_name2,(1630,210))
+        self.surf.blit(self.ai_fund2,(1630,250))
         
         if self.card_sended == False:
             if self.start_coordinate[0] <= self.end_coordinate[0] or self.start_coordinate[1] <= self.end_coordinate[1]:
@@ -72,11 +71,10 @@ class Refresh_system():
         if self.card_sended == True:
             ans = self.ga.run(event,mouseevent)
             if ans == True:
-                started = False
                 self.surf.blit(self.winpage,(400,500))
-                return started
+                self.card_sended == False
             elif ans == False:
-                started = False
                 self.surf.blit(self.losepage,(400,500))
-                return started
+                self.card_sended == False
+
             
