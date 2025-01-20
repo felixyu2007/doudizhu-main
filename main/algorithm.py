@@ -285,25 +285,28 @@ class Game_algorithm():
                         if self.feedback1 == True:
                             self.ai_free_hand2 = False
                         elif self.feedback1 == False:
-                            self.ai_free_hand2 = True
+                            self.ai_free_hand2 = False
                         self.feedback2 = Game_algorithm.ai_alorithm2(self)
                         if self.feedback2 == True:
                             self.free_hand = False
-                        elif self.feedback2 == False:
+                        elif self.feedback2 == False and self.feedback1 == False:
                             self.free_hand = True
                             print('free hand')
                     else:pass
                 elif self.passround == True:
                     self.round += 1
-                    self.ai_free_hand1 == True
-                    ans2 = Game_algorithm.ai_alorithm1(self)
-                    ans3 = Game_algorithm.ai_alorithm2(self)
-                    if ans2 and ans3:
+                    self.feedback1 = Game_algorithm.ai_alorithm1(self)
+                    if self.feedback1 == True:
+                        self.ai_free_hand2 = False
+                    elif self.feedback1 == False:
+                        self.ai_free_hand2 = True
+                    self.feedback2 = Game_algorithm.ai_alorithm2(self)
+                    if self.feedback2 == True:
                         self.free_hand = False
-                        print('not free')
-                    else:
+                    elif self.feedback2 == False and self.feedback1 == True:
+                        self.free_hand = False
+                    elif self.feedback2 == False and self.feedback1 == False:
                         self.free_hand = True
-                        print('free')
                 ans4 = Game_algorithm.check_winner(self)
                 if ans4 == True:
                     self.ai_prevous_card1.clear()
@@ -363,6 +366,8 @@ class Game_algorithm():
             target_key_list = list(self.ai_prevous_card1.keys())#path
         else:
             target_key_list = list(self.prevous_card.keys())#path
+            self.ai_prevous_card1.clear()
+            self.ai_prevous_card1.update(self.prevous_card)
         key_list = list(self.choosed_poker01.keys())#path
         
         for kl in range(len(target_key_list)):
