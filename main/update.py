@@ -72,9 +72,14 @@ class Refresh_system():
             ans = self.ga.run(event,mouseevent)
             if ans == True:
                 self.surf.blit(self.winpage,(400,500))
+                spended = self.ga.return_spended_money()
+                self.sign.spended_fund(spended,self.target)
                 self.card_sended == False
+                
             elif ans == False:
                 self.surf.blit(self.losepage,(400,500))
+                spended = self.ga.return_spended_money()
+                self.sign.spended_fund(spended,self.target)
                 self.card_sended == False
 
             
