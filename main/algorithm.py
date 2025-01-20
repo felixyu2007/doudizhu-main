@@ -364,7 +364,7 @@ class Game_algorithm():
         self.key_dict.clear()
         self.key_dict2.clear()
         if self.passround == True:
-            target_key_list = list(self.ai_prevous_card1.keys())#path
+            target_key_list = list(self.ai_prevous_card2.keys())#path
         else:
             target_key_list = list(self.prevous_card.keys())#path
             self.ai_prevous_card1.clear()
