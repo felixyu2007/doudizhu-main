@@ -368,12 +368,13 @@ class Game_algorithm():
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         elif self.passround == True and len(self.ai_prevous_card2) == 0:
             self.ai_free_hand1 = True
+            target_key_list = []
         else:
             target_key_list = list(self.prevous_card.keys())#path
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        
+        print(target_key_list)
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
@@ -575,12 +576,13 @@ class Game_algorithm():
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         elif self.feedback1 == False and len(self.prevous_card) == 0:
             self.ai_free_hand2 = True
+            target_key_list = []
         else:
             target_key_list = list(self.ai_prevous_card1.keys())#path
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        
+        print(target_key_list)
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_pokchoosed_poker02er01 with no (letter).png
@@ -787,13 +789,21 @@ class Game_algorithm():
         self.key_dict.clear()
         self.key_dict2.clear()
         key_list = list(self.current_card.keys())
-        if self.feedback2 == False:
+        if self.feedback2 == False and self.feedback1 == False:
+            self.free_hand = True
+            target_key_list = []
+        elif self.feedback2 == False and len(self.ai_prevous_card1) != 0:
             target_key_list = list(self.ai_prevous_card1.keys())#path
+        elif self.feedback2 == False and len(self.ai_prevous_card1) == 0:
+            self.free_hand = True
+            target_key_list = []
         else:
             target_key_list = list(self.ai_prevous_card2.keys())#path
+        print(target_key_list)
         for tkl in range(len(target_key_list)):
             self.cache = {tkl:int(target_key_list[tkl][0:2])}
             self.key_dict2.update(self.cache)#{num:card rank}
+
         for kl in range(len(key_list)):
             self.cache = {kl:int(key_list[kl][0:2])}
             self.key_dict.update(self.cache)#{num:card rank}
