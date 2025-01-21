@@ -59,6 +59,16 @@ class Game_algorithm():
         self.choosen = False
         
     def get_poker(self):
+        self.choosed_dizhu_poker.clear()
+        self.choosed_poker01.clear()
+        self.choosed_poker02.clear()
+        self.user_choosed_poker.clear()
+        self.poker.clear()
+        self.sort_cache.clear()
+        self.sort_cache.clear()
+        self.card_blit_point.clear()
+        self.choosen = False
+
 ######################################################################################################################################################################
         
         #往牌组里随机抽出牌然后分别放入（地主牌，3个玩家各17张）
@@ -315,14 +325,8 @@ class Game_algorithm():
                     self.ai_prevous_card1.clear()
                     self.ai_prevous_card2.clear()
                     self.prevous_card.clear()
-                    self.card_blit_point.clear()
                     self.ai_prevous_card_point1.clear()
                     self.ai_prevous_card_point2.clear()
-                    self.choosed_dizhu_poker.clear()
-                    self.choosed_poker01.clear()
-                    self.choosed_poker02.clear()
-                    self.user_choosed_poker.clear()
-                    self.poker.clear()
                     self.round = 0
                 else:pass
                 return ans4
