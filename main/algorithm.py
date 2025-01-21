@@ -366,7 +366,7 @@ class Game_algorithm():
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        elif self.passround == True and len(self.ai_prevous_card2) == 0:
+        elif self.passround == True and len(self.ai_prevous_card2) == 0 or self.passround == True and self.feedback2 == False:
             self.ai_free_hand1 = True
             target_key_list = []
         else:
@@ -374,7 +374,7 @@ class Game_algorithm():
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        print(target_key_list)
+
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
@@ -470,24 +470,19 @@ class Game_algorithm():
 
                             
                     elif self.key_dict[0] != self.key_dict[3]:
-                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2]:
+                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2] and self.key_dict2[g+3] or self.key_dict2[g-1]:
                             self.cache = {key_list[g]:self.choosed_poker01[key_list[g]]}
                             self.ai_prevous_card1.update(self.cache)#为{path:surface}
                             self.cache = {key_list[g+1]:self.choosed_poker01[key_list[g+1]]}
                             self.ai_prevous_card1.update(self.cache)#为{path:surface}
                             self.cache = {key_list[g+2]:self.choosed_poker01[key_list[g+2]]}
                             self.ai_prevous_card1.update(self.cache)#为{path:surface}
+                            self.cache = {key_list[g+3]:self.choosed_poker01[key_list[g+3]]}
+                            self.ai_prevous_card1.update(self.cache)#为{path:surface}
                             del self.choosed_poker01[key_list[g]]
                             del self.choosed_poker01[key_list[g+1]]
                             del self.choosed_poker01[key_list[g+2]]
-                            ans = random.randint(0,len(key_list))
-                            if ans == g or g+1 or g+2:
-                                ans = random.randint(0,len(key_list))
-                            else:
-                                self.cache = {ans:self.choosed_poker01[ans]}
-                                self.ai_prevous_card1.update(self.cache)#为{path:surface}
-                                del self.choosed_poker01[ans]
-                                pass
+                            del self.choosed_poker01[key_list[g+3]]
 
                             self.cache = {key_list[g]:[self.position+1200,200]}
                             self.ai_prevous_card_point1.update(self.cache)#为{path:position}
@@ -498,7 +493,7 @@ class Game_algorithm():
                             self.cache = {key_list[g+2]:[self.position+1200,200]}
                             self.ai_prevous_card_point1.update(self.cache)#为{path:position}
                             self.position += 50
-                            self.cache = {key_list[ans]:[self.position+1200,200]}
+                            self.cache = {key_list[g+3]:[self.position+1200,200]}
                             self.ai_prevous_card_point1.update(self.cache)#为{path:position}
 
                             line()
@@ -574,7 +569,7 @@ class Game_algorithm():
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        elif self.feedback1 == False and len(self.prevous_card) == 0:
+        elif self.feedback1 == False and len(self.prevous_card) == 0 or self.passround == True and self.feedback1 == False:
             self.ai_free_hand2 = True
             target_key_list = []
         else:
@@ -582,7 +577,7 @@ class Game_algorithm():
             for kl in range(len(target_key_list)):
                 self.cache = {kl:int(target_key_list[kl][0:2])}
                 self.key_dict.update(self.cache)#path of previous_card with no (letter).png
-        print(target_key_list)
+
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_pokchoosed_poker02er01 with no (letter).png
@@ -678,24 +673,19 @@ class Game_algorithm():
 
                             
                     elif self.key_dict[0] != self.key_dict[3]:
-                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2]:
+                        if self.key_dict2[g] == self.key_dict2[g+1] == self.key_dict2[g+2] and self.key_dict2[g+3] or self.key_dict2[g-1]:
                             self.cache = {key_list[g]:self.choosed_poker02[key_list[g]]}
                             self.ai_prevous_card2.update(self.cache)#为{path:surface}
                             self.cache = {key_list[g+1]:self.choosed_poker02[key_list[g+1]]}
                             self.ai_prevous_card2.update(self.cache)#为{path:surface}
                             self.cache = {key_list[g+2]:self.choosed_poker02[key_list[g+2]]}
                             self.ai_prevous_card2.update(self.cache)#为{path:surface}
+                            self.cache = {key_list[g+3]:self.choosed_poker02[key_list[g+3]]}
+                            self.ai_prevous_card2.update(self.cache)#为{path:surface}
                             del self.choosed_poker02[key_list[g]]
                             del self.choosed_poker02[key_list[g+1]]
                             del self.choosed_poker02[key_list[g+2]]
-                            ans = random.randint(0,len(key_list))
-                            if ans == g or g+1 or g+2:
-                                ans = random.randint(0,len(key_list))
-                            else:
-                                self.cache = {ans:self.choosed_poker02[ans]}
-                                self.ai_prevous_card2.update(self.cache)#为{path:surface}
-                                del self.choosed_poker02[ans]
-                                pass
+                            del self.choosed_poker02[key_list[g+3]]
 
                             self.cache = {key_list[g]:[self.position+600,200]}
                             self.ai_prevous_card_point2.update(self.cache)#为{path:position}
@@ -706,7 +696,7 @@ class Game_algorithm():
                             self.cache = {key_list[g+2]:[self.position+600,200]}
                             self.ai_prevous_card_point2.update(self.cache)#为{path:position}
                             self.position += 50
-                            self.cache = {key_list[ans]:[self.position+600,200]}
+                            self.cache = {key_list[g+3]:[self.position+600,200]}
                             self.ai_prevous_card_point2.update(self.cache)#为{path:position}
 
                             line()
@@ -799,7 +789,7 @@ class Game_algorithm():
             target_key_list = []
         else:
             target_key_list = list(self.ai_prevous_card2.keys())#path
-        print(target_key_list)
+
         for tkl in range(len(target_key_list)):
             self.cache = {tkl:int(target_key_list[tkl][0:2])}
             self.key_dict2.update(self.cache)#{num:card rank}
