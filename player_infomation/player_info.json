@@ -13,7 +13,11 @@
             "12341234": "12341234"
         },
         {
+<<<<<<< Updated upstream
             "asdasdas": 10000000,
+=======
+            "asdasdas": 9310000,
+>>>>>>> Stashed changes
             "asdasdad": 10000000,
             "asdasdsd": 10000000,
             "12341234": 10000000
@@ -24,7 +28,7 @@
             "username": "Bernard Arnault"
         },
         {
-            "fund": 23300000000
+            "fund": 23300060000.0
         }
     ],
     "elon": [
@@ -40,7 +44,7 @@
             "username": "Jeff Bezos"
         },
         {
-            "fund": 19400000000
+            "fund": 19400060000.0
         }
     ],
     "mark": [
@@ -56,7 +60,7 @@
             "username": "Larry Ellison"
         },
         {
-            "fund": 14100000000
+            "fund": 14100590000
         }
     ],
     "warren": [
@@ -64,7 +68,7 @@
             "username": "Warren Buffett"
         },
         {
-            "fund": 23300000000
+            "fund": 23300590000
         }
     ],
     "bill": [
