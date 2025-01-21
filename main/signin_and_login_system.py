@@ -62,9 +62,16 @@ class Signin_and_login_method():
     def spended_fund(self,num,target):
         with open(self.path,mode='w') as opww:
             fund = self.data['user'][2][target]
+            fund2 = self.data[self.ais[0]][1]['fund']
+            fund3 = self.data[self.ais[1]][1]['fund']
             self.cache3 = {target:fund + num}
+            cache1 = {'fund':fund2 - (num/2)}
+            cache2 = {'fund':fund3 - (num/2)}
             self.data['user'][2].update(self.cache3)
+            self.data[self.ais[0]][1].update(cache1)
+            self.data[self.ais[1]][1].update(cache2)
             json.dump(self.data,opww,indent=4)
+
 
     def get_userinfo(self,userid):
         with open(self.path,mode='r',encoding='utf-8') as opr:

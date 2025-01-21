@@ -13,7 +13,7 @@
             "12341234": "12341234"
         },
         {
-            "asdasdas": 10020000,
+            "asdasdas": 8480000,
             "asdasdad": 10000000,
             "asdasdsd": 10000000,
             "12341234": 10000000
@@ -24,7 +24,7 @@
             "username": "Bernard Arnault"
         },
         {
-            "fund": 23300000000
+            "fund": 23300060000.0
         }
     ],
     "elon": [
@@ -32,7 +32,7 @@
             "username": "Elon Musk"
         },
         {
-            "fund": 19500000000
+            "fund": 19500020000.0
         }
     ],
     "jeff": [
@@ -40,7 +40,7 @@
             "username": "Jeff Bezos"
         },
         {
-            "fund": 19400000000
+            "fund": 19400455000.0
         }
     ],
     "mark": [
@@ -48,7 +48,7 @@
             "username": "Mark Zuckerburg"
         },
         {
-            "fund": 17700000000
+            "fund": 17700020000.0
         }
     ],
     "larry": [
@@ -56,7 +56,7 @@
             "username": "Larry Ellison"
         },
         {
-            "fund": 14100000000
+            "fund": 14100590000
         }
     ],
     "warren": [
@@ -64,7 +64,7 @@
             "username": "Warren Buffett"
         },
         {
-            "fund": 23300000000
+            "fund": 23300825000.0
         }
     ],
     "bill": [
@@ -72,7 +72,7 @@
             "username": "Bill Gates"
         },
         {
-            "fund": 12800000000
+            "fund": 12800160000.0
         }
     ]
 }
