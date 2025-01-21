@@ -45,9 +45,9 @@ money = 10000
 login_mode = False
 
 #background and cardback and button image
-background_image = pygame.image.load(r'button_image\background.png')
-cardback = pygame.image.load('button_image\card_back.png')
-button_image09 = pygame.image.load(r'button_image\rule.png')
+background_image = pygame.image.load(r'main\button_image\background.png')
+cardback = pygame.image.load(r'main\button_image\card_back.png')
+button_image09 = pygame.image.load(r'main\button_image\rule.png')
 
 notice_size = pygame.font.Font(None,300)
 winpage = notice_size.render('YOU WIN',True,red)
