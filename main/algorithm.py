@@ -322,6 +322,7 @@ class Game_algorithm():
                     self.choosed_poker01.clear()
                     self.choosed_poker02.clear()
                     self.user_choosed_poker.clear()
+                    self.poker.clear()
                     self.round = 0
                 else:pass
                 return ans4
