@@ -360,17 +360,20 @@ class Game_algorithm():
         self.ai_prevous_card_point1.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
+        key_list = list(self.choosed_poker01.keys())#path
         if self.passround == True and len(self.ai_prevous_card2) != 0:
             target_key_list = list(self.ai_prevous_card2.keys())#path
+            for kl in range(len(target_key_list)):
+                self.cache = {kl:int(target_key_list[kl][0:2])}
+                self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         elif self.passround == True and len(self.ai_prevous_card2) == 0:
             self.ai_free_hand1 = True
         else:
             target_key_list = list(self.prevous_card.keys())#path
-        key_list = list(self.choosed_poker01.keys())#path
+            for kl in range(len(target_key_list)):
+                self.cache = {kl:int(target_key_list[kl][0:2])}
+                self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         
-        for kl in range(len(target_key_list)):
-            self.cache = {kl:int(target_key_list[kl][0:2])}
-            self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_poker01 with no (letter).png
@@ -564,17 +567,20 @@ class Game_algorithm():
         self.ai_prevous_card_point2.clear()
         self.key_dict.clear()
         self.key_dict2.clear()
+        key_list = list(self.choosed_poker02.keys())#path
         if self.feedback1 == False and len(self.prevous_card) != 0:
             target_key_list = list(self.prevous_card.keys())#path
+            for kl in range(len(target_key_list)):
+                self.cache = {kl:int(target_key_list[kl][0:2])}
+                self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         elif self.feedback1 == False and len(self.prevous_card) == 0:
             self.ai_free_hand2 = True
         else:
             target_key_list = list(self.ai_prevous_card1.keys())#path
-        key_list = list(self.choosed_poker02.keys())#path
+            for kl in range(len(target_key_list)):
+                self.cache = {kl:int(target_key_list[kl][0:2])}
+                self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         
-        for kl in range(len(target_key_list)):
-            self.cache = {kl:int(target_key_list[kl][0:2])}
-            self.key_dict.update(self.cache)#path of previous_card with no (letter).png
         for g in range(len(key_list)):
             self.cache = {g:int(key_list[g][0:2])}
             self.key_dict2.update(self.cache)#path of choosed_pokchoosed_poker02er01 with no (letter).png
